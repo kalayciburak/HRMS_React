@@ -1,0 +1,20 @@
+{
+  "short_name": "HRMS",
+  "name": "Human Resource Management Systems",
+  "icons": [
+    {
+      "src": "hrms.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "hrms.png",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
