@@ -314,10 +314,6 @@ export default function Index() {
                 <div className="container mx-auto pb-64">
                     <div className="flex flex-wrap justify-center">
                         <div className="w-full md:w-5/12 px-12 md:px-4 ml-auto mr-auto md:mt-64">
-                            <div
-                                className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white">
-                                <i className="fas fa-code-branch text-xl"></i>
-                            </div>
                             <h3 className="text-3xl mb-2 font-semibold leading-normal text-white">
                                 Açık Kaynak Kodlu
                             </h3>
@@ -335,7 +331,7 @@ export default function Index() {
                                 target="_blank"
                                 className="github-star mt-4 inline-block text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg"
                             >
-                                Github
+                                <i className="fab fa-lg fa-github"></i> Github
                             </a>
                         </div>
 

@@ -1,14 +1,14 @@
 import React from "react";
 import {createPopper} from "@popperjs/core";
 
-const UserDropdown = () => {
+const NotificationDropdown = () => {
     // dropdown props
     const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
     const btnDropdownRef = React.createRef();
     const popoverDropdownRef = React.createRef();
     const openDropdownPopover = () => {
         createPopper(btnDropdownRef.current, popoverDropdownRef.current, {
-            placement: "bottom-start",
+            placement: "left-start",
         });
         setDropdownPopoverShow(true);
     };
@@ -18,54 +18,46 @@ const UserDropdown = () => {
     return (
         <>
             <a
-                className="text-blueGray-500 block"
-                href="#pablo"
+                className="text-white py-1 px-3 text-lg"
+                href="#"
                 ref={btnDropdownRef}
                 onClick={(e) => {
                     e.preventDefault();
                     dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover();
                 }}
             >
-                <div className="items-center flex">
-          <span
-              className="w-12 h-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full">
-            <img
-                alt="..."
-                className="w-full rounded-full align-middle border-none shadow-lg mb-2"
-                src={"https://avatars.githubusercontent.com/u/61664693?v=4"}
-            />
-          </span>
-                </div>
+                <i className="fas fa-ellipsis-h"></i>
             </a>
             <div
                 ref={popoverDropdownRef}
                 className={
                     (dropdownPopoverShow ? "block " : "hidden ") +
                     "bg-blueGray-800 text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
-                }
+                } style={{border: "solid 1px #F1F5F9"}}
             >
                 <a
-                    href="#pablo"
+                    href="#"
                     className={
-                        "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-white"
+                        "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap text-center bg-transparent text-white"
                     }
                     onClick={(e) => e.preventDefault()}
                 >
-                    <i className="fas fa-user mr-2"></i> Profil
+                    <i className="fas fa-edit"></i> Düzenle
                 </a>
                 <div className="h-0 my-2 border border-solid border-blueGray-100"/>
                 <a
-                    href="#pablo"
+                    href="#"
                     className={
-                        "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-white"
+                        "text-sm py-2 px-4 block w-full whitespace-nowrap bg-transparent text-center text-white"
                     }
                     onClick={(e) => e.preventDefault()}
                 >
-                    <i className="fas fa-sign-out-alt mr-2"></i> Çıkış Yap
+                    <i className="fas fa-trash"></i> Sil
                 </a>
             </div>
+
         </>
     );
 };
 
-export default UserDropdown;
+export default NotificationDropdown;

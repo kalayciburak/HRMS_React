@@ -24,7 +24,7 @@ export default function Footer() {
                     </svg>
                 </div>
                 <div className="container mx-auto px-4">
-                    <div className="flex flex-wrap text-center lg:text-left">
+                    <div className="flex flex-wrap items-center justify-center text-center">
                         <div className="w-full lg:w-6/12 px-4">
                             <h4 className="text-3xl font-semibold">İletişime geçin!</h4>
                             <h5 className="text-lg mt-0 mb-2 text-blueGray-600">
@@ -33,7 +33,7 @@ export default function Footer() {
                             <div className="mt-6 lg:mb-0 mb-6">
                                 <a href={"https://twitter.com/torukobyte"} target={"_blank"}>
                                     <button
-                                        className="bg-white text-lightBlue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+                                        className="bg-lightBlue-600 text-white shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-4"
                                         type="button"
                                     >
                                         <i className="fab fa-twitter"></i>
@@ -41,7 +41,7 @@ export default function Footer() {
                                 </a>
                                 <a href={"https://instagram.com/torukobyte"} target={"_blank"}>
                                     <button
-                                        className="bg-white text-pink-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+                                        className="bg-pink-500 text-white shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-4"
                                         type="button"
                                     >
                                         <i className="fab fa-instagram"></i>
@@ -49,7 +49,7 @@ export default function Footer() {
                                 </a>
                                 <a href={"https://youtube.com/brabbitkun"} target={"_blank"}>
                                     <button
-                                        className="bg-white text-red-500 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+                                        className="bg-red-500 text-white shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-4"
                                         type="button"
                                     >
                                         <i className="fab fa-youtube"></i>
@@ -57,7 +57,7 @@ export default function Footer() {
                                 </a>
                                 <a href={"https://github.com/torukobyte"} target={"_blank"}>
                                     <button
-                                        className="bg-white text-blueGray-800 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+                                        className="bg-blueGray-800 text-white shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
                                         type="button"
                                     >
                                         <i className="fab fa-github"></i>
@@ -65,57 +65,7 @@ export default function Footer() {
                                 </a>
                             </div>
                         </div>
-                        <div className="w-full lg:w-6/12 px-4">
-                            <div className="flex flex-wrap items-top mb-6">
-                                <div className="w-full lg:w-4/12 px-4 ml-auto">
-                  <span className="block uppercase text-blueGray-500 text-sm font-semibold mb-2">
-                    Faydalı Linkler
-                  </span>
-                                    <ul className="list-unstyled">
-                                        <li>
-                                            <a
-                                                className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                                                href="#"
-                                            >
-                                                Hakkımda
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a
-                                                className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                                                href="https://www.github.com/torukobyte"
-                                                target={"_blank"}
-                                            >
-                                                Github
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div className="w-full lg:w-4/12 px-4">
-                  <span className="block uppercase text-blueGray-500 text-sm font-semibold mb-2">
-                   Diğer Kaynaklar
-                  </span>
-                                    <ul className="list-unstyled">
-                                        <li>
-                                            <a
-                                                className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                                                href="#"
-                                            >
-                                                Gizlilik Politikası
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a
-                                                className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                                                href="#"
-                                            >
-                                                Bana Ulaşın
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                     <hr className="my-6 border-blueGray-300"/>
                     <div className="flex flex-wrap items-center md:justify-between justify-center">

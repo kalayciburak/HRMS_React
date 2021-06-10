@@ -2,10 +2,10 @@ import React, {useEffect, useState} from "react";
 import PropTypes from "prop-types";
 
 // components
-import TableDropdown from "components/Dropdowns/TableDropdown.js";
+import JobAdvertTableDropdown from "components/Dropdowns/jobAdvertTableDropdown.js";
 import JobAdvertService from "../../services/JobAdvertService";
 
-export default function CardTable({color}) {
+export default function AdminJobAdvertList({color}) {
     const [jobAdverts, setJobAdverts] = useState([]);
 
     useEffect(() => {
@@ -15,23 +15,17 @@ export default function CardTable({color}) {
 
     let airdate;
 
-    {
-        jobAdverts.map((jobAdvert) => {
-            <span style={{visibility: "hidden"}}>{airdate = jobAdvert.airdate.toString().split("T")}</span>
-        })
-    }
-
     return (
 
         <>
-            <h3 className="text-4xl mb-2 font-semibold leading-normal text-blueGray-600  text-center"><i
+            <h3 className="text-4xl mb-4 font-semibold leading-normal text-blueGray-800 text-center"><i
                 className="fas fa-briefcase"></i> İş İlanları</h3>
             <div
-                className={"relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg text-white rounded-lg bg-blueGray-800"}
-                style={{width: "78%", marginLeft: "10%"}}>
+                className={"relative flex flex-col min-w-0 break-words w-full shadow-lg text-white rounded-lg bg-blueGray-800"}
+            >
                 <div className="block overflow-x-auto rounded-lg">
                     {/* Projects table */}
-                    <table className="items-center w-full bg-transparent border-collapse tr-even:bg-red-200 rounded-lg">
+                    <table className="items-center w-full bg-transparent border-collapse rounded-lg">
                         <thead>
                         <tr>
                             <th
@@ -135,6 +129,8 @@ export default function CardTable({color}) {
                                 </td>
                                 <td className="border-b border-indigo-400 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                     <div className="flex">
+                                        <span style={{display: "none"}}>{airdate = jobAdvert.airdate.toString().split(
+                                            "T")}</span>
                                         {airdate[0]}
                                     </div>
                                 </td>
@@ -142,7 +138,7 @@ export default function CardTable({color}) {
                                     {jobAdvert.deadline}
                                 </td>
                                 <td className="border-b border-indigo-400 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                    <TableDropdown/>
+                                    <JobAdvertTableDropdown/>
                                 </td>
                             </tr>
 
@@ -151,14 +147,18 @@ export default function CardTable({color}) {
                     </table>
                 </div>
             </div>
+
         </>
     );
+
+
 }
 
-CardTable.defaultProps = {
+AdminJobAdvertList.defaultProps = {
     color: "light",
 };
 
-CardTable.propTypes = {
+AdminJobAdvertList.propTypes = {
     color: PropTypes.oneOf(["light", "dark"]),
 };
+
