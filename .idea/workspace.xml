@@ -2,41 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="60b0e522-1c25-4a4d-8e9a-3f3c72d705c2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/Dropdowns/UserTableDropdown.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/admin/JobAdvertList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/hrms-react.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/hrms-react.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/img/register_bg_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/img/register_bg_2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/styles/tailwind.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/styles/tailwind.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Cards/CardLineChart.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Cards/CardLineChart.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Cards/CardTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Cards/AdminJobAdvertList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Dropdowns/IndexDropdown.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Dropdowns/IndexDropdown.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Dropdowns/TableDropdown.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Dropdowns/UserDropdown.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Dropdowns/UserDropdown.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Footers/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footers/Footer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Footers/FooterAdmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footers/FooterAdmin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Footers/FooterSmall.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footers/FooterSmall.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Headers/HeaderStats.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Navbars/AdminNavbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbars/AdminNavbar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Navbars/AuthNavbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbars/AuthNavbar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Navbars/IndexNavbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbars/IndexNavbar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Sidebar/Sidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Sidebar/Sidebar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/Admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/Admin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/Auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/Auth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/JobAdvertService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/JobAdvertService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/Index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/Landing.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/admin/Dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/admin/Dashboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/admin/Maps.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/admin/Tables.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/auth/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/auth/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/auth/Register.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/auth/Register.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,12 +75,36 @@
       <workItem from="1623235357701" duration="16656000" />
       <workItem from="1623328836742" duration="3929000" />
       <workItem from="1623341701346" duration="271000" />
-      <workItem from="1623342140545" duration="17306000" />
+      <workItem from="1623342140545" duration="17582000" />
+      <workItem from="1623414761547" duration="1286000" />
     </task>
+    <task id="LOCAL-00001" summary="all components updated for better ui!">
+      <created>1623363168071</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1623363168071</updated>
+    </task>
+    <task id="LOCAL-00002" summary="all components updated for better ui!">
+      <created>1623363311308</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1623363311308</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
+    <MESSAGE value="all components updated for better ui!" />
+    <option name="LAST_COMMIT_MESSAGE" value="all components updated for better ui!" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
