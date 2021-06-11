@@ -1,7 +1,7 @@
 import React from "react";
 import {createPopper} from "@popperjs/core";
 
-const NotificationDropdown = () => {
+const NotificationDropdown = (props) => {
     // dropdown props
     const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
     const btnDropdownRef = React.createRef();
@@ -15,6 +15,7 @@ const NotificationDropdown = () => {
     const closeDropdownPopover = () => {
         setDropdownPopoverShow(false);
     };
+
     return (
         <>
             <a
@@ -45,12 +46,14 @@ const NotificationDropdown = () => {
                     <i className="fas fa-edit"></i> Düzenle
                 </a>
                 <div className="h-0 my-2 border border-solid border-blueGray-100"/>
+
                 <a
                     href="#"
                     className={
                         "text-sm py-2 px-4 block w-full whitespace-nowrap bg-transparent text-center text-white"
                     }
-                    onClick={(e) => e.preventDefault()}
+
+                    onClick={() => props.delete()}
                 >
                     <i className="fas fa-trash"></i> Sil
                 </a>
@@ -58,6 +61,6 @@ const NotificationDropdown = () => {
 
         </>
     );
-};
+}
 
 export default NotificationDropdown;

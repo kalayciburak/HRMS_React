@@ -8,12 +8,18 @@ import JobAdvertService from "../../services/JobAdvertService";
 export default function AdminJobAdvertList({color}) {
     const [jobAdverts, setJobAdverts] = useState([]);
 
+    let jobAdvertService = new JobAdvertService();
+
     useEffect(() => {
-        let jobAdvertService = new JobAdvertService();
         jobAdvertService.getJobAdverts().then(result => setJobAdverts(result.data.data))
     })
 
     let airdate;
+
+
+    function deleteJobAdvert(id) {
+        jobAdvertService.deleteJobAdvertById(id);
+    }
 
     return (
 
@@ -138,7 +144,7 @@ export default function AdminJobAdvertList({color}) {
                                     {jobAdvert.deadline}
                                 </td>
                                 <td className="border-b border-indigo-400 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                    <JobAdvertTableDropdown/>
+                                    <JobAdvertTableDropdown delete={() => deleteJobAdvert(jobAdvert.id)}/>
                                 </td>
                             </tr>
 

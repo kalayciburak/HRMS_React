@@ -11,7 +11,7 @@ export default function Home() {
 
     useEffect(() => {
         let jobAdvertService = new JobAdvertService();
-        jobAdvertService.getJobAdverts().then(result => setJobAdverts(result.data.data))
+        jobAdvertService.getActiveJobAdverts().then(result => setJobAdverts(result.data.data))
     })
 
     let airdate;
@@ -51,7 +51,7 @@ export default function Home() {
                                     </div>
                                     <h2 className="text-blueGray-300 dark:text-gray-100 text-xl tracking-normal font-medium">{jobAdvert.employer.companyName}</h2>
                                     <p className="flex text-blueGray-400 dark:text-gray-100 text-xs tracking-normal font-normal mt-2 text-center">
-                                    <span className="cursor-pointer mr-1 text-gray-600 dark:text-gray-100">
+                                    <span className="mr-1 text-gray-600 dark:text-gray-100">
                                         <svg xmlns="http://www.w3.org/2000/svg"
                                              className="icon icon-tabler icon-tabler-map-pin" width={20} height={20}
                                              viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none"
@@ -77,7 +77,7 @@ export default function Home() {
                                 </div>
                                 <div className="w-full lg:w-1/3 px-12 flex flex-col items-center py-10">
                                     <div
-                                        className="mb-3 w-24 h-24 rounded-full bg-gray-100 flex items-center justify-center cursor-pointer text-blueGray-200">
+                                        className="mb-3 w-24 h-24 rounded-full bg-gray-100 flex items-center justify-center text-blueGray-200">
                                         <svg xmlns="http://www.w3.org/2000/svg"
                                              className="icon icon-tabler icon-tabler-stack" width={48} height={48}
                                              viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none"
@@ -92,7 +92,7 @@ export default function Home() {
                                     <p className="text-blueGray-400 dark:text-gray-100 text-sm tracking-normal font-normal text-center"></p>
                                     <p className="text-blueGray-400 dark:text-gray-100 text-sm tracking-normal font-normal mt-2 mb-6 text-center w-10/12">{jobAdvert.description}</p>
                                     <button
-                                        className="bg-indigo-500 text-blueGray-300 active:bg-indigo-500 hover:bg-purple-300 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg mt-3 outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+                                        className="bg-indigo-500 text-blueGray-300 active:bg-indigo-500 hover:bg-purple-400 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg mt-3 outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                                         type="button"
                                     >
                                         Başvuru Yap
