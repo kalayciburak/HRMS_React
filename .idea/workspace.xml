@@ -3,11 +3,17 @@
   <component name="ChangeListManager">
     <list default="true" id="60b0e522-1c25-4a4d-8e9a-3f3c72d705c2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/assets/styles/tailwind.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/styles/tailwind.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Cards/AdminJobAdvertList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Cards/AdminJobAdvertList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Dropdowns/jobAdvertTableDropdown.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Dropdowns/jobAdvertTableDropdown.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/EmployerService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/EmployerService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/services/JobAdvertService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/JobAdvertService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/SystemPersonelService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/SystemPersonelService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/auth/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/auth/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/auth/Register.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/auth/Register.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,6 +89,10 @@
       <workItem from="1623342140545" duration="17582000" />
       <workItem from="1623414761547" duration="1709000" />
       <workItem from="1623446879362" duration="3802000" />
+      <workItem from="1623451085186" duration="51000" />
+      <workItem from="1623506827416" duration="790000" />
+      <workItem from="1623512597323" duration="16987000" />
+      <workItem from="1623531651771" duration="5534000" />
     </task>
     <task id="LOCAL-00001" summary="all components updated for better ui!">
       <created>1623363168071</created>
@@ -105,7 +115,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623416213869</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="delete method added for jobadverts!">
+      <created>1623451123724</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1623451123724</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -115,7 +132,8 @@
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <MESSAGE value="all components updated for better ui!" />
     <MESSAGE value="all services added for requirments!" />
-    <option name="LAST_COMMIT_MESSAGE" value="all services added for requirments!" />
+    <MESSAGE value="delete method added for jobadverts!" />
+    <option name="LAST_COMMIT_MESSAGE" value="delete method added for jobadverts!" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

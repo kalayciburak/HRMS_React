@@ -22,4 +22,8 @@ export default class SystemPersonelService {
         axios.delete(
             `http://localhost:8080/api/systemPersonels/deleteSystemPersonelById?systemPersonelId=${id}`);
     }
+
+    approveJobAdvert(confirm, id) {
+        axios.post(`http://localhost:8080/api/systemPersonels/changeIsConfirmed?confirm=${confirm}&jobAdvertId=${id}`);
+    }
 }

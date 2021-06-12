@@ -1056,6 +1056,11 @@ select {
     background-color: rgba(99, 102, 241, var(--tw-bg-opacity));
 }
 
+.bg-indigo-700 {
+    --tw-bg-opacity: 1;
+    background-color: rgba(139, 54, 150, var(--tw-bg-opacity));
+}
+
 .bg-lightBlue-200 {
     --tw-bg-opacity: 1;
     background-color: rgba(186, 230, 253, var(--tw-bg-opacity));

@@ -4,14 +4,20 @@ import PropTypes from "prop-types";
 // components
 import JobAdvertTableDropdown from "components/Dropdowns/jobAdvertTableDropdown.js";
 import JobAdvertService from "../../services/JobAdvertService";
+import EmployerService from "../../services/EmployerService";
+import SystemPersonelService from "../../services/SystemPersonelService";
 
 export default function AdminJobAdvertList({color}) {
     const [jobAdverts, setJobAdverts] = useState([]);
 
     let jobAdvertService = new JobAdvertService();
 
+    let employerService = new EmployerService();
+
+    let systemPersonelService = new SystemPersonelService();
+
     useEffect(() => {
-        jobAdvertService.getJobAdverts().then(result => setJobAdverts(result.data.data))
+        jobAdvertService.getSortedJobAdverts().then(result => setJobAdverts(result.data.data))
     })
 
     let airdate;
@@ -103,6 +109,22 @@ export default function AdminJobAdvertList({color}) {
                                     "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
                                     (color === "light")
                                 }
+                            >
+                                Aktif
+                            </th>
+                            <th
+                                className={
+                                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
+                                    (color === "light")
+                                }
+                            >
+                                Onaylı
+                            </th>
+                            <th
+                                className={
+                                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
+                                    (color === "light")
+                                }
                             ></th>
                         </tr>
                         </thead>
@@ -144,6 +166,32 @@ export default function AdminJobAdvertList({color}) {
                                     {jobAdvert.deadline}
                                 </td>
                                 <td className="border-b border-indigo-400 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                    <input
+                                        id="isActive"
+                                        type="checkbox"
+                                        checked={jobAdvert.active ? true : false}
+                                        className="form-checkbox rounded ml-1 w-5 h-5 ease-linear transition-all duration-150"
+                                        style={{border: "2px solid #fff", color: "#9150ff"}}
+                                        onClick={() => jobAdvert.active ? employerService.deactiveJobAdvert(
+                                            false,
+                                            jobAdvert.id) : employerService.deactiveJobAdvert(
+                                            true,
+                                            jobAdvert.id)}
+                                    />
+                                </td>
+                                <td className="border-b border-indigo-400 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                    <input
+                                        id="isConfirmed"
+                                        type="checkbox"
+                                        checked={jobAdvert.confirmed ? true : false}
+                                        className="form-checkbox border-0 rounded text-red-500 ml-1 w-5 h-5 ease-linear transition-all duration-150"
+                                        style={{border: "2px solid #fff", color: "#9150ff"}}
+                                        onClick={() => jobAdvert.confirmed ? systemPersonelService.approveJobAdvert(
+                                            false,
+                                            jobAdvert.id) : systemPersonelService.approveJobAdvert(true, jobAdvert.id)}
+                                    />
+                                </td>
+                                <td className="border-b border-indigo-400 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                     <JobAdvertTableDropdown delete={() => deleteJobAdvert(jobAdvert.id)}/>
                                 </td>
                             </tr>

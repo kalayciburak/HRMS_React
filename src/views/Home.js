@@ -9,9 +9,12 @@ export default function Home() {
 
     const [jobAdverts, setJobAdverts] = useState([]);
 
+    let jobAdvertService = new JobAdvertService();
+
     useEffect(() => {
-        let jobAdvertService = new JobAdvertService();
-        jobAdvertService.getActiveJobAdverts().then(result => setJobAdverts(result.data.data))
+
+        jobAdvertService.getActiveandConfirmedJobAdvert(true).then(result => setJobAdverts(result.data.data))
+
     })
 
     let airdate;
@@ -22,6 +25,7 @@ export default function Home() {
         <>
             <HomeNavbar fixed/>
             {/*<section className="header relative pt-16 items-center absolute h-screen max-h-860-px">*/}
+
             <h3 className="text-4xl mt-20 font-semibold leading-normal text-blueGray-800 text-center"><i
                 className="fas fa-briefcase"></i> İş İlanları</h3>
             <div className="relative mt-3 lg:w-3/12 ml-auto mr-auto rounded">
@@ -42,12 +46,13 @@ export default function Home() {
                             {/* Card is full width. Use in 12 col grid for best view. */}
                             {/* Card code block start */}
                             <div
-                                className="flex flex-col lg:flex-row mx-auto shadow-lg bg-blueGray-800 dark:bg-gray-800 shadow rounded">
+                                className={index % 2 == 1 ? "bg-blueGray-800 flex flex-col lg:flex-row mx-auto shadow-lg dark:bg-gray-800 shadow rounded" : "bg-blueGray-700 flex flex-col lg:flex-row mx-auto shadow-lg dark:bg-gray-800 shadow rounded"}>
                                 <div className="w-full lg:w-1/3 px-12 flex flex-col items-center py-10">
                                     <div
                                         className="w-24 h-24 mb-3 p-2 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
-                                        <img className="xl:w-8/12 h-full overflow-hidden object-cover rounded-full"
-                                             src={require("assets/img/company_img.png").default} alt="avatar"/>
+                                        <img width={"128"} height={"128"}
+                                             className="xl:w-8/12 h-full overflow-hidden object-cover rounded-full"
+                                             src={`${jobAdvert.employer.pictureUrl}`} alt="avatar"/>
                                     </div>
                                     <h2 className="text-blueGray-300 dark:text-gray-100 text-xl tracking-normal font-medium">{jobAdvert.employer.companyName}</h2>
                                     <p className="flex text-blueGray-400 dark:text-gray-100 text-xs tracking-normal font-normal mt-2 text-center">
@@ -89,7 +94,7 @@ export default function Home() {
                                         </svg>
                                     </div>
                                     <h2 className="text-blueGray-300 dark:text-gray-100 text-xl tracking-normal text-center font-medium mb-1">{jobAdvert.jobPosition.jobTitle}</h2>
-                                    <p className="text-blueGray-400 dark:text-gray-100 text-sm tracking-normal font-normal text-center"></p>
+                                    <p className="text-blueGray-400 dark:text-gray-100 text-sm tracking-normal font-normal text-center">{jobAdvert.typeOfEmployment}/{jobAdvert.upTime}</p>
                                     <p className="text-blueGray-400 dark:text-gray-100 text-sm tracking-normal font-normal mt-2 mb-6 text-center w-10/12">{jobAdvert.description}</p>
                                     <button
                                         className="bg-indigo-500 text-blueGray-300 active:bg-indigo-500 hover:bg-purple-400 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg mt-3 outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
@@ -111,8 +116,6 @@ export default function Home() {
                                     <h2 className="text-center text-sm text-blueGray-400 dark:text-gray-100 font-normal mt-2 mb-4 tracking-normal">Son
                                                                                                                                                    Başvuru
                                                                                                                                                    Tarihi</h2>
-
-
                                 </div>
 
                             </div>

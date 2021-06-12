@@ -9,15 +9,9 @@ export default function Login() {
                     <div className="w-full lg:w-4/12 px-4">
                         <div
                             className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-600 border-0">
-                            <div className="flex-auto px-4 lg:px-10 py-10 mt-5 pt-0">
+                            <div className="flex-auto px-4 lg:px-10 py-2 mt-10 pt-0">
                                 <form>
                                     <div className="relative w-full mb-3">
-                                        <label
-                                            className="block uppercase text-white text-xs font-bold mb-2"
-                                            htmlFor="grid-password"
-                                        >
-                                            E-Posta
-                                        </label>
                                         <input
                                             type="email"
                                             className="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
@@ -26,12 +20,6 @@ export default function Login() {
                                     </div>
 
                                     <div className="relative w-full mb-3">
-                                        <label
-                                            className="block uppercase text-white text-xs font-bold mb-2"
-                                            htmlFor="grid-password"
-                                        >
-                                            Şifre
-                                        </label>
                                         <input
                                             type="password"
                                             className="border-0 px-3 py-3 placeholder-blueGray-500 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"

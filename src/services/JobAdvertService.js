@@ -5,14 +5,22 @@ export default class JobAdvertService {
         return axios.get(`http://localhost:8080/api/jobadverts/getJobAdverts`);
     }
 
+    getSortedJobAdverts() {
+        return axios.get(`http://localhost:8080/api/jobadverts/getSortedJobAdverts`);
+    }
+
     getActiveJobAdverts() {
         return axios.get(
             `http://localhost:8080/api/jobadverts/getActiveJobAdverts`);
     }
 
-    getActiveJobAdvertsSorted() {
+    getActiveJobAdvertsSorted(isDesc) {
         return axios.get(
-            `http://localhost:8080/api/jobadverts/getActiveJobAdvertsSorted`);
+            `http://localhost:8080/api/jobadverts/getActiveJobAdvertsSorted?isDesc=${isDesc}`);
+    }
+
+    getActiveandConfirmedJobAdvert(isDesc) {
+        return axios.get(`http://localhost:8080/api/jobadverts/getJobAdvertByIsActiveTrueAndIsConfirmedTrue?isDesc=${isDesc}`);
     }
 
     addJobAdvert(jobAdvert) {
