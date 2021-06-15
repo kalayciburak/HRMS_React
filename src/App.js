@@ -4,8 +4,8 @@ import Admin from "./layouts/Admin";
 import Auth from "./layouts/Auth";
 import Profile from "./views/Profile";
 import Index from "./views/Index";
-import "tailwindcss/tailwind.css"
 import Home from "./views/Home";
+import "tailwindcss/tailwind.css"
 
 function App() {
     return (

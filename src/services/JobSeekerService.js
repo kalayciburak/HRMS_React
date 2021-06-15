@@ -9,13 +9,17 @@ export default class JobSeekerService {
         return axios.get(`http://localhost:8080/api/jobseekers/getJobSeekerById?jobSeekerId=${id}`);
     }
 
-    addJobSeeker(jobseeker) {
-        axios({
-                  method: "POST",
-                  url: `http://localhost:8080/api/jobseekers/addJobseeker`,
-                  data: jobseeker,
-                  headers: "content-type: application/json",
-              });
+    async addJobSeeker(jobseeker) {
+        return await axios({
+                               method: "POST",
+                               url: `http://localhost:8080/api/jobseekers/addJobseeker`,
+                               data: jobseeker,
+                               headers: {"Content-Type": "application/json;charset-UTF-8"}
+                           }).then((res) => {
+            return res.data.message
+        }).catch((err) => {
+            return err.error.error
+        })
     }
 
     deleteJobSeekerById(id) {

@@ -33,7 +33,7 @@ export default function AdminJobAdvertList({color}) {
             <h3 className="text-4xl mb-4 font-semibold leading-normal text-blueGray-800 text-center"><i
                 className="fas fa-briefcase"></i> İş İlanları</h3>
             <div
-                className={"relative flex flex-col min-w-0 break-words w-full shadow-lg text-white rounded-lg bg-blueGray-800"}
+                className={"relative flex flex-col min-w-0 break-words shadow-lg text-white rounded-lg bg-blueGray-800"}
             >
                 <div className="block overflow-x-auto rounded-lg">
                     {/* Projects table */}
@@ -42,7 +42,15 @@ export default function AdminJobAdvertList({color}) {
                         <tr>
                             <th
                                 className={
-                                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
+                                    "px-4 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
+                                    (color === "light")
+                                }
+                            >
+
+                            </th>
+                            <th
+                                className={
+                                    "px-4 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
                                     (color === "light")
                                 }
                             >
@@ -56,25 +64,25 @@ export default function AdminJobAdvertList({color}) {
                             >
                                 Pozisyon
                             </th>
+                            {/*<th*/}
+                            {/*    className={*/}
+                            {/*        "align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +*/}
+                            {/*        (color === "light")*/}
+                            {/*    }*/}
+                            {/*>*/}
+                            {/*    Açık Pozisyon*/}
+                            {/*</th>*/}
+                            {/*<th*/}
+                            {/*    className={*/}
+                            {/*        "px-4 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +*/}
+                            {/*        (color === "light")*/}
+                            {/*    }*/}
+                            {/*>*/}
+                            {/*    Açıklama*/}
+                            {/*</th>*/}
                             <th
                                 className={
-                                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
-                                    (color === "light")
-                                }
-                            >
-                                Açık Pozisyon
-                            </th>
-                            <th
-                                className={
-                                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
-                                    (color === "light")
-                                }
-                            >
-                                Açıklama
-                            </th>
-                            <th
-                                className={
-                                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
+                                    "px-3 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
                                     (color === "light")
                                 }
                             >
@@ -90,7 +98,7 @@ export default function AdminJobAdvertList({color}) {
                             </th>
                             <th
                                 className={
-                                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
+                                    "px-4 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
                                     (color === "light")
                                 }
                             >
@@ -98,7 +106,7 @@ export default function AdminJobAdvertList({color}) {
                             </th>
                             <th
                                 className={
-                                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
+                                    "px-4 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
                                     (color === "light")
                                 }
                             >
@@ -106,7 +114,7 @@ export default function AdminJobAdvertList({color}) {
                             </th>
                             <th
                                 className={
-                                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
+                                    "px-4 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
                                     (color === "light")
                                 }
                             >
@@ -114,7 +122,7 @@ export default function AdminJobAdvertList({color}) {
                             </th>
                             <th
                                 className={
-                                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
+                                    "px-3 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
                                     (color === "light")
                                 }
                             >
@@ -122,7 +130,7 @@ export default function AdminJobAdvertList({color}) {
                             </th>
                             <th
                                 className={
-                                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
+                                    "px-4 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
                                     (color === "light")
                                 }
                             ></th>
@@ -131,26 +139,27 @@ export default function AdminJobAdvertList({color}) {
                         <tbody>
                         {jobAdverts.map((jobAdvert, index) => (
                             <tr className={index % 2 == 0 ? "bg-lightBlue-600" : "bg-blueGray-800"}>
-                                <td className="border-b border-indigo-400 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                <td className="border-b border-indigo-400 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{index + 1}</td>
+                                <td className="border-b border-indigo-400 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                     {jobAdvert.employer.companyName}
                                 </td>
-                                <td className="border-b border-indigo-400 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                <td className="border-b border-indigo-400 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                     {jobAdvert.jobPosition.jobTitle}
                                 </td>
-                                <td className="border-b border-indigo-400 px-12 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                    {jobAdvert.positionCount}
-                                </td>
-                                <td className="border-b border-indigo-400 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                    <div className="flex items-center">
-                                        <div className="relative w-full">
-                                            {jobAdvert.description}
-                                        </div>
-                                    </div>
-                                </td>
-                                <td className="border-b border-indigo-400 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                {/*<td className="border-b border-indigo-400 lg:px-10 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">*/}
+                                {/*    {jobAdvert.positionCount}*/}
+                                {/*</td>*/}
+                                {/*<td className="border-b border-indigo-400 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">*/}
+                                {/*    <div className="flex items-center">*/}
+                                {/*        <div className="relative w-full">*/}
+                                {/*            {jobAdvert.description}*/}
+                                {/*        </div>*/}
+                                {/*    </div>*/}
+                                {/*</td>*/}
+                                <td className="border-b border-indigo-400 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                     {jobAdvert.salary}(₺)
                                 </td>
-                                <td className="border-b border-indigo-400 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                <td className="border-b border-indigo-400 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                     <div className="flex">
                                         {jobAdvert.city.cityName}
                                     </div>
@@ -162,10 +171,10 @@ export default function AdminJobAdvertList({color}) {
                                         {airdate[0]}
                                     </div>
                                 </td>
-                                <td className="border-b border-indigo-400 px-12 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                <td className="border-b border-indigo-400 lg:px-10 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                     {jobAdvert.deadline}
                                 </td>
-                                <td className="border-b border-indigo-400 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                <td className="border-b border-indigo-400 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                     <input
                                         id="isActive"
                                         type="checkbox"
@@ -179,7 +188,7 @@ export default function AdminJobAdvertList({color}) {
                                             jobAdvert.id)}
                                     />
                                 </td>
-                                <td className="border-b border-indigo-400 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                <td className="border-b border-indigo-400 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                     <input
                                         id="isConfirmed"
                                         type="checkbox"

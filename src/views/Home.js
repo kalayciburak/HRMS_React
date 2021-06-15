@@ -1,34 +1,48 @@
 /*eslint-disable*/
-import React, {useEffect, useState} from "react";
+import React, {Fragment, useEffect, useState} from "react";
 
 import HomeNavbar from "components/Navbars/HomeNavbar.js";
 import Footer from "components/Footers/Footer.js";
 import JobAdvertService from "../services/JobAdvertService";
+import {Menu, Transition} from '@headlessui/react'
+import {ChevronDownIcon} from '@heroicons/react/solid'
+import BackToTop from 'components/Utility/BackToTop.js'
 
 export default function Home() {
 
     const [jobAdverts, setJobAdverts] = useState([]);
 
-    let jobAdvertService = new JobAdvertService();
+    let [sort, setSort] = useState(true);
+
+    let isDesc = true;
+
+    function classNames(...classes) {
+        return classes.filter(Boolean).join(' ')
+    }
 
     useEffect(() => {
 
-        jobAdvertService.getActiveandConfirmedJobAdvert(true).then(result => setJobAdverts(result.data.data))
+        jobAdvertService.getActiveandConfirmedJobAdvert(isDesc)
+            .then(result => setJobAdverts(result.data.data))
 
     })
+
+    let jobAdvertService = new JobAdvertService();
 
     let airdate;
 
     let website;
 
     return (
-        <>
+        <div style={{background: "linear-gradient(#fff, #8BA5BEFF)"}}>
             <HomeNavbar fixed/>
             {/*<section className="header relative pt-16 items-center absolute h-screen max-h-860-px">*/}
-
+            {sort ? isDesc = true : isDesc = false}
+            <BackToTop/>
             <h3 className="text-4xl mt-20 font-semibold leading-normal text-blueGray-800 text-center"><i
                 className="fas fa-briefcase"></i> İş İlanları</h3>
             <div className="relative mt-3 lg:w-3/12 ml-auto mr-auto rounded">
+
               <span
                   className="z-10 h-full leading-snug font-normal absolute text-center text-blueGray-300 absolute bg-transparent rounded text-base items-center justify-center w-8 pl-3 py-3">
                 <i className="fas fa-search"></i>
@@ -38,6 +52,65 @@ export default function Home() {
                     placeholder="Örn: Google..."
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-300 relative bg-blueGray-800 rounded text-sm shadow outline-none focus:outline-none focus:ring w-full pl-10"
                 />
+                <Menu as="div" className="absolute inline-block text-left ml-2">
+                    {({open}) => (
+                        <>
+                            <div>
+                                <Menu.Button
+                                    className="flex justify-center shadow-sm mt-1 md:px-10 py-2 rounded bg-blueGray-800 text-sm text-blueGray-300 shadow hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500">
+                                    Sırala
+                                    <ChevronDownIcon className="-mr-1 ml-2 h-5 w-5" aria-hidden="true"/>
+                                </Menu.Button>
+                            </div>
+
+                            <Transition
+                                show={open}
+                                as={Fragment}
+                                enter="transition ease-out duration-100"
+                                enterFrom="transform opacity-0 scale-95"
+                                enterTo="transform opacity-100 scale-100"
+                                leave="transition ease-in duration-75"
+                                leaveFrom="transform opacity-100 scale-100"
+                                leaveTo="transform opacity-0 scale-95"
+                            >
+                                <Menu.Items
+                                    static
+                                    className=" absolute w-full bg-white text-blueGray-800"
+                                >
+                                    <div className="py-1 cursor-pointer">
+                                        <Menu.Item>
+                                            {({active}) => (
+                                                <a
+                                                    style={{borderBottom: "2px solid #1E293B"}}
+                                                    className={classNames(
+                                                        active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                                                        'block px-4 py-2 text-sm'
+                                                    )}
+                                                    onClick={() => setSort(true)}
+                                                >
+                                                    {sort ? "En Yeni İlanlar ✔️" : "En Yeni İlanlar"}
+                                                </a>
+                                            )}
+                                        </Menu.Item>
+                                        <Menu.Item>
+                                            {({active}) => (
+                                                <a
+                                                    className={classNames(
+                                                        active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                                                        'block px-4 py-2 text-sm'
+                                                    )}
+                                                    onClick={() => setSort(false)}
+                                                >
+                                                    {sort ? "En Eski İlanlar" : "En Eski İlanlar ✔️"}
+                                                </a>
+                                            )}
+                                        </Menu.Item>
+                                    </div>
+                                </Menu.Items>
+                            </Transition>
+                        </>
+                    )}
+                </Menu>
             </div>
             {jobAdverts.map((jobAdvert, index) => (
                 <div className="flex w-full bg-gray-200 dark:bg-gray-900 py-4">
@@ -155,6 +228,6 @@ export default function Home() {
                 </div>
             </section>
             <Footer/>
-        </>
+        </div>
     );
 }

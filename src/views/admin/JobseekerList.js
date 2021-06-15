@@ -1,14 +1,14 @@
 import React from "react";
+import AdminJobseekerList from "../../components/Cards/AdminJobseekerList";
 
 // components
-import AdminJobAdvertList from "components/Cards/AdminJobAdvertList.js";
 
-export default function jobAdvertList() {
+export default function jobseekerList() {
     return (
         <>
             <div className="flex flex-wrap">
                 <div className="w-full mb-4 mt-6 px-4">
-                    <AdminJobAdvertList/>
+                    <AdminJobseekerList/>
                 </div>
             </div>
         </>

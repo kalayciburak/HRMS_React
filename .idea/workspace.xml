@@ -5,14 +5,25 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/styles/tailwind.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/styles/tailwind.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Cards/AdminJobAdvertList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Cards/AdminJobAdvertList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Cards/AdminUserList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Cards/AdminEmployerList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Dropdowns/HomeDropwdown.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Dropdowns/HomeDropwdown.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Dropdowns/PagesDropdown.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Dropdowns/UserTableDropdown.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Dropdowns/EmployerDroıpdown.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Maps/MapExample.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Navbars/HomeNavbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbars/HomeNavbar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Navbars/IndexNavbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbars/IndexNavbar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Sidebar/Sidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Sidebar/Sidebar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/Admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/Admin.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/services/EmployerService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/EmployerService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/JobAdvertService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/JobAdvertService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/SystemPersonelService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/SystemPersonelService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/JobSeekerService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/JobSeekerService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Home.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/Index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/auth/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/auth/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/admin/Dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/admin/EmployerList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/admin/JobAdvertList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/admin/JobAdvertList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/auth/EmployerRegister.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/auth/EmployerRegister.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/auth/JobseekerRegister.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/auth/JobseekerRegister.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/auth/Register.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/auth/Register.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -26,6 +37,14 @@
         <option value="JavaScript File" />
       </list>
     </option>
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectId" id="1tgNDwPn5DhknYHk8EwwazSURUR" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -50,7 +69,7 @@
     <property name="node.js.selected.package.standard" value="" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="JavaScript.Libraries" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="ts.external.directory.path" value="D:\Klasörler\Belgeler\CodeMaster\React\hrms-react\node_modules\typescript\lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -92,7 +111,12 @@
       <workItem from="1623451085186" duration="51000" />
       <workItem from="1623506827416" duration="790000" />
       <workItem from="1623512597323" duration="16987000" />
-      <workItem from="1623531651771" duration="5534000" />
+      <workItem from="1623531651771" duration="5725000" />
+      <workItem from="1623677766961" duration="22299000" />
+      <workItem from="1623702341968" duration="684000" />
+      <workItem from="1623775861627" duration="2624000" />
+      <workItem from="1623778542653" duration="259000" />
+      <workItem from="1623780113380" duration="15895000" />
     </task>
     <task id="LOCAL-00001" summary="all components updated for better ui!">
       <created>1623363168071</created>
@@ -122,7 +146,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623451123724</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="day 12 -&gt; progress %70 completed %30 to go!">
+      <created>1623538064149</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1623538064149</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -133,7 +164,8 @@
     <MESSAGE value="all components updated for better ui!" />
     <MESSAGE value="all services added for requirments!" />
     <MESSAGE value="delete method added for jobadverts!" />
-    <option name="LAST_COMMIT_MESSAGE" value="delete method added for jobadverts!" />
+    <MESSAGE value="day 12 -&gt; progress %70 completed %30 to go!" />
+    <option name="LAST_COMMIT_MESSAGE" value="day 12 -&gt; progress %70 completed %30 to go!" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

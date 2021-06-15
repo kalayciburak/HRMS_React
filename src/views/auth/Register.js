@@ -18,14 +18,14 @@ export default function Register() {
                         >
                             <div className={"inline-flex"}>
                                 <button
-                                    className={(active ? "bg-indigo-500 " : "bg-blueGray-600 ") + "float-left bg-indigo-500 text-blueGray-300 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none w-1/2 ease-linear transition-all duration-150"}
+                                    className={(active ? "bg-indigo-500 " : "bg-blueGray-600 ") + "float-left bg-indigo-500 text-blueGray-300 text-sm font-bold uppercase px-6 py-3 rounded outline-none focus:outline-none w-1/2 ease-linear transition-all duration-150"}
                                     type="button"
                                     onClick={() => setActive(true)}
                                 >
                                     İş Arayan
                                 </button>
                                 <button
-                                    className={(active ? "bg-blueGray-600" : "bg-indigo-500 ") + "float-right text-blueGray-300 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none w-1/2 ease-linear transition-all duration-150"}
+                                    className={(active ? "bg-blueGray-600" : "bg-indigo-500 ") + "float-right text-blueGray-300 text-sm font-bold uppercase px-6 py-3 rounded outline-none focus:outline-none w-1/2 ease-linear transition-all duration-150"}
                                     type="button"
                                     onClick={() => setActive(false)}
                                 >

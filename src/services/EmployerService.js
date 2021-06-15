@@ -11,13 +11,17 @@ export default class EmployerService {
             `http://localhost:8080/api/employers/getByEmployerId?employerId=${id}`);
     }
 
-    addEmployer(employer) {
-        axios({
-                  method: "POST",
-                  url: `http://localhost:8080/api/employers/addemployer`,
-                  data: employer,
-                  headers: "content-type: application/json",
-              });
+    async addEmployer(employer) {
+        return await axios({
+                               method: "POST",
+                               url: `http://localhost:8080/api/employers/addemployer`,
+                               data: employer,
+                               headers: {"Content-Type": "application/json;charset-UTF-8"}
+                           }).then((res) => {
+            return res.data.message
+        }).catch((err) => {
+            return err.error.error
+        })
     }
 
     deleteEmployerById(id) {

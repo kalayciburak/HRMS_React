@@ -63,10 +63,22 @@ const HomeDropdown = () => {
           Admin Paneli
         </span>
                 <Link
-                    to="/admin/user"
+                    to="/admin/systemPersonelList"
                     className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
                 >
-                    Kullanıcılar
+                    Sistem Personelleri
+                </Link>
+                <Link
+                    to="/admin/jobseekerList"
+                    className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+                >
+                    İş Arayanlar
+                </Link>
+                <Link
+                    to="/admin/employerList"
+                    className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+                >
+                    İş Verenler
                 </Link>
                 <Link
                     to="/admin/jobAdvertList"

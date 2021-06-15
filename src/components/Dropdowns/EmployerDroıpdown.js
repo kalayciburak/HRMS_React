@@ -1,7 +1,8 @@
 import React from "react";
 import {createPopper} from "@popperjs/core";
 
-const NotificationDropdown = () => {
+
+const EmployerDropdown = (props) => {
     // dropdown props
     const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
     const btnDropdownRef = React.createRef();
@@ -50,7 +51,7 @@ const NotificationDropdown = () => {
                     className={
                         "text-sm py-2 px-4 block w-full whitespace-nowrap bg-transparent text-center text-white"
                     }
-                    onClick={(e) => e.preventDefault()}
+                    onClick={() => props.deleteEmployer()}
                 >
                     <i className="fas fa-trash"></i> Sil
                 </a>
@@ -60,4 +61,4 @@ const NotificationDropdown = () => {
     );
 };
 
-export default NotificationDropdown;
+export default EmployerDropdown;

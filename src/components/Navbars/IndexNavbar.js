@@ -23,7 +23,7 @@ export default function Navbar(props) {
                             type="button"
                             onClick={() => setNavbarOpen(!navbarOpen)}
                         >
-                            <i className="fas fa-bars"></i>
+                            <IndexDropdown/>
                         </button>
                     </div>
                     <div
@@ -33,7 +33,7 @@ export default function Navbar(props) {
                         }
                         id="example-navbar-warning"
                     >
-                        <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
+                        <ul className="flex flex-col lg:flex-row hidden md:block list-none lg:ml-auto">
                             <li className="flex items-center">
                                 <IndexDropdown/>
                             </li>
