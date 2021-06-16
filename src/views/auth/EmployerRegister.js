@@ -2,7 +2,7 @@ import React from 'react';
 import {Form, Formik} from 'formik';
 import * as Yup from "yup"
 import EmployerService from "../../services/EmployerService";
-import swal from 'sweetalert';
+import Swal from "sweetalert2";
 
 function EmployerRegister(props) {
 
@@ -63,8 +63,45 @@ function EmployerRegister(props) {
                         };
 
                         employerService.addEmployer(employer).then((res) => {
-                            console.log(res)
-                            swal(res);
+                            // console.log(res)
+                            if (res.includes("Error")) {
+                                Swal.fire({
+                                              icon: 'error',
+                                              text: res,
+                                              confirmButtonText: `Tamam`,
+                                              backdrop: ` rgba(161,0,0,0.44)
+                                                          url("/images/nyan-cat.gif")
+                                                          left top
+                                                          no-repeat
+                                                        `
+                                          })
+                            } else {
+                                Swal.fire({
+                                              icon: 'success',
+                                              text: res,
+                                              confirmButtonText: `Tamam`,
+                                              timer: 1500,
+                                              backdrop: ` rgba(0,120,0,0.44)
+                                                          url("/images/nyan-cat.gif")
+                                                          left top
+                                                          no-repeat
+                                                        `
+                                          }).then((result) => {
+                                    if (!result.isConfirmed) {
+                                        setTimeout(() => {
+                                            values = ''
+                                        }, 7000)
+                                        window.location.href = "Login.js"
+                                    } else {
+                                        setTimeout(() => {
+                                            values = ''
+                                        }, 7000)
+                                        window.location.href = "Login.js"
+                                    }
+                                })
+
+
+                            }
                         }).catch((err) => {
                             console.log(err.error)
                         })
@@ -199,7 +236,7 @@ function EmployerRegister(props) {
 
                             <div className="text-center mt-4 mb-3">
                                 <button
-                                    className={isDisabled ? " bg-blueGray-700 text-white text-sm font-bold uppercase px-6 py-3 rounded shadow outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150 " : "bg-lightBlue-600 active:bg-blueGray-600 hover.bg-lightBlue-300 text-white text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"}
+                                    className={isDisabled ? " bg-blueGray-700 text-blueGray-500 text-sm font-bold uppercase px-6 py-3 rounded shadow outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150 " : "bg-lightBlue-600 active:bg-blueGray-600 hover.bg-lightBlue-300 text-white text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"}
                                     type="submit"
                                     disabled={isDisabled ? true : false}
                                 >

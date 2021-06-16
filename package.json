@@ -25,6 +25,7 @@
     "react-toggle-button": "^2.2.0",
     "react-use": "^17.2.4",
     "sweetalert": "^2.1.2",
+    "sweetalert2": "^11.0.17",
     "tailwindcss": "^2.1.4",
     "yup": "^0.32.9"
   },

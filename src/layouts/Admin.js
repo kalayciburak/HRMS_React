@@ -21,7 +21,7 @@ export default function Admin() {
                 <AdminNavbar/>
                 {/* Header */}
                 {/*<HeaderStats />*/}
-                <div className="px-4 md:px-10 mx-auto w-full -m-24 mt-6">
+                <div className="px-4 md:px-10 mx-auto w-full">
                     <Switch>
                         <Route path="/admin/systemPersonelList" exact component={systemPersonelList}/>
                         <Route path="/admin/jobseekerList" exact component={jobseekerList}/>

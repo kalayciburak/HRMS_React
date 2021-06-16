@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import SystemPersonelDropdown from "../Dropdowns/SystemPersonelDropdown";
 import SystemPersonelService from "../../services/SystemPersonelService";
+import AddSystemPersonel from "../Modals/AddSystemPersonel";
 
 function AdminSystemPersonelList(props) {
 
@@ -18,8 +19,12 @@ function AdminSystemPersonelList(props) {
 
     return (
         <div>
+
             <h3 className="text-4xl mb-2 font-semibold leading-normal text-blueGray-600  text-center"><i
                 className="fas fa-user-cog"></i> Sistem Personelleri</h3>
+            <div style={{textAlign: "left"}}>
+                <AddSystemPersonel/>
+            </div>
             <div
                 className={"relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg text-white rounded-lg bg-blueGray-800"}
                 style={{width: "50%", marginLeft: "25%"}}>

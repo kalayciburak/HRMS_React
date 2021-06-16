@@ -2,7 +2,7 @@ import React from 'react';
 import JobSeekerService from "../../services/JobSeekerService";
 import {Form, Formik} from 'formik';
 import * as Yup from "yup";
-import swal from 'sweetalert';
+import Swal from 'sweetalert2'
 
 function JobseekerRegister(props) {
 
@@ -61,8 +61,45 @@ function JobseekerRegister(props) {
                         };
 
                         jobSeekerService.addJobSeeker(jobseeker).then((res) => {
-                            console.log(res)
-                            swal(res);
+                            // console.log(res)
+                            if (res.includes("Error")) {
+                                Swal.fire({
+                                              icon: 'error',
+                                              text: res,
+                                              confirmButtonText: `Tamam`,
+                                              backdrop: ` rgba(161,0,0,0.44)
+                                                          url("/images/nyan-cat.gif")
+                                                          left top
+                                                          no-repeat
+                                                        `
+                                          })
+                            } else {
+                                Swal.fire({
+                                              icon: 'success',
+                                              text: res,
+                                              confirmButtonText: `Tamam`,
+                                              timer: 1500,
+                                              backdrop: ` rgba(0,120,0,0.44)
+                                                          url("/images/nyan-cat.gif")
+                                                          left top
+                                                          no-repeat
+                                                        `
+                                          }).then((result) => {
+                                    if (!result.isConfirmed) {
+                                        setTimeout(() => {
+                                            values = ''
+                                        }, 7000)
+                                        window.location.href = "Login.js"
+                                    } else {
+                                        setTimeout(() => {
+                                            values = ''
+                                        }, 7000)
+                                        window.location.href = "Login.js"
+                                    }
+                                })
+
+
+                            }
                         }).catch((err) => {
                             console.log(err)
                         })
@@ -76,13 +113,14 @@ function JobseekerRegister(props) {
                          errors,
                          touched,
                          handleSubmit,
+                         handleReset,
                          handleChange,
                          isSubmitting,
                          dirty
                      }) => (
                         <Form>
                             {isDisabled = (values.firstName == '' || values.lastName == '' || values.ídentityNumber == '' || values.identityNumber.length < 11 || values.birthDate == '' || values.email == '' || values.confirmPassword == '' || values.isTerm == false || values.password != values.confirmPassword)}
-                            <div className="flex w-full mb-3">
+                            <div className="flex w-full">
                                 <input type="text"
                                        className="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 mr-2 bg-white rounded text-sm shadow focus:outline-none focus:ring w-1/2 ease-linear transition-all duration-150"
                                        placeholder="İsim"
@@ -98,7 +136,7 @@ function JobseekerRegister(props) {
                                        onChange={handleChange}
                                 />
                             </div>
-                            <div className={"w-full flex mb-3 mt-1"}>
+                            <div className={"w-full flex mb-2 mt-1"}>
                                 {errors.firstName && touched.firstName ? (
                                     <div
                                         className={"text-red-500 w-1/2"}>{errors.firstName}</div>
@@ -209,7 +247,7 @@ function JobseekerRegister(props) {
 
                             <div className="text-center mt-4 mb-3">
                                 <button
-                                    className={isDisabled ? " bg-blueGray-700 text-white text-sm font-bold uppercase px-6 py-3 rounded shadow outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150 " : "bg-lightBlue-600 active:bg-blueGray-600 hover.bg-lightBlue-300 text-white text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"}
+                                    className={isDisabled ? " bg-blueGray-700 text-blueGray-500 text-sm font-bold uppercase px-6 py-3 rounded shadow outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150 " : "bg-lightBlue-600 active:bg-blueGray-600 hover.bg-lightBlue-300 text-white text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"}
                                     type="submit"
                                     disabled={isDisabled ? true : false}
                                 >

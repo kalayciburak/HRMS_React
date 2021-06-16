@@ -1,5 +1,6 @@
 import React from "react";
 import {createPopper} from "@popperjs/core";
+import Swal from "sweetalert2";
 
 const SystemPersonelDropdown = (props) => {
     // dropdown props
@@ -18,7 +19,7 @@ const SystemPersonelDropdown = (props) => {
     return (
         <>
             <a
-                className="text-white py-1 px-3 text-lg"
+                className="text-white py-1 px-3 text-lg pointer-events-auto "
                 href="#"
                 ref={btnDropdownRef}
                 onClick={(e) => {
@@ -30,6 +31,7 @@ const SystemPersonelDropdown = (props) => {
             </a>
             <div
                 ref={popoverDropdownRef}
+                id={"test"}
                 className={
                     (dropdownPopoverShow ? "block " : "hidden ") +
                     "bg-blueGray-800 text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
@@ -40,17 +42,37 @@ const SystemPersonelDropdown = (props) => {
                     className={
                         "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap text-center bg-transparent text-white"
                     }
-                    onClick={(e) => e.preventDefault()}
+                    onClick={(e) => {
+                        e.preventDefault()
+                        closeDropdownPopover();
+                    }}
                 >
                     <i className="fas fa-edit"></i> Düzenle
                 </a>
                 <div className="h-0 my-2 border border-solid border-blueGray-100"/>
                 <a
-                    href="#"
                     className={
-                        "text-sm py-2 px-4 block w-full whitespace-nowrap bg-transparent text-center text-white"
+                        "text-sm py-2 px-4 block w-full cursor-pointer whitespace-nowrap bg-transparent text-center text-white"
                     }
-                    onClick={() => props.deleteSystemPersonel()}
+                    onClick={() => {
+                        Swal.fire({
+                                      icon: 'warning',
+                                      title: 'Emin misiniz?',
+                                      showDenyButton: true,
+                                      // showCancelButton: true,
+                                      confirmButtonText: `Sil`,
+                                      denyButtonText: `Vazgeç`,
+                                  }).then((result) => {
+                            /* Read more about isConfirmed, isDenied below */
+                            if (result.isConfirmed) {
+                                Swal.fire('Başarıyla Kaldırıldı!', '', 'success')
+                                props.deleteSystemPersonel()
+                            } else if (result.isDenied) {
+                                // Swal.fire('Changes are not saved', '', 'info')
+                            }
+                        })
+                        closeDropdownPopover();
+                    }}
                 >
                     <i className="fas fa-trash"></i> Sil
                 </a>

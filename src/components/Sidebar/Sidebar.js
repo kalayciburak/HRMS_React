@@ -2,9 +2,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
 
-import NotificationDropdown from "components/Dropdowns/NotificationDropdown.js";
-import UserDropdown from "components/Dropdowns/UserDropdown.js";
-
 export default function Sidebar() {
     const [collapseShow, setCollapseShow] = React.useState("hidden");
     return (
@@ -21,14 +18,14 @@ export default function Sidebar() {
           </span>
 
                     {/* User */}
-                    <ul className="md:hidden items-center flex flex-wrap list-none">
-                        <li className="inline-block relative">
-                            <NotificationDropdown/>
-                        </li>
-                        <li className="inline-block relative">
-                            <UserDropdown/>
-                        </li>
-                    </ul>
+                    {/*<ul className="items-center flex flex-wrap list-none">*/}
+                    {/*    <li className="inline-block relative">*/}
+                    {/*        <NotificationDropdown/>*/}
+                    {/*    </li>*/}
+                    {/*    <li className="inline-block relative">*/}
+                    {/*        <UserDropdown/>*/}
+                    {/*    </li>*/}
+                    {/*</ul>*/}
                     <div
                         className={
                             "md:flex md:flex-col md:items-stretch md:opacity-100 md:relative md:shadow-none shadow absolute top-0 left-0 right-0 z-40 overflow-y-auto overflow-x-hidden h-auto items-center flex-1 rounded " +

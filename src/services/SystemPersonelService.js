@@ -10,12 +10,17 @@ export default class SystemPersonelService {
             `http://localhost:8080/api/systemPersonels/getSystemPersonelById?systemPersonelId=${id}`);
     }
 
-    addSystemPersonel(systemPersonel) {
-        axios({
-                  method: "POST",
-                  url: `http://localhost:8080/api/systemPersonels/addSystemPersonel`,
-                  data: systemPersonel,
-              });
+    async addSystemPersonel(personel) {
+        return await axios({
+                               method: "POST",
+                               url: `http://localhost:8080/api/systemPersonels/addSystemPersonel`,
+                               data: personel,
+                               headers: {"Content-Type": "application/json;charset-UTF-8"}
+                           }).then((res) => {
+            return res.data.message
+        }).catch((err) => {
+            return err.error.error
+        })
     }
 
     deleteSystemPersonelById(id) {
