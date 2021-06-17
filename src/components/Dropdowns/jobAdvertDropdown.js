@@ -7,7 +7,7 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-export default function SystemPersonelDropdown(props) {
+export default function JobAdvertDropdown(props) {
     return (
         <Menu>
             {({open}) => (
@@ -71,7 +71,7 @@ export default function SystemPersonelDropdown(props) {
                                                     /* Read more about isConfirmed, isDenied below */
                                                     if (result.isConfirmed) {
                                                         Swal.fire('Başarıyla Kaldırıldı!', '', 'success')
-                                                        props.deleteSystemPersonel()
+                                                        props.deleteJobAdvert()
                                                     } else if (result.isDenied) {
                                                         // Swal.fire('Changes are not saved', '', 'info')
                                                     }

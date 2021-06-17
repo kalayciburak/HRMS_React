@@ -2,9 +2,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 // components
-import IndexDropdown from "components/Dropdowns/IndexDropdown.js";
-
-export default function Navbar(props) {
+export default function Navbar() {
     const [navbarOpen, setNavbarOpen] = React.useState(false);
     return (
         <>
@@ -23,22 +21,7 @@ export default function Navbar(props) {
                             type="button"
                             onClick={() => setNavbarOpen(!navbarOpen)}
                         >
-                            <IndexDropdown/>
                         </button>
-                    </div>
-                    <div
-                        className={
-                            "lg:flex flex-grow items-center bg-white lg:bg-opacity-0 lg:shadow-none" +
-                            (navbarOpen ? " block" : " hidden")
-                        }
-                        id="example-navbar-warning"
-                    >
-                        <ul className="flex flex-col lg:flex-row hidden md:block list-none lg:ml-auto">
-                            <li className="flex items-center">
-                                <IndexDropdown/>
-                            </li>
-
-                        </ul>
                     </div>
                 </div>
             </nav>

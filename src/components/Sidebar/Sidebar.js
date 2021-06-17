@@ -23,7 +23,7 @@ export default function Sidebar() {
                     {/*        <NotificationDropdown/>*/}
                     {/*    </li>*/}
                     {/*    <li className="inline-block relative">*/}
-                    {/*        <UserDropdown/>*/}
+                    {/*        <HomeDropdown/>*/}
                     {/*    </li>*/}
                     {/*</ul>*/}
                     <div

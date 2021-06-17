@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import JobSeekerService from "../../services/JobSeekerService";
-import JobseekerDropdown from "../Dropdowns/JobseekerDropdown";
+import HeadleeDropdown from "../Dropdowns/JobseekerDropdown"
 import PropTypes from "prop-types";
 
 function AdminJobseekerList(props) {
@@ -80,7 +80,7 @@ function AdminJobseekerList(props) {
                                     {jobseeker.birthDate}
                                 </td>
                                 <td className="border-b border-indigo-400 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-center">
-                                    <JobseekerDropdown deleteJobseeker={() => deleteJobseeker(jobseeker.id)}/>
+                                    <HeadleeDropdown deleteJobseeker={() => deleteJobseeker(jobseeker.id)}/>
                                 </td>
                             </tr>
 

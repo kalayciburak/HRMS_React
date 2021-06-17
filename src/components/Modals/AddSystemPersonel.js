@@ -13,7 +13,7 @@ export default function Modal() {
         <>
             <button
                 onClick={() => setShowModal(true)}
-                className={"bg-emerald-500 text-white font-bold uppercase text-sm px-6 py-3 rounded shadow outline-none focus:outline-none ease-linear transition-all duration-150"}>
+                className={"absolute bg-emerald-500 text-white font-bold uppercase text-sm px-6 py-3 rounded shadow outline-none focus:outline-none ease-linear transition-all duration-150"}>
                 <i className="fas fa-plus"></i> Personel Ekle
             </button>
 

@@ -1,100 +1,87 @@
-import React from "react";
+/* This example requires Tailwind CSS v2.0+ */
+import React, {Fragment} from 'react'
+import {Menu, Transition} from '@headlessui/react'
 import {Link} from "react-router-dom";
-import {createPopper} from "@popperjs/core";
 
-const HomeDropdown = () => {
-    // dropdown props
-    const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
-    const btnDropdownRef = React.createRef();
-    const popoverDropdownRef = React.createRef();
-    const openDropdownPopover = () => {
-        createPopper(btnDropdownRef.current, popoverDropdownRef.current, {
-            placement: "bottom-start",
-        });
-        setDropdownPopoverShow(true);
-    };
-    const closeDropdownPopover = () => {
-        setDropdownPopoverShow(false);
-    };
+function classNames(...classes) {
+    return classes.filter(Boolean).join(' ')
+}
+
+export default function HomeDropdown(props) {
     return (
-        <>
-            <a
-                className="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                href="#pablo"
-                ref={btnDropdownRef}
-                onClick={(e) => {
-                    e.preventDefault();
-                    dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover();
-                }}
-            >
-                <i className="fas fa-lg fa-bars mr-2"></i>Menü
-            </a>
-            <div
-                ref={popoverDropdownRef}
-                className={
-                    (dropdownPopoverShow ? "block " : "hidden ") +
-                    "bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
-                }
-            >
-           <span
-               className={
-                   "text-sm pt-2 pb-0 px-4 font-bold block w-full whitespace-nowrap bg-transparent text-blueGray-400"
-               }
-           >
-          İşlemler
-        </span>
-                <Link
-                    to="/profile"
-                    className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-                >
-                    Profil
-                </Link>
-                <Link
-                    to="/jobAdvert"
-                    className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-                >
-                    Çıkış Yap
-                </Link>
-                <span
-                    className={
-                        "text-sm pt-2 pb-0 px-4 font-bold block w-full whitespace-nowrap bg-transparent text-blueGray-400"
-                    }
-                >
-          Admin Paneli
-        </span>
-                <Link
-                    to="/admin/systemPersonelList"
-                    className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-                >
-                    Sistem Personelleri
-                </Link>
-                <Link
-                    to="/admin/jobseekerList"
-                    className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-                >
-                    İş Arayanlar
-                </Link>
-                <Link
-                    to="/admin/employerList"
-                    className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-                >
-                    İş Verenler
-                </Link>
-                <Link
-                    to="/admin/jobAdvertList"
-                    className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-                >
-                    İş ilanları
-                </Link>
-                <Link
-                    to="/admin/settings"
-                    className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-                >
-                    Ayarlar
-                </Link>
-            </div>
-        </>
-    );
-};
+        <Menu>
+            {({open}) => (
+                <>
+                    <div className="items-center flex">
+                        <Menu.Button
+                            className="inline-flex justify-center w-full rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500">
+                            <i className={"fas fa-lg fa-bars mr-2 mt-1"}></i>Menü
+                        </Menu.Button>
+                    </div>
 
-export default HomeDropdown;
+                    <Transition
+                        show={open}
+                        as={Fragment}
+                        enter="transition ease-out duration-100"
+                        enterFrom="transform opacity-0 scale-95"
+                        enterTo="transform opacity-100 scale-100"
+                        leave="transition ease-in duration-75"
+                        leaveFrom="transform opacity-100 scale-100"
+                        leaveTo="transform opacity-0 scale-95"
+                    >
+                        <Menu.Items
+                            static
+                            className="absolute bg-blueGray-700 text-base  float-left list-none rounded shadow-lg min-w-48 mr-2"
+                            style={{textAlign: "center", border: "solid 1px #F1F5F9", marginTop: 170, marginLeft: -1}}
+                        >
+                            <div>
+                                <Menu.Item>
+                                    {({active}) => (
+                                        <Link
+                                            to="/profile"
+
+                                            className={classNames(
+                                                active ? 'bg-emerald-500 text-white' : 'text-white',
+                                                'block px-4 py-3 text-sm'
+                                            )}
+                                        >
+                                            <i className="fas fa-user mr-2"></i> Profil
+                                        </Link>
+                                    )}
+                                </Menu.Item>
+                                <Menu.Item style={{borderTop: "solid 1px #F1F5F9"}}>
+                                    {({active}) => (
+                                        <Link
+                                            to="#" //eklenecek
+
+                                            className={classNames(
+                                                active ? 'bg-red-500 text-white' : 'text-white',
+                                                'block px-4 py-3 text-sm'
+                                            )}
+                                        >
+                                            <i className="fas fa-sign-out-alt mr-2"></i> Çıkış Yap
+                                        </Link>
+                                    )}
+                                </Menu.Item>
+                                <Menu.Item style={{borderTop: "solid 1px #F1F5F9"}}>
+                                    {({active}) => (
+                                        <Link
+                                            to="/admin/systemPersonelList"
+
+                                            className={classNames(
+                                                active ? 'bg-indigo-500 text-white' : 'text-white',
+                                                'block px-4 py-3 text-sm'
+                                            )}
+                                        >
+                                            <i className="fas fa-lock mr-2"></i> Admin Paneli
+                                        </Link>
+                                    )}
+                                </Menu.Item>
+                            </div>
+                        </Menu.Items>
+                    </Transition>
+                </>
+            )}
+        </Menu>
+    )
+}

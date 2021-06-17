@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import PropTypes from "prop-types";
 
 // components
-import JobAdvertTableDropdown from "components/Dropdowns/jobAdvertTableDropdown.js";
+import JobAdvertDropdown from "components/Dropdowns/jobAdvertDropdown.js";
 import JobAdvertService from "../../services/JobAdvertService";
 import EmployerService from "../../services/EmployerService";
 import SystemPersonelService from "../../services/SystemPersonelService";
@@ -201,7 +201,7 @@ export default function AdminJobAdvertList({color}) {
                                     />
                                 </td>
                                 <td className="border-b border-indigo-400 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                    <JobAdvertTableDropdown delete={() => deleteJobAdvert(jobAdvert.id)}/>
+                                    <JobAdvertDropdown deleteJobAdvert={() => deleteJobAdvert(jobAdvert.id)}/>
                                 </td>
                             </tr>
 

@@ -3,18 +3,24 @@
   <component name="ChangeListManager">
     <list default="true" id="60b0e522-1c25-4a4d-8e9a-3f3c72d705c2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Cards/AdminSystemPersonelList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Cards/AdminSystemPersonelList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Cards/AdminJobAdvertList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Cards/AdminJobAdvertList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Cards/AdminJobseekerList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Cards/AdminJobseekerList.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Dropdowns/EmployerDroıpdown.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Dropdowns/EmployerDroıpdown.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Dropdowns/JobseekerDropdown.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Dropdowns/JobseekerDropdown.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Dropdowns/HomeDropwdown.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Dropdowns/HomeDropwdown.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Dropdowns/IndexDropdown.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Dropdowns/JobseekerDropdown.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Dropdowns/SystemPersonelDropdown.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Dropdowns/SystemPersonelDropdown.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Dropdowns/UserDropdown.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Dropdowns/UserDropdown.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Dropdowns/jobAdvertTableDropdown.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Dropdowns/jobAdvertDropdown.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Modals/AddSystemPersonel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Modals/AddSystemPersonel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Navbars/IndexNavbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbars/IndexNavbar.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Sidebar/Sidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Sidebar/Sidebar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/Admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/Admin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/SystemPersonelService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/SystemPersonelService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Home.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/auth/EmployerRegister.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/auth/EmployerRegister.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/auth/JobseekerRegister.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/auth/JobseekerRegister.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/auth/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/auth/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/auth/Register.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/auth/Register.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,7 +115,13 @@
       <workItem from="1623780113380" duration="15895000" />
       <workItem from="1623796761823" duration="122000" />
       <workItem from="1623847838817" duration="14884000" />
-      <workItem from="1623883381745" duration="51000" />
+      <workItem from="1623883381745" duration="228000" />
+      <workItem from="1623885099601" duration="1413000" />
+      <workItem from="1623886658039" duration="56000" />
+      <workItem from="1623921172815" duration="113000" />
+      <workItem from="1623921936629" duration="151000" />
+      <workItem from="1623928223406" duration="266000" />
+      <workItem from="1623933251258" duration="16934000" />
     </task>
     <task id="LOCAL-00001" summary="all components updated for better ui!">
       <created>1623363168071</created>
@@ -153,7 +165,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623796844302</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="functionality and visuality improved!">
+      <created>1623883568945</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1623883568945</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -166,7 +185,8 @@
     <MESSAGE value="delete method added for jobadverts!" />
     <MESSAGE value="day 12 -&gt; progress %70 completed %30 to go!" />
     <MESSAGE value="day 12 -&gt; homework done successfully!" />
-    <option name="LAST_COMMIT_MESSAGE" value="day 12 -&gt; homework done successfully!" />
+    <MESSAGE value="functionality and visuality improved!" />
+    <option name="LAST_COMMIT_MESSAGE" value="functionality and visuality improved!" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
