@@ -2099,6 +2099,11 @@ select {
     color: rgba(244, 114, 182, var(--tw-text-opacity));
 }
 
+.text-purple-400 {
+    --tw-text-opacity: 1;
+    color: rgba(198, 72, 255, var(--tw-bg-opacity));
+}
+
 .text-lightBlue-400 {
     --tw-text-opacity: 1;
     color: rgba(56, 189, 248, var(--tw-text-opacity));

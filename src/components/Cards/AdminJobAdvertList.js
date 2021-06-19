@@ -11,11 +11,13 @@ export default function AdminJobAdvertList() {
 
     const jobAdvertService = new JobAdvertService();
 
-    const [jobAdverts, setJobAdverts] = useState([]);
-
     const employerService = new EmployerService();
 
     const systemPersonelService = new SystemPersonelService();
+
+    const [jobAdverts, setJobAdverts] = useState([]);
+
+    const [searchTerm, setSearchTerm] = useState('')
 
     useEffect(() => {
 
@@ -38,8 +40,23 @@ export default function AdminJobAdvertList() {
     return (
 
         <>
-            <h3 className="text-4xl mb-4 font-semibold leading-normal text-blueGray-800 text-center"><i
+            <h3 className="text-4xl mb-2 font-semibold leading-normal text-blueGray-800 text-center"><i
                 className="fas fa-briefcase"></i> İş İlanları</h3>
+            <div className="relative mb-2 lg:w-3/12 ml-auto mr-auto rounded">
+              <span
+                  className="z-10 h-full leading-snug font-normal absolute text-center text-blueGray-300 absolute bg-transparent rounded text-base items-center justify-center w-8 pl-3 py-3">
+                <i className="fas fa-search"></i>
+              </span>
+                <input
+                    type="text"
+                    placeholder="Örn: Back-end developer..."
+                    className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-300 relative bg-blueGray-800 rounded text-sm shadow outline-none focus:outline-none focus:ring w-full pl-10"
+                    onChange={(event) => {
+                        setSearchTerm(event.target.value)
+                    }}
+                />
+            </div>
+
             <div
                 className={"relative flex flex-col min-w-0 break-words shadow-lg text-white rounded-lg bg-blueGray-800"}
             >
@@ -135,7 +152,17 @@ export default function AdminJobAdvertList() {
                         </tr>
                         </thead>
                         <tbody>
-                        {jobAdverts.map((jobAdvert, index) => (
+                        {jobAdverts.filter(value => {
+                            if (setSearchTerm == '') {
+                                return value
+                            } else if (value.employer.companyName.toLocaleLowerCase()
+                                .includes(searchTerm.toLocaleLowerCase()) || value.jobPosition.jobTitle.toLocaleLowerCase()
+                                .includes(searchTerm.toLocaleLowerCase()) || value.city.cityName.toLocaleLowerCase()
+                                .includes(searchTerm.toLocaleLowerCase())) {
+
+                                return value
+                            }
+                        }).map((jobAdvert, index) => (
                             <tr className={index % 2 == 0 ? "bg-lightBlue-600" : "bg-blueGray-800"} key={jobAdvert.id}>
                                 <td className="border-b border-indigo-400 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{index + 1}</td>
                                 <td className="border-b border-indigo-400 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">

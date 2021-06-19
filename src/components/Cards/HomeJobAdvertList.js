@@ -37,6 +37,8 @@ function HomeJobAdvertList() {
 
     let website;
 
+    const check = <i className="font-bold fas fa-check"></i>
+
     return (
         <div>
             <BackToTop/>
@@ -50,7 +52,7 @@ function HomeJobAdvertList() {
               </span>
                 <input
                     type="text"
-                    placeholder="Örn: Google..."
+                    placeholder="Örn: Full-stack developer..."
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-300 relative bg-blueGray-800 rounded text-sm shadow outline-none focus:outline-none focus:ring w-full pl-10"
                     onChange={(event) => {
                         setSearchTerm(event.target.value)
@@ -87,7 +89,7 @@ function HomeJobAdvertList() {
                                                 <a
                                                     style={{borderBottom: "2px solid #1E293B"}}
                                                     className={classNames(
-                                                        active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                                                        sort ? 'bg-indigo-500 text-white font-semibold' : 'bg-blueGray-600 text-blueGray-300 hover:bg-purple-400 font-semibold',
                                                         'block px-4 py-2 text-sm'
                                                     )}
                                                     onClick={() => {
@@ -103,7 +105,7 @@ function HomeJobAdvertList() {
 
                                                     }}
                                                 >
-                                                    {sort ? "En Yeni İlanlar ✔️" : "En Yeni İlanlar"}
+                                                    En Yeni İlanlar {sort ? check : ""}
                                                 </a>
                                             )}
                                         </Menu.Item>
@@ -111,7 +113,7 @@ function HomeJobAdvertList() {
                                             {({active}) => (
                                                 <a
                                                     className={classNames(
-                                                        active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                                                        sort ? 'bg-blueGray-600 text-blueGray-300 hover:bg-purple-400 font-semibold' : 'bg-indigo-500 text-white font-semibold',
                                                         'block px-4 py-2 text-sm'
                                                     )}
                                                     onClick={() => {
@@ -127,7 +129,7 @@ function HomeJobAdvertList() {
 
                                                     }}
                                                 >
-                                                    {sort ? "En Eski İlanlar" : "En Eski İlanlar ✔️"}
+                                                    En Eski İlanlar {sort ? "" : check}
                                                 </a>
                                             )}
                                         </Menu.Item>

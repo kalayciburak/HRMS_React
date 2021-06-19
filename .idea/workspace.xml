@@ -3,13 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="60b0e522-1c25-4a4d-8e9a-3f3c72d705c2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/styles/tailwind.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/styles/tailwind.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Cards/AdminEmployerList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Cards/AdminEmployerList.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Cards/AdminJobAdvertList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Cards/AdminJobAdvertList.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Cards/AdminJobseekerList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Cards/AdminJobseekerList.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Cards/AdminSystemPersonelList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Cards/AdminSystemPersonelList.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Cards/HomeJobAdvertList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Cards/HomeJobAdvertList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/JobAdvertService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/JobAdvertService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Modals/AddSystemPersonel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Modals/AddSystemPersonel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Navbars/AdminNavbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbars/AdminNavbar.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +115,7 @@
       <workItem from="1623951511562" duration="86000" />
       <workItem from="1624024339454" duration="1629000" />
       <workItem from="1624055369246" duration="12066000" />
-      <workItem from="1624101344713" duration="17976000" />
+      <workItem from="1624101344713" duration="21976000" />
     </task>
     <task id="LOCAL-00001" summary="all components updated for better ui!">
       <created>1623363168071</created>
@@ -186,7 +187,14 @@
       <option name="project" value="LOCAL" />
       <updated>1624067618754</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="some performance updates">
+      <created>1624134842854</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1624134842854</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -202,7 +210,8 @@
     <MESSAGE value="functionality and visuality improved!" />
     <MESSAGE value="logo and readme updated!" />
     <MESSAGE value="now you can use searchbox for filter job adverts" />
-    <option name="LAST_COMMIT_MESSAGE" value="now you can use searchbox for filter job adverts" />
+    <MESSAGE value="some performance updates" />
+    <option name="LAST_COMMIT_MESSAGE" value="some performance updates" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

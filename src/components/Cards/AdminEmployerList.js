@@ -11,6 +11,8 @@ export default function AdminEmployerList({color}) {
 
     const [employers, setEmployers] = useState([]);
 
+    const [searchTerm, setSearchTerm] = useState('')
+
     useEffect(() => {
         let isMounted = true
         employerService.getEmployers().then(result => {
@@ -30,6 +32,20 @@ export default function AdminEmployerList({color}) {
         <>
             <h3 className="text-4xl mb-2 font-semibold leading-normal text-blueGray-600  text-center"><i
                 className="fas fa-building"></i> Şirketler</h3>
+            <div className="relative mb-2 lg:w-3/12 ml-auto mr-auto rounded">
+              <span
+                  className="z-10 h-full leading-snug font-normal absolute text-center text-blueGray-300 absolute bg-transparent rounded text-base items-center justify-center w-8 pl-3 py-3">
+                <i className="fas fa-search"></i>
+              </span>
+                <input
+                    type="text"
+                    placeholder="Örn: Google..."
+                    className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-300 relative bg-blueGray-800 rounded text-sm shadow outline-none focus:outline-none focus:ring w-full pl-10"
+                    onChange={(event) => {
+                        setSearchTerm(event.target.value)
+                    }}
+                />
+            </div>
             <div
                 className={"relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg text-white rounded-lg bg-blueGray-800"}
                 style={{width: "50%", marginLeft: "25%"}}>
@@ -71,7 +87,15 @@ export default function AdminEmployerList({color}) {
                         </tr>
                         </thead>
                         <tbody>
-                        {employers.map((employer, index) => (
+                        {employers.filter(value => {
+                            if (setSearchTerm == '') {
+                                return value
+                            } else if (value.companyName.toLocaleLowerCase()
+                                .includes(searchTerm.toLocaleLowerCase())) {
+
+                                return value
+                            }
+                        }).map((employer, index) => (
                             <tr className={index % 2 == 0 ? "bg-lightBlue-600" : "bg-blueGray-800"} key={employer.id}>
                                 <td className="border-b border-indigo-400 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-center">
                                     {employer.companyName}
