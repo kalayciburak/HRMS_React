@@ -24,21 +24,21 @@ export default function Index() {
                             <div className="mt-12">
                                 <Link
                                     to="/auth/login"
+                                    className="text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-lightBlue-500 active:bg-lightBlue-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150"
+
                                 >
-                                    <a
-                                        className="text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-lightBlue-500 active:bg-lightBlue-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150"
-                                    >
-                                        Giriş Yap
-                                    </a>
+
+                                    Giriş Yap
+
                                 </Link>
                                 <Link
                                     to="/auth/register"
+                                    className="ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150"
+
                                 >
-                                    <a
-                                        className="ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150"
-                                    >
-                                        Kayıt Ol
-                                    </a>
+
+                                    Kayıt Ol
+
                                 </Link>
                             </div>
                         </div>

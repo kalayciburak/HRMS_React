@@ -7,21 +7,21 @@ import JobAdvertService from "../../services/JobAdvertService";
 import EmployerService from "../../services/EmployerService";
 import SystemPersonelService from "../../services/SystemPersonelService";
 
-export default function AdminJobAdvertList({color}) {
-    const [jobAdverts, setJobAdverts] = useState([]);
+export default function AdminJobAdvertList() {
 
     let jobAdvertService = new JobAdvertService();
+
+    const [jobAdverts, setJobAdverts] = useState([]);
 
     let employerService = new EmployerService();
 
     let systemPersonelService = new SystemPersonelService();
 
     useEffect(() => {
-        jobAdvertService.getSortedJobAdverts().then(result => setJobAdverts(result.data.data))
-    })
+        jobAdvertService.getSortedJobAdverts().then(result => setJobAdverts(result.data.data));
+    });
 
     let airdate;
-
 
     function deleteJobAdvert(id) {
         jobAdvertService.deleteJobAdvertById(id);
@@ -42,24 +42,21 @@ export default function AdminJobAdvertList({color}) {
                         <tr>
                             <th
                                 className={
-                                    "px-4 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
-                                    (color === "light")
+                                    "px-4 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left "
                                 }
                             >
 
                             </th>
                             <th
                                 className={
-                                    "px-4 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
-                                    (color === "light")
+                                    "px-4 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left "
                                 }
                             >
                                 Şirket
                             </th>
                             <th
                                 className={
-                                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
-                                    (color === "light")
+                                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left "
                                 }
                             >
                                 Pozisyon
@@ -82,63 +79,56 @@ export default function AdminJobAdvertList({color}) {
                             {/*</th>*/}
                             <th
                                 className={
-                                    "px-3 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
-                                    (color === "light")
+                                    "px-3 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left "
                                 }
                             >
                                 Maaş (₺)
                             </th>
                             <th
                                 className={
-                                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
-                                    (color === "light")
+                                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left "
                                 }
                             >
                                 Şehir
                             </th>
                             <th
                                 className={
-                                    "px-4 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
-                                    (color === "light")
+                                    "px-4 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left "
                                 }
                             >
                                 Yayın Tarihi
                             </th>
                             <th
                                 className={
-                                    "px-4 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
-                                    (color === "light")
+                                    "px-4 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left "
                                 }
                             >
                                 Son Başvuru Tarihi
                             </th>
                             <th
                                 className={
-                                    "px-4 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
-                                    (color === "light")
+                                    "px-4 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left "
                                 }
                             >
                                 Aktif
                             </th>
                             <th
                                 className={
-                                    "px-3 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
-                                    (color === "light")
+                                    "px-3 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left "
                                 }
                             >
                                 Onaylı
                             </th>
                             <th
                                 className={
-                                    "px-4 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
-                                    (color === "light")
+                                    "px-4 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left "
                                 }
                             ></th>
                         </tr>
                         </thead>
                         <tbody>
                         {jobAdverts.map((jobAdvert, index) => (
-                            <tr className={index % 2 == 0 ? "bg-lightBlue-600" : "bg-blueGray-800"}>
+                            <tr className={index % 2 == 0 ? "bg-lightBlue-600" : "bg-blueGray-800"} key={jobAdvert.id}>
                                 <td className="border-b border-indigo-400 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{index + 1}</td>
                                 <td className="border-b border-indigo-400 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                     {jobAdvert.employer.companyName}
@@ -178,7 +168,7 @@ export default function AdminJobAdvertList({color}) {
                                     <input
                                         id="isActive"
                                         type="checkbox"
-                                        checked={jobAdvert.active ? true : false}
+                                        defaultChecked={jobAdvert.active ? true : false}
                                         className="form-checkbox rounded ml-1 w-5 h-5 ease-linear transition-all duration-150"
                                         style={{border: "2px solid #fff", color: "#9150ff"}}
                                         onClick={() => jobAdvert.active ? employerService.deactiveJobAdvert(
@@ -192,7 +182,7 @@ export default function AdminJobAdvertList({color}) {
                                     <input
                                         id="isConfirmed"
                                         type="checkbox"
-                                        checked={jobAdvert.confirmed ? true : false}
+                                        defaultChecked={jobAdvert.confirmed ? true : false}
                                         className="form-checkbox border-0 rounded text-red-500 ml-1 w-5 h-5 ease-linear transition-all duration-150"
                                         style={{border: "2px solid #fff", color: "#9150ff"}}
                                         onClick={() => jobAdvert.confirmed ? systemPersonelService.approveJobAdvert(

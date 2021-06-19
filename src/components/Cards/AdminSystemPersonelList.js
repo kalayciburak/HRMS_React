@@ -49,7 +49,8 @@ function AdminSystemPersonelList(props) {
                         </thead>
                         <tbody>
                         {systemPersonels.map((systemPersonel, index) => (
-                            <tr className={index % 2 == 0 ? "bg-lightBlue-600" : "bg-blueGray-800"}>
+                            <tr className={index % 2 == 0 ? "bg-lightBlue-600" : "bg-blueGray-800"}
+                                key={systemPersonel.id}>
                                 <td className="border-b border-indigo-400 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-center">
                                     {systemPersonel.username}
                                 </td>

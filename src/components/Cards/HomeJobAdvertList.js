@@ -3,26 +3,26 @@ import {Menu, Transition} from "@headlessui/react";
 import {ChevronDownIcon} from "@heroicons/react/solid";
 import JobAdvertService from "../../services/JobAdvertService";
 import BackToTop from "../Utility/BackToTop";
+import Swal from "sweetalert2";
 
-function HomeJobAdvertList(props) {
+function HomeJobAdvertList() {
 
-    const [jobAdverts, setJobAdverts] = useState([]);
+    let jobAdvertService = new JobAdvertService();
+
+    const [jobAdverts, setJobAdverts] = useState([])
+
+    const [searchTerm, setSearchTerm] = useState('')
+
+    let [sort, setSort] = useState(true)
 
     useEffect(() => {
-        jobAdvertService.getActiveandConfirmedJobAdvert(isDesc)
+        jobAdvertService.getActiveandConfirmedJobAdvert(sort)
             .then(result => setJobAdverts(result.data.data))
-
     })
 
     function classNames(...classes) {
         return classes.filter(Boolean).join(' ')
     }
-
-    let [sort, setSort] = useState(true);
-
-    let isDesc = true;
-
-    let jobAdvertService = new JobAdvertService();
 
     let airdate;
 
@@ -30,7 +30,6 @@ function HomeJobAdvertList(props) {
 
     return (
         <div>
-            {sort ? isDesc = true : isDesc = false}
             <BackToTop/>
             <h3 className="text-4xl mt-20 font-semibold leading-normal text-blueGray-800 text-center"><i
                 className="fas fa-briefcase"></i> İş İlanları</h3>
@@ -44,6 +43,9 @@ function HomeJobAdvertList(props) {
                     type="text"
                     placeholder="Örn: Google..."
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-300 relative bg-blueGray-800 rounded text-sm shadow outline-none focus:outline-none focus:ring w-full pl-10"
+                    onChange={(event) => {
+                        setSearchTerm(event.target.value)
+                    }}
                 />
                 <Menu as="div" className="absolute inline-block text-left ml-2">
                     {({open}) => (
@@ -70,7 +72,7 @@ function HomeJobAdvertList(props) {
                                     static
                                     className=" absolute w-full bg-white text-blueGray-800"
                                 >
-                                    <div className="py-1 cursor-pointer">
+                                    <div className="cursor-pointer">
                                         <Menu.Item>
                                             {({active}) => (
                                                 <a
@@ -79,7 +81,18 @@ function HomeJobAdvertList(props) {
                                                         active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                                                         'block px-4 py-2 text-sm'
                                                     )}
-                                                    onClick={() => setSort(true)}
+                                                    onClick={() => {
+                                                        setSort(true)
+                                                        if (!sort) {
+                                                            Swal.fire({
+                                                                          timerProgressBar: true,
+                                                                          showConfirmButton: false,
+                                                                          timer: 500,
+                                                                      })
+                                                            Swal.showLoading()
+                                                        }
+
+                                                    }}
                                                 >
                                                     {sort ? "En Yeni İlanlar ✔️" : "En Yeni İlanlar"}
                                                 </a>
@@ -92,7 +105,18 @@ function HomeJobAdvertList(props) {
                                                         active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                                                         'block px-4 py-2 text-sm'
                                                     )}
-                                                    onClick={() => setSort(false)}
+                                                    onClick={() => {
+                                                        setSort(false)
+                                                        if (sort) {
+                                                            Swal.fire({
+                                                                          timerProgressBar: true,
+                                                                          showConfirmButton: false,
+                                                                          timer: 500,
+                                                                      })
+                                                            Swal.showLoading()
+                                                        }
+
+                                                    }}
                                                 >
                                                     {sort ? "En Eski İlanlar" : "En Eski İlanlar ✔️"}
                                                 </a>
@@ -105,8 +129,19 @@ function HomeJobAdvertList(props) {
                     )}
                 </Menu>
             </div>
-            {jobAdverts.map((jobAdvert, index) => (
-                <div className="flex w-full bg-gray-200 dark:bg-gray-900 py-4">
+            {jobAdverts.filter(value => {
+                if (setSearchTerm == '') {
+                    return value
+                } else if (value.description.toLocaleLowerCase()
+                    .includes(searchTerm.toLocaleLowerCase()) || value.employer.companyName.toLocaleLowerCase()
+                    .includes(searchTerm.toLocaleLowerCase()) || value.jobPosition.jobTitle.toLocaleLowerCase()
+                    .includes(searchTerm.toLocaleLowerCase()) || value.city.cityName.toLocaleLowerCase()
+                    .includes(searchTerm.toLocaleLowerCase())) {
+
+                    return value
+                }
+            }).map((jobAdvert, index) => (
+                <div className="flex w-full bg-gray-200 dark:bg-gray-900 py-4" key={jobAdvert.id}>
 
                     <div className="container mx-auto px-6 flex items-start justify-center">
                         <div className="w-full">
@@ -164,7 +199,7 @@ function HomeJobAdvertList(props) {
                                     <p className="text-blueGray-400 dark:text-gray-100 text-sm tracking-normal font-normal text-center">{jobAdvert.typeOfEmployment}/{jobAdvert.upTime}</p>
                                     <p className="text-blueGray-400 dark:text-gray-100 text-sm tracking-normal font-normal mt-2 mb-6 text-center w-10/12">{jobAdvert.description}</p>
                                     <button
-                                        className="bg-indigo-500 text-blueGray-300 active:bg-indigo-500 hover:bg-purple-400 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg mt-3 outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+                                        className="bg-indigo-500 text-blueGray-300 active:bg-indigo-500 hover:bg-purple-400 text-sm font-bold uppercase px-6 py-3 rounded shadow mt-3 outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                                         type="button"
                                     >
                                         Başvuru Yap

@@ -51,7 +51,6 @@ export default function Home() {
             <section className="mt-20 relative bg-blueGray-100">
                 <div
                     className="-mt-20 top-0 bottom-auto left-0 right-0 w-full absolute h-20"
-                    style={{transform: "translateZ(0)"}}
                 >
                     <svg
                         className="absolute bottom-0 overflow-hidden"

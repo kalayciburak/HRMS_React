@@ -66,7 +66,7 @@ export default function AdminEmployerList({color}) {
                         </thead>
                         <tbody>
                         {employers.map((employer, index) => (
-                            <tr className={index % 2 == 0 ? "bg-lightBlue-600" : "bg-blueGray-800"}>
+                            <tr className={index % 2 == 0 ? "bg-lightBlue-600" : "bg-blueGray-800"} key={employer.id}>
                                 <td className="border-b border-indigo-400 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-center">
                                     {employer.companyName}
                                 </td>

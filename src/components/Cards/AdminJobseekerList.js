@@ -7,7 +7,7 @@ function AdminJobseekerList(props) {
 
     let jobSeekerService = new JobSeekerService();
 
-    const [jobSeekers, setJobSeekers] = useState([]);
+    const [jobSeekers, setJobSeekers] = useState([])
 
     useEffect(() => {
         jobSeekerService.getJobSeekers().then(result => setJobSeekers(result.data.data))
@@ -66,7 +66,7 @@ function AdminJobseekerList(props) {
                         </thead>
                         <tbody>
                         {jobSeekers.map((jobseeker, index) => (
-                            <tr className={index % 2 == 0 ? "bg-lightBlue-600" : "bg-blueGray-800"}>
+                            <tr className={index % 2 == 0 ? "bg-lightBlue-600" : "bg-blueGray-800"} key={jobseeker.id}>
                                 <td className="border-b border-indigo-400 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-center">
                                     {jobseeker.firstName}
                                 </td>
