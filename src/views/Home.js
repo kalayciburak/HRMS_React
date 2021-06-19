@@ -14,23 +14,33 @@ export default function Home() {
     let jobAdvertService = new JobAdvertService();
 
     useEffect(() => {
+        let isMounted = true;
         jobAdvertService.getActiveandConfirmedJobAdvert(isDesc)
-            .then(result => setJobAdverts(result.data.data))
+            .then(result => {
+                if (isMounted) setJobAdverts(result.data.data)
+            })
 
-    })
+        return () => {
+            isMounted = false
+        }
+    }, [jobAdverts])
     let isDesc = true;
 
     const [isNull, setNull] = useState(false);
 
     useEffect(() => {
+        let isMounted = true;
         if (jobAdverts.length <= 0) {
-            setNull(true);
+            if (isMounted) setNull(true);
 
         } else {
-            setNull(false);
+            if (isMounted) setNull(false);
 
         }
-    })
+        return () => {
+            isMounted = false
+        }
+    }, [jobAdverts])
 
     return (
         <div style={{background: "linear-gradient(#fff, #8BA5BEFF)"}}>

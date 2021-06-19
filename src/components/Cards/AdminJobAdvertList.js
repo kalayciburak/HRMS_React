@@ -9,17 +9,25 @@ import SystemPersonelService from "../../services/SystemPersonelService";
 
 export default function AdminJobAdvertList() {
 
-    let jobAdvertService = new JobAdvertService();
+    const jobAdvertService = new JobAdvertService();
 
     const [jobAdverts, setJobAdverts] = useState([]);
 
-    let employerService = new EmployerService();
+    const employerService = new EmployerService();
 
-    let systemPersonelService = new SystemPersonelService();
+    const systemPersonelService = new SystemPersonelService();
 
     useEffect(() => {
-        jobAdvertService.getSortedJobAdverts().then(result => setJobAdverts(result.data.data));
-    });
+
+        let isMounted = true;
+        jobAdvertService.getSortedJobAdverts().then((result) => {
+            if (isMounted) return setJobAdverts(result.data.data)
+        });
+
+        return () => {
+            isMounted = false
+        }
+    }, [jobAdverts]);
 
     let airdate;
 

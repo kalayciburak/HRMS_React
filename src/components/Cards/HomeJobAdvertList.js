@@ -7,18 +7,27 @@ import Swal from "sweetalert2";
 
 function HomeJobAdvertList() {
 
-    let jobAdvertService = new JobAdvertService();
+    const jobAdvertService = new JobAdvertService();
 
     const [jobAdverts, setJobAdverts] = useState([])
 
     const [searchTerm, setSearchTerm] = useState('')
 
-    let [sort, setSort] = useState(true)
+    const [sort, setSort] = useState(true)
 
     useEffect(() => {
+        let isMounted = true;
         jobAdvertService.getActiveandConfirmedJobAdvert(sort)
-            .then(result => setJobAdverts(result.data.data))
-    })
+            .then((result) => {
+                if (isMounted) {
+                    setJobAdverts(result.data.data)
+                }
+            })
+        return () => {
+            isMounted = false; //cleaunp
+        }
+
+    }, [sort, jobAdverts])
 
     function classNames(...classes) {
         return classes.filter(Boolean).join(' ')
@@ -172,7 +181,8 @@ function HomeJobAdvertList() {
                                         {jobAdvert.city.cityName}
                                     </p>
                                     <p className="text-blueGray-400 dark:text-gray-100 text-xs tracking-normal font-normal mt-2 text-center w-10/12">
-                                        <i className="fas fa-sm fa-phone mr-1"></i> {jobAdvert.employer.phoneNumber}</p>
+                                        <i className="fas fa-sm fa-phone mr-1"></i> {jobAdvert.employer.phoneNumber}
+                                    </p>
                                     <p className="text-blueGray-400 dark:text-gray-100 text-xs tracking-normal font-normal mt-2 text-center w-10/12">
                                         <span
                                             style={{display: "none"}}>{website = jobAdvert.employer.website.split('.')}</span>
@@ -206,7 +216,8 @@ function HomeJobAdvertList() {
                                     </button>
 
                                 </div>
-                                <div className="w-full lg:w-1/3 flex-col flex justify-center items-center px-12 py-8">
+                                <div
+                                    className="w-full lg:w-1/3 flex-col flex justify-center items-center px-12 py-8">
                                     <h2 className="text-center text-sm text-blueGray-300 dark:text-gray-100 font-medium tracking-normal">{jobAdvert.salary + " ₺"}</h2>
                                     <h2 className="text-center text-sm text-blueGray-400 dark:text-gray-100 font-normal mt-2 mb-4 tracking-normal">Maaş</h2>
                                     <span style={{display: "none"}}>{airdate = jobAdvert.airdate.toString()

@@ -19,7 +19,7 @@ export default class JobAdvertService {
             `http://localhost:8080/api/jobadverts/getActiveJobAdvertsSorted?isDesc=${isDesc}`);
     }
 
-    getActiveandConfirmedJobAdvert(isDesc) {
+    getActiveandConfirmedJobAdvert(isDesc = true) {
         return axios.get(`http://localhost:8080/api/jobadverts/getJobAdvertByIsActiveTrueAndIsConfirmedTrue?isDesc=${isDesc}`);
     }
 

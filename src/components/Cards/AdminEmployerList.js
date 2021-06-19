@@ -7,13 +7,19 @@ import EmployerService from "../../services/EmployerService";
 
 export default function AdminEmployerList({color}) {
 
-    let employerService = new EmployerService();
+    const employerService = new EmployerService();
 
     const [employers, setEmployers] = useState([]);
 
     useEffect(() => {
-        employerService.getEmployers().then(result => setEmployers(result.data.data))
-    })
+        let isMounted = true
+        employerService.getEmployers().then(result => {
+            if (isMounted) setEmployers(result.data.data)
+        })
+        return () => {
+            isMounted = false
+        }
+    }, [employers])
 
     function deleteEmployer(id) {
         employerService.deleteEmployerById(id);

@@ -5,16 +5,26 @@ import PropTypes from "prop-types";
 
 function AdminJobseekerList(props) {
 
-    let jobSeekerService = new JobSeekerService();
+    const jobSeekerService = new JobSeekerService();
 
     const [jobSeekers, setJobSeekers] = useState([])
 
+    const [remove, setRemove] = useState(true)
+
     useEffect(() => {
-        jobSeekerService.getJobSeekers().then(result => setJobSeekers(result.data.data))
-    })
+        let isMounted = true
+        jobSeekerService.getJobSeekers().then((result) => {
+            if (isMounted) setJobSeekers(result.data.data)
+        })
+        return () => {
+            isMounted = false
+        }
+
+    }, [jobSeekers])
 
     function deleteJobseeker(id) {
         jobSeekerService.deleteJobSeekerById(id);
+        setRemove(true);
     }
 
     return (

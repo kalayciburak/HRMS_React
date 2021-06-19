@@ -5,13 +5,19 @@ import AddSystemPersonel from "../Modals/AddSystemPersonel";
 
 function AdminSystemPersonelList(props) {
 
-    let systemPersonelService = new SystemPersonelService();
+    const systemPersonelService = new SystemPersonelService();
 
     const [systemPersonels, setSystemPersonels] = useState([]);
 
     useEffect(() => {
-        systemPersonelService.getSystemPersonel().then(result => setSystemPersonels(result.data.data))
-    })
+        let isMounted = true
+        systemPersonelService.getSystemPersonel().then(result => {
+            if (isMounted) setSystemPersonels(result.data.data)
+        })
+        return () => {
+            isMounted = false
+        }
+    }, [systemPersonels])
 
     function deleteSystemPersonel(id) {
         systemPersonelService.deleteSystemPersonelById(id);
