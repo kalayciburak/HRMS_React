@@ -34,13 +34,13 @@ function EmployerRegister(props) {
                                                      .min(
                                                          7,
                                                          "Geçerli bir numara giriniz!")
-                                                     .max(12, "Geçerli bir numara giriniz!"),
+                                                     .max(14, "Geçerli bir numara giriniz!"),
                                                  password: Yup.string()
                                                      .required("Bu alan boş bırakılamaz!")
                                                      .min(
                                                          6,
                                                          "Şifre 6 karakterden kısa olamaz!")
-                                                     .max(17, "Şifre 17 karakterden uzun olamaz!"),
+                                                     .max(25, "Şifre 25 karakterden uzun olamaz!"),
                                                  confirmPassword: Yup.string().required("Bu alan boş bırakılamaz!"),
                                                  isTerm: Yup.boolean().required(
                                                      "Devam edebilmek için Sözleşmeyi onaylayınız!")
@@ -67,7 +67,7 @@ function EmployerRegister(props) {
                             if (res.includes("Error")) {
                                 Swal.fire({
                                               icon: 'error',
-                                              text: res,
+                                              text: res.split("Error: ")[1],
                                               confirmButtonText: `Tamam`,
                                               backdrop: ` rgba(161,0,0,0.44)
                                                           url("/images/nyan-cat.gif")
@@ -78,9 +78,9 @@ function EmployerRegister(props) {
                             } else {
                                 Swal.fire({
                                               icon: 'success',
-                                              text: res,
+                                              text: res.split("Success: ")[1],
                                               confirmButtonText: `Tamam`,
-                                              timer: 1500,
+                                              timer: 7000,
                                               backdrop: ` rgba(0,120,0,0.44)
                                                           url("/images/nyan-cat.gif")
                                                           left top
@@ -149,7 +149,7 @@ function EmployerRegister(props) {
                             </div>
                             <div className="relative w-full mb-3">
                                 <input
-                                    type="url"
+                                    type="text"
                                     className="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                     placeholder="Website adresi"
                                     id={"website"}
@@ -166,6 +166,8 @@ function EmployerRegister(props) {
                                     className="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                     placeholder="Telefon Numarası"
                                     id={"phoneNumber"}
+                                    minLength={7}
+                                    maxLength={14}
                                     onChange={handleChange}
                                     value={values.phoneNumber}
                                 />
@@ -180,6 +182,7 @@ function EmployerRegister(props) {
                                     className="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                     placeholder="Şifre"
                                     id="password"
+                                    maxLength={25}
                                     value={values.password}
                                     onChange={handleChange}
                                 />
@@ -193,6 +196,7 @@ function EmployerRegister(props) {
                                     type="password"
                                     className="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                     placeholder="Şifre onay"
+                                    maxLength={25}
                                     id="confirmPassword"
                                     value={values.confirmPassword}
                                     onChange={handleChange}

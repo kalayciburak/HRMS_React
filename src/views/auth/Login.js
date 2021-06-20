@@ -49,7 +49,7 @@ export default function Login() {
                                             if (res.includes("Error")) {
                                                 Swal.fire({
                                                               icon: 'error',
-                                                              text: res,
+                                                              text: res.split("Error: ")[1],
                                                               confirmButtonText: `Tamam`,
                                                               backdrop: ` rgba(161,0,0,0.44)
                                                           url("/images/nyan-cat.gif")
@@ -60,7 +60,7 @@ export default function Login() {
                                             } else {
                                                 Swal.fire({
                                                               icon: 'success',
-                                                              text: res,
+                                                              text: res.split("Success: ")[1],
                                                               confirmButtonText: `Tamam`,
                                                               timer: 1500,
                                                               backdrop: ` rgba(0,120,0,0.44)

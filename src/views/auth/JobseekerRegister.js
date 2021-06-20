@@ -36,7 +36,7 @@ function JobseekerRegister(props) {
                                                      .min(
                                                          6,
                                                          "Şifre 6 karakterden kısa olamaz!")
-                                                     .max(17, "Şifre 17 karakterden uzun olamaz!"),
+                                                     .max(25, "Şifre 25 karakterden uzun olamaz!"),
                                                  confirmPassword: Yup.string().required("Bu alan boş bırakılamaz!"),
                                                  // birthDate: Yup.string().required("Bu alan boş bırakılamaz!"),
                                                  isTerm: Yup.boolean().required(
@@ -65,7 +65,7 @@ function JobseekerRegister(props) {
                             if (res.includes("Error")) {
                                 Swal.fire({
                                               icon: 'error',
-                                              text: res,
+                                              text: res.split("Error: ")[1],
                                               confirmButtonText: `Tamam`,
                                               backdrop: ` rgba(161,0,0,0.44)
                                                           url("/images/nyan-cat.gif")
@@ -76,9 +76,9 @@ function JobseekerRegister(props) {
                             } else {
                                 Swal.fire({
                                               icon: 'success',
-                                              text: res,
+                                              text: res.split("Success: ")[1],
                                               confirmButtonText: `Tamam`,
-                                              timer: 1500,
+                                              timer: 7000,
                                               backdrop: ` rgba(0,120,0,0.44)
                                                           url("/images/nyan-cat.gif")
                                                           left top
@@ -151,7 +151,7 @@ function JobseekerRegister(props) {
                                        className="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                        placeholder="Tc kimlik numarası"
                                        id="identityNumber"
-                                       maxLength={"11"}
+                                       maxLength={11}
                                        value={values.identityNumber}
                                        onChange={handleChange}
                                 />
@@ -192,6 +192,7 @@ function JobseekerRegister(props) {
                                        className="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                        placeholder="Şifre"
                                        id="password"
+                                       maxLength={25}
                                        value={values.password}
                                        onChange={handleChange}
                                 />
@@ -205,6 +206,7 @@ function JobseekerRegister(props) {
                                     className="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                     placeholder="Şifre onay"
                                     id="confirmPassword"
+                                    maxLength={25}
                                     onChange={handleChange}
                                     value={values.confirmPassword}
 
