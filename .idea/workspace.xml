@@ -3,10 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="60b0e522-1c25-4a4d-8e9a-3f3c72d705c2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Modals/AddSystemPersonel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Modals/AddSystemPersonel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/auth/EmployerRegister.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/auth/EmployerRegister.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/auth/JobseekerRegister.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/auth/JobseekerRegister.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/auth/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/auth/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gulpfile.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/robots.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +111,9 @@
       <workItem from="1624024339454" duration="1629000" />
       <workItem from="1624055369246" duration="12066000" />
       <workItem from="1624101344713" duration="23362000" />
-      <workItem from="1624195319920" duration="1583000" />
+      <workItem from="1624195319920" duration="1636000" />
+      <workItem from="1624221359874" duration="343000" />
+      <workItem from="1624232702618" duration="420000" />
     </task>
     <task id="LOCAL-00001" summary="all components updated for better ui!">
       <created>1623363168071</created>
@@ -198,7 +199,14 @@
       <option name="project" value="LOCAL" />
       <updated>1624138863124</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Error and Success messages rearrenged!">
+      <created>1624196958128</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1624196958128</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -216,7 +224,8 @@
     <MESSAGE value="now you can use searchbox for filter job adverts" />
     <MESSAGE value="some performance updates" />
     <MESSAGE value="search box and search methods added for admins!" />
-    <option name="LAST_COMMIT_MESSAGE" value="search box and search methods added for admins!" />
+    <MESSAGE value="Error and Success messages rearrenged!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Error and Success messages rearrenged!" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
