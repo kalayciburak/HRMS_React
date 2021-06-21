@@ -1,9 +1,9 @@
 /*eslint-disable*/
 import React from "react";
 import {Link} from "react-router-dom";
+import HomeDropdown from "../Dropdowns/HomeDropwdown";
 // components
 export default function Navbar() {
-    const [navbarOpen, setNavbarOpen] = React.useState(false);
     return (
         <>
             <nav
@@ -16,6 +16,35 @@ export default function Navbar() {
                         >
                             <i className="fas fa-lg fa-home"></i> HRMS
                         </Link>
+                    </div>
+                    <div
+                        className={
+                            "lg:flex flex-grow items-center bg-white lg:bg-opacity-0 lg:shadow-none block"
+                        }
+                    >
+                        <ul className="flex flex-col lg:flex-row hidden md:block list-none lg:ml-auto">
+                            <li className="flex items-center">
+                                <Link
+                                    to="/auth/login"
+                                    className="text-white font-bold px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 bg-lightBlue-600 active:bg-lightBlue-600 uppercase text-sm shadow ease-linear transition-all duration-150"
+
+                                >
+
+                                    Giriş Yap
+
+                                </Link>
+                                 <Link
+                                    to="/auth/register"
+                                    className="ml-1 text-white font-bold px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-700 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150"
+
+                                >
+
+                                    Kayıt Ol
+
+                                </Link>
+                            </li>
+
+                        </ul>
                     </div>
                 </div>
             </nav>

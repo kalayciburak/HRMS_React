@@ -17,7 +17,7 @@ export default function Login() {
                 <div className="flex content-center items-center justify-center h-full">
                     <div className="w-full lg:w-4/12 px-4">
                         <div
-                            className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-600 border-0">
+                            className="relative flex flex-col min-w-0 break-words w-full mb-2 shadow-lg rounded-lg bg-blueGray-600 border-0">
                             <div className="flex-auto px-4 lg:px-10 py-2 mt-10 pt-0">
                                 <Formik
                                     initialValues={{
@@ -176,18 +176,18 @@ export default function Login() {
                             </div>
 
                         </div>
-                        <div className="flex flex-wrap mt-6 relative">
+                        <div className="flex flex-wrap relative">
                             <div className="w-1/2">
                                 <a
                                     href="#pablo"
                                     onClick={(e) => e.preventDefault()}
-                                    className="text-blueGray-800"
+                                    className="text-blueGray-800 hover:text-purple-400"
                                 >
                                     <small>Şifreni mi Unuttun?</small>
                                 </a>
                             </div>
                             <div className="w-1/2 text-right">
-                                <Link to="/auth/register" className="text-blueGray-800">
+                                <Link to="/auth/register" className="text-blueGray-800 hover:text-purple-400">
                                     <small>Yeni Hesap Oluştur</small>
                                 </Link>
                             </div>

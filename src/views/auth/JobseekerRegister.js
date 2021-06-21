@@ -222,7 +222,7 @@ function JobseekerRegister(props) {
                             </div>
 
                             <div>
-                                <label className="inline-flex items-center cursor-pointer">
+                                <label className="items-center cursor-pointer">
                                     <input
                                         type="checkbox"
                                         className="form-checkbox border-0 rounded text-lightBlue-500 ml-1 w-5 h-5 ease-linear transition-all duration-150"
@@ -236,9 +236,8 @@ function JobseekerRegister(props) {
                                 ) : null}
                                 <span className="ml-2 text-sm font-semibold text-white">
                         <a
-                            href="#pablo"
+                            href="#"
                             className="text-lightBlue-500"
-                            onClick={(e) => e.preventDefault()}
                         >
                           Hizmet Sözleşmesini
                         </a>{" "}onaylıyorum

@@ -1161,7 +1161,7 @@ select {
     background-color: rgba(248, 250, 252, var(--tw-bg-opacity));
 }
 
-.hover\.bg-lightBlue-300:hover {
+.hover\:bg-lightBlue-300:hover {
     --tw-bg-opacity: 1;
     background-color: rgba(1, 180, 233, var(--tw-bg-opacity));
 }
@@ -1169,6 +1169,11 @@ select {
 .hover\:bg-purple-400:hover {
     --tw-bg-opacity: 1;
     background-color: rgba(198, 72, 255, var(--tw-bg-opacity));
+}
+
+.hover\:bg-blueGray-700:hover {
+    --tw-bg-opacity: 1;
+    background-color: rgba(51, 65, 85, var(--tw-bg-opacity));
 }
 
 .active\:bg-blueGray-600:active {
@@ -2101,7 +2106,7 @@ select {
 
 .text-purple-400 {
     --tw-text-opacity: 1;
-    color: rgba(198, 72, 255, var(--tw-bg-opacity));
+    color: rgba(198, 72, 255, var(--tw-text-opacity));
 }
 
 .text-lightBlue-400 {
@@ -2173,10 +2178,14 @@ select {
     --tw-text-opacity: 1;
     color: rgba(2, 132, 199, var(--tw-text-opacity));
 }
-
 .hover\:text-blueGray-300:hover {
     --tw-text-opacity: 1;
     color: rgba(203, 213, 225, var(--tw-text-opacity));
+}
+
+.hover\:text-purple-400:hover {
+    --tw-text-opacity: 1;
+    color: rgba(198, 72, 255, var(--tw-text-opacity));
 }
 
 .hover\:text-blueGray-500:hover {

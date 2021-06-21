@@ -1,11 +1,9 @@
 /*eslint-disable*/
 import React from "react";
 import {Link} from "react-router-dom";
-// components
 import HomeDropdown from "../Dropdowns/HomeDropwdown";
 
 export default function Navbar(props) {
-    const [navbarOpen, setNavbarOpen] = React.useState(false);
     return (
         <>
             <nav
@@ -23,7 +21,6 @@ export default function Navbar(props) {
                         className={
                             "lg:flex flex-grow items-center bg-white lg:bg-opacity-0 lg:shadow-none block"
                         }
-                        id="example-navbar-warning"
                     >
                         <ul className="flex flex-col lg:flex-row hidden md:block list-none lg:ml-auto">
                             <li className="flex items-center">
