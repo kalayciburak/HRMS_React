@@ -20,6 +20,7 @@
     "prop-types": "^15.7.2",
     "react-router": "5.2.0",
     "react-scripts": "4.0.3",
+    "react-select": "^4.3.1",
     "react-toast-notifications": "^2.4.4",
     "react-toasts": "^3.0.6",
     "react-toggle-button": "^2.2.0",

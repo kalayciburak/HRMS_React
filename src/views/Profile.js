@@ -1,21 +1,21 @@
 import React from "react";
 
-import Navbar from "components/Navbars/HomeNavbar.js";
+import ProfileNavbar from "components/Navbars/ProfileNavbar.js";
 import Footer from "components/Footers/Footer.js";
 
 export default function Profile() {
   return (
     <>
-      <Navbar fixed />
-      <main className="profile-page">
-        <section className="relative block h-500-px">
-          <div
-            className="absolute top-0 w-full h-full bg-center bg-cover"
-            style={{
-              backgroundImage:
-                "url('https://images.unsplash.com/photo-1499336315816-097655dcfbda?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2710&q=80')",
-            }}
-          >
+        <ProfileNavbar fixed/>
+        <main className="profile-page">
+            <section className="relative block h-500-px">
+                <div
+                    className="absolute top-0 w-full h-full bg-center bg-cover"
+                    style={{
+                        backgroundImage:
+                            "url('https://images.unsplash.com/photo-1499336315816-097655dcfbda?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2710&q=80')",
+                    }}
+                >
             <span
               id="blackOverlay"
               className="w-full h-full absolute opacity-50 bg-black"
@@ -95,21 +95,21 @@ export default function Profile() {
                   </div>
                 </div>
                 <div className="text-center mt-12">
-                  <h3 className="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
-                    Jenna Stones
-                  </h3>
-                  <div className="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
-                    <i className="fas fa-map-marker-alt mr-2 text-lg text-blueGray-400"></i>{" "}
-                    Los Angeles, California
-                  </div>
-                  <div className="mb-2 text-blueGray-600 mt-10">
-                    <i className="fas fa-briefcase mr-2 text-lg text-blueGray-400"></i>
-                    Solution Manager - Creative Tim Officer
-                  </div>
-                  <div className="mb-2 text-blueGray-600">
-                    <i className="fas fa-university mr-2 text-lg text-blueGray-400"></i>
-                    University of Computer Science
-                  </div>
+                    <h3 className="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
+                        Ad Soyad
+                    </h3>
+                    <div className="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
+                        <i className="fas fa-map-marker-alt mr-2 text-lg text-blueGray-400"></i>{" "}
+                        Beykoz, İstanbul
+                    </div>
+                    <div className="mb-2 text-blueGray-600 mt-10">
+                        <i className="fas fa-briefcase mr-2 text-lg text-blueGray-400"></i>
+                        Full-stack Developer - Facebook
+                    </div>
+                    <div className="mb-2 text-blueGray-600">
+                        <i className="fas fa-university mr-2 text-lg text-blueGray-400"></i>
+                        Marmara Üniversitesi - Bilgisayar Mühendisliği
+                    </div>
                 </div>
                 <div className="mt-10 py-10 border-t border-blueGray-200 text-center">
                   <div className="flex flex-wrap justify-center">
@@ -122,9 +122,8 @@ export default function Profile() {
                         artist of considerable range.
                       </p>
                       <a
-                        href="#pablo"
-                        className="font-normal text-lightBlue-500"
-                        onClick={(e) => e.preventDefault()}
+                          href="#"
+                          className="font-normal text-lightBlue-500"
                       >
                         Show more
                       </a>

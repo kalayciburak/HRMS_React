@@ -203,7 +203,7 @@ export default function AdminJobAdvertList() {
                                     <input
                                         id="isActive"
                                         type="checkbox"
-                                        defaultChecked={jobAdvert.active ? true : false}
+                                        defaultChecked={jobAdvert.active}
                                         className="form-checkbox rounded ml-1 w-5 h-5 ease-linear transition-all duration-150"
                                         style={{border: "2px solid #fff", color: "#9150ff"}}
                                         onClick={() => jobAdvert.active ? employerService.deactiveJobAdvert(

@@ -5,8 +5,8 @@ export default class JobAdvertService {
         return axios.get(`http://localhost:8080/api/jobadverts/getJobAdverts`);
     }
 
-    getSortedJobAdverts() {
-        return axios.get(`http://localhost:8080/api/jobadverts/getSortedJobAdverts`);
+    async getSortedJobAdverts() {
+        return await axios.get(`http://localhost:8080/api/jobadverts/getSortedJobAdverts`);
     }
 
     getActiveJobAdverts() {

@@ -32,23 +32,9 @@ export default function HomeDropdown(props) {
                         <Menu.Items
                             static
                             className="absolute bg-blueGray-700 text-base  float-left list-none rounded shadow-lg mr-2"
-                            style={{textAlign: "center", border: "solid 1px #F1F5F9", marginTop: 165, marginLeft: -1}}
+                            style={{textAlign: "center", border: "solid 1px #F1F5F9", marginTop: 120, marginLeft: -1}}
                         >
                             <div className={"text-left"}>
-                                <Menu.Item>
-                                    {({active}) => (
-                                        <Link
-                                            to="/profile"
-
-                                            className={classNames(
-                                                active ? 'bg-emerald-500 text-white' : 'text-white',
-                                                'block px-4 py-3 text-sm'
-                                            )}
-                                        >
-                                            <i className="fas fa-user mr-2"></i> Profil
-                                        </Link>
-                                    )}
-                                </Menu.Item>
                                 <Menu.Item style={{borderTop: "solid 1px #F1F5F9"}}>
                                     {({active}) => (
                                         <Link

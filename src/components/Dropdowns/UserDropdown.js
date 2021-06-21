@@ -34,10 +34,10 @@ export default function UserDropdown(props) {
                     >
                         <Menu.Items
                             static
-                            className="absolute bg-blueGray-700 right-0 text-base  float-left list-none rounded shadow-lg min-w-48 mr-2"
+                            className="absolute bg-blueGray-700 right-0 text-base  float-left list-none rounded shadow-lg mr-2"
                             style={{textAlign: "center", border: "solid 1px #F1F5F9", marginTop: 140}}
                         >
-                            <div>
+                            <div className={"text-left"}>
                                 <Menu.Item>
                                     {({active}) => (
                                         <Link
@@ -45,7 +45,7 @@ export default function UserDropdown(props) {
 
                                             className={classNames(
                                                 active ? 'bg-emerald-500 text-white' : 'text-white',
-                                                'block px-4 py-3 text-sm'
+                                                'block px-6 py-3 text-sm'
                                             )}
                                         >
                                             <i className="fas fa-user mr-2"></i> Profil
@@ -59,7 +59,7 @@ export default function UserDropdown(props) {
 
                                             className={classNames(
                                                 active ? 'bg-red-500 text-white' : 'text-white',
-                                                'block px-4 py-3 text-sm'
+                                                'block px-6 py-3 text-sm'
                                             )}
                                         >
                                             <i className="fas fa-sign-out-alt mr-2"></i> Çıkış Yap

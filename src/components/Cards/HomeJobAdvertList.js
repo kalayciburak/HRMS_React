@@ -227,7 +227,7 @@ function HomeJobAdvertList() {
                                     <h2 className="text-center text-sm text-blueGray-300 dark:text-gray-100 font-medium tracking-normal">{airdate[0]}</h2>
                                     <h2 className="text-center text-sm text-blueGray-400 dark:text-gray-100 font-normal mt-2 mb-4 tracking-normal">Başlangıç
                                                                                                                                                    Tarihi</h2>
-                                    <h2 className="text-center text-sm text-blueGray-300 dark:text-gray-100 font-medium tracking-normal">{jobAdvert.deadline}</h2>
+                                    <h2 className="text-center text-sm text-blueGray-300 dark:text-gray-100 font-medium tracking-normal">{jobAdvert.deadline}</h2> {/*moment js kullanılabilir*/}
                                     <h2 className="text-center text-sm text-blueGray-400 dark:text-gray-100 font-normal mt-2 mb-4 tracking-normal">Son
                                                                                                                                                    Başvuru
                                                                                                                                                    Tarihi</h2>

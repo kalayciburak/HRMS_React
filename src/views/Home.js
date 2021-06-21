@@ -11,32 +11,24 @@ export default function Home() {
 
     const [jobAdverts, setJobAdverts] = useState([]);
 
+    const [isNull, setNull] = useState(false);
+
     let jobAdvertService = new JobAdvertService();
 
     useEffect(() => {
         let isMounted = true;
-        jobAdvertService.getActiveandConfirmedJobAdvert(isDesc)
+        jobAdvertService.getJobAdverts()
             .then(result => {
                 if (isMounted) setJobAdverts(result.data.data)
             })
-
-        return () => {
-            isMounted = false
-        }
-    }, [jobAdverts])
-    let isDesc = true;
-
-    const [isNull, setNull] = useState(false);
-
-    useEffect(() => {
-        let isMounted = true;
-        if (jobAdverts.length <= 0) {
+        if (jobAdverts.length < 0) {
             if (isMounted) setNull(true);
 
         } else {
             if (isMounted) setNull(false);
 
         }
+
         return () => {
             isMounted = false
         }
