@@ -15,14 +15,27 @@ function HomeJobAdvertList() {
 
     const [sort, setSort] = useState(true)
 
+    const [pageSize, setPageSize] = useState(10);
+
     useEffect(() => {
         let isMounted = true;
-        jobAdvertService.getActiveandConfirmedJobAdvert(sort)
-            .then((result) => {
-                if (isMounted) {
-                    setJobAdverts(result.data.data)
-                }
-            })
+        if (sort) {
+            jobAdvertService.getJobAdvertByIsActiveTrueAndIsConfirmedTrueByPageDesc(1, pageSize)
+                .then((result) => {
+                    if (isMounted) {
+                        setJobAdverts(result.data.data)
+                    }
+                })
+
+        } else {
+            jobAdvertService.getJobAdvertByIsActiveTrueAndIsConfirmedTrueByPageAsc(1, pageSize)
+                .then((result) => {
+                    if (isMounted) {
+                        setJobAdverts(result.data.data)
+                    }
+                })
+        }
+
         return () => {
             isMounted = false; //cleaunp
         }
@@ -45,9 +58,140 @@ function HomeJobAdvertList() {
             <h3 className="text-4xl mt-20 font-semibold leading-normal text-blueGray-800 text-center"><i
                 className="fas fa-briefcase"></i> İş İlanları</h3>
             <div className="relative mt-3 lg:w-3/12 ml-auto mr-auto rounded">
+                <Menu as="div" className="absolute inline-block text-center" style={{marginLeft: "-38%"}}>
+                    {({open}) => (
+                        <>
+                            <div>
+                                <Menu.Button
+                                    className="flex justify-center shadow-sm mt-1 md:px-10 py-2 rounded bg-blueGray-800 text-sm text-blueGray-300 shadow hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500">
+                                    İlan Sayısı
+                                    <ChevronDownIcon className="-mr-1 ml-2 h-5 w-5" aria-hidden="true"/>
+                                </Menu.Button>
+                            </div>
 
-              <span
-                  className="z-10 h-full leading-snug font-normal absolute text-center text-blueGray-300 absolute bg-transparent rounded text-base items-center justify-center w-8 pl-3 py-3">
+                            <Transition
+                                show={open}
+                                as={Fragment}
+                                enter="transition ease-out duration-100"
+                                enterFrom="transform opacity-0 scale-95"
+                                enterTo="transform opacity-100 scale-100"
+                                leave="transition ease-in duration-75"
+                                leaveFrom="transform opacity-100 scale-100"
+                                leaveTo="transform opacity-0 scale-95"
+                            >
+                                <Menu.Items
+                                    static
+                                    className=" absolute w-full bg-white text-blueGray-800"
+                                >
+                                    <div className="cursor-pointer">
+                                        <Menu.Item>
+                                            {({active}) => (
+                                                <a
+                                                    style={{borderBottom: "2px solid #1E293B"}}
+                                                    className={classNames(
+                                                        pageSize == 10 ? 'bg-indigo-500 text-white font-semibold' : 'bg-blueGray-600 text-blueGray-300 hover:bg-purple-400 font-semibold',
+                                                        'block px-4 py-2 text-sm'
+                                                    )}
+                                                    onClick={() => {
+                                                        setPageSize(10)
+                                                        if (pageSize != 10) {
+                                                            Swal.fire({
+                                                                          timerProgressBar: true,
+                                                                          showConfirmButton: false,
+                                                                          timer: 500,
+                                                                      })
+                                                            Swal.showLoading()
+                                                        }
+
+                                                    }}
+                                                >
+                                                    10 Adet İlan {pageSize == 10 ? check : ""}
+                                                </a>
+                                            )}
+                                        </Menu.Item>
+                                        <Menu.Item>
+                                            {({active}) => (
+                                                <a
+                                                    style={{borderBottom: "2px solid #1E293B"}}
+                                                    className={classNames(
+                                                        pageSize != 20 ? 'bg-blueGray-600 text-blueGray-300 hover:bg-purple-400 font-semibold' : 'bg-indigo-500 text-white font-semibold',
+                                                        'block px-4 py-2 text-sm'
+                                                    )}
+                                                    onClick={() => {
+                                                        setPageSize(20)
+                                                        if (pageSize != 20) {
+                                                            Swal.fire({
+                                                                          timerProgressBar: true,
+                                                                          showConfirmButton: false,
+                                                                          timer: 500,
+                                                                      })
+                                                            Swal.showLoading()
+                                                        }
+
+                                                    }}
+                                                >
+                                                    20 Adet İlan {pageSize != 20 ? "" : check}
+                                                </a>
+                                            )}
+                                        </Menu.Item>
+                                        <Menu.Item>
+                                            {({active}) => (
+                                                <a
+                                                    style={{borderBottom: "2px solid #1E293B"}}
+                                                    className={classNames(
+                                                        pageSize == 50 ? 'bg-indigo-500 text-white font-semibold' : 'bg-blueGray-600 text-blueGray-300 hover:bg-purple-400 font-semibold',
+                                                        'block px-4 py-2 text-sm'
+                                                    )}
+                                                    onClick={() => {
+                                                        setPageSize(50)
+                                                        if (pageSize != 50) {
+                                                            Swal.fire({
+                                                                          timerProgressBar: true,
+                                                                          showConfirmButton: false,
+                                                                          timer: 500,
+                                                                      })
+                                                            Swal.showLoading()
+                                                        }
+
+                                                    }}
+                                                >
+                                                    50 Adet İlan {pageSize == 50 ? check : ""}
+                                                </a>
+                                            )}
+                                        </Menu.Item>
+                                        <Menu.Item>
+                                            {({active}) => (
+                                                <a
+                                                    style={{borderBottom: "2px solid #1E293B"}}
+                                                    className={classNames(
+                                                        pageSize == 100 ? 'bg-indigo-500 text-white font-semibold' : 'bg-blueGray-600 text-blueGray-300 hover:bg-purple-400 font-semibold',
+                                                        'block px-4 py-2 text-sm'
+                                                    )}
+                                                    onClick={() => {
+                                                        setPageSize(100)
+                                                        if (pageSize != 100) {
+                                                            Swal.fire({
+                                                                          timerProgressBar: true,
+                                                                          showConfirmButton: false,
+                                                                          timer: 500,
+                                                                      })
+                                                            Swal.showLoading()
+                                                        }
+
+                                                    }}
+                                                >
+                                                    100 Adet İlan {pageSize == 100 ? check : ""}
+                                                </a>
+                                            )}
+                                        </Menu.Item>
+                                    </div>
+                                </Menu.Items>
+                            </Transition>
+                        </>
+                    )}
+                </Menu>
+                <span
+                    className="z-10 h-full leading-snug font-normal absolute text-center text-blueGray-300 absolute bg-transparent rounded text-base items-center justify-center w-8 pl-3 py-3">
                 <i className="fas fa-search"></i>
               </span>
                 <input
@@ -147,6 +291,8 @@ function HomeJobAdvertList() {
                     .includes(searchTerm.toLocaleLowerCase()) || value.employer.companyName.toLocaleLowerCase()
                     .includes(searchTerm.toLocaleLowerCase()) || value.jobPosition.jobTitle.toLocaleLowerCase()
                     .includes(searchTerm.toLocaleLowerCase()) || value.city.cityName.toLocaleLowerCase()
+                    .includes(searchTerm.toLocaleLowerCase()) || value.upTime.toLowerCase()
+                    .includes(searchTerm.toLocaleLowerCase()) || value.typeOfEmployment.toLowerCase()
                     .includes(searchTerm.toLocaleLowerCase())) {
 
                     return value
@@ -155,20 +301,28 @@ function HomeJobAdvertList() {
                 <div className="flex w-full bg-gray-200 dark:bg-gray-900 py-4" key={jobAdvert.id}>
 
                     <div className="container mx-auto px-6 flex items-start justify-center">
-                        <div className="w-full">
+                        <div className="w-full rounded" style={{
+                            borderBottom: index % 2 == 1 ? "5px solid #6366F1" : "5px solid #7D2BA3FF",
+                            borderTop: index % 2 == 1 ? "5px solid #6366F1" : "5px solid #7D2BA3FF"
+                        }}>
                             {/* Card is full width. Use in 12 col grid for best view. */}
                             {/* Card code block start */}
                             <div
-                                className={index % 2 == 1 ? "bg-blueGray-800 flex flex-col lg:flex-row mx-auto shadow-lg dark:bg-gray-800 shadow rounded" : "bg-blueGray-700 flex flex-col lg:flex-row mx-auto shadow-lg dark:bg-gray-800 shadow rounded"}>
-                                <div className="w-full lg:w-1/3 px-12 flex flex-col items-center py-10">
+                                className="bg-blueGray-700 flex flex-col lg:flex-row mx-auto shadow-lg dark:bg-gray-800 shadow rounded"
+                                style={{backgroundColor: index % 2 == 1 ? "#c5d3e3" : ""}}>
+                                <div className="lg:w-1/3 px-5 flex flex-col items-center py-16"
+                                     style={{width: "15%", backgroundColor: index % 2 == 1 ? "#6366F1" : "#7D2BA3FF"}}>
+                                    <h2 className={"text-white text mt-20 mr-2 ml-2"}>{index + 1}</h2>
+                                </div>
+                                <div className="w-full lg:w-1/3 px-12 flex flex-col items-center py-16">
                                     <div
                                         className="w-24 h-24 mb-3 p-2 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
                                         <img width={"128"} height={"128"}
                                              className="xl:w-8/12 h-full overflow-hidden object-cover rounded-full"
                                              src={`${jobAdvert.employer.pictureUrl}`} alt="avatar"/>
                                     </div>
-                                    <h2 className="text-blueGray-300 dark:text-gray-100 text-xl tracking-normal font-medium">{jobAdvert.employer.companyName}</h2>
-                                    <p className="flex text-blueGray-400 dark:text-gray-100 text-xs tracking-normal font-normal mt-2 text-center">
+                                    <h2 className={index % 2 == 1 ? "text-blueGray-800 dark:text-gray-100 text-xl tracking-normal font-medium" : "text-blueGray-300 dark:text-gray-100 text-xl tracking-normal font-medium"}>{jobAdvert.employer.companyName}</h2>
+                                    <p className={index % 2 == 1 ? "flex text-blueGray-700 dark:text-gray-100 text-xs tracking-normal font-normal mt-2 text-center" : "flex text-blueGray-400 dark:text-gray-100 text-xs tracking-normal font-normal mt-2 text-center"}>
                                     <span className="mr-1 text-gray-600 dark:text-gray-100">
                                         <svg xmlns="http://www.w3.org/2000/svg"
                                              className="icon icon-tabler icon-tabler-map-pin" width={20} height={20}
@@ -182,21 +336,21 @@ function HomeJobAdvertList() {
                                     </span>
                                         {jobAdvert.city.cityName}
                                     </p>
-                                    <p className="text-blueGray-400 dark:text-gray-100 text-xs tracking-normal font-normal mt-2 text-center w-10/12">
+                                    <p className={index % 2 == 1 ? "text-blueGray-700 dark:text-gray-100 text-xs tracking-normal font-normal mt-2 text-center w-10/12" : "text-blueGray-400 dark:text-gray-100 text-xs tracking-normal font-normal mt-2 text-center w-10/12"}>
                                         <i className="fas fa-sm fa-phone mr-1"></i> {jobAdvert.employer.phoneNumber}
                                     </p>
-                                    <p className="text-blueGray-400 dark:text-gray-100 text-xs tracking-normal font-normal mt-2 text-center w-10/12">
+                                    <p className={index % 2 == 1 ? "text-blueGray-700 dark:text-gray-100 text-xs tracking-normal font-normal mt-2 text-center w-10/12" : "text-blueGray-400 dark:text-gray-100 text-xs tracking-normal font-normal mt-2 text-center w-10/12"}>
                                         <span
                                             style={{display: "none"}}>{website = jobAdvert.employer.website.split('.')}</span>
                                         <i className="fas fa-globe-europe"></i> {website[1] + "." + website[2]}</p>
 
-                                    <p className="text-blueGray-400 dark:text-gray-100 text-xs tracking-normal font-normal mt-2 text-center w-10/12">
+                                    <p className={index % 2 == 1 ? "text-blueGray-700 dark:text-gray-100 text-xs tracking-normal font-normal mt-2 text-center w-10/12" : "text-blueGray-400 dark:text-gray-100 text-xs tracking-normal font-normal mt-2 text-center w-10/12"}>
                                         <i className="far fa-envelope mt-1"></i> {jobAdvert.employer.email}</p>
 
                                 </div>
                                 <div className="w-full lg:w-1/3 px-12 flex flex-col items-center py-10">
                                     <div
-                                        className="mb-3 w-24 h-24 rounded-full bg-gray-100 flex items-center justify-center text-blueGray-200">
+                                        className={index % 2 == 1 ? "mb-3 w-24 h-24 rounded-full bg-gray-100 flex items-center justify-center text-blueGray-900" : "mb-3 w-24 h-24 rounded-full bg-gray-100 flex items-center justify-center text-blueGray-200"}>
                                         <svg xmlns="http://www.w3.org/2000/svg"
                                              className="icon icon-tabler icon-tabler-stack" width={48} height={48}
                                              viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none"
@@ -207,11 +361,11 @@ function HomeJobAdvertList() {
                                             <polyline points="4 16 12 20 20 16"/>
                                         </svg>
                                     </div>
-                                    <h2 className="text-blueGray-300 dark:text-gray-100 text-xl tracking-normal text-center font-medium mb-1">{jobAdvert.jobPosition.jobTitle}</h2>
-                                    <p className="text-blueGray-400 dark:text-gray-100 text-sm tracking-normal font-normal text-center">{jobAdvert.typeOfEmployment}/{jobAdvert.upTime}</p>
-                                    <p className="text-blueGray-400 dark:text-gray-100 text-sm tracking-normal font-normal mt-2 mb-6 text-center w-10/12">{jobAdvert.description}</p>
+                                    <h2 className={index % 2 == 1 ? "text-blueGray-800 dark:text-gray-100 text-xl tracking-normal text-center font-medium mb-1" : "text-blueGray-300 dark:text-gray-100 text-xl tracking-normal text-center font-medium mb-1"}>{jobAdvert.jobPosition.jobTitle}</h2>
+                                    <p className={index % 2 == 1 ? "text-blueGray-700 dark:text-gray-100 text-sm tracking-normal font-normal text-center" : "text-blueGray-400 dark:text-gray-100 text-sm tracking-normal font-normal text-center"}>{jobAdvert.typeOfEmployment}/{jobAdvert.upTime}</p>
+                                    <p className={index % 2 == 1 ? "text-blueGray-700 dark:text-gray-100 text-sm tracking-normal font-normal mt-2 mb-6 text-center w-10/12" : "text-blueGray-400 dark:text-gray-100 text-sm tracking-normal font-normal mt-2 mb-6 text-center w-10/12"}>{jobAdvert.description}</p>
                                     <button
-                                        className="bg-indigo-500 text-blueGray-300 active:bg-indigo-500 hover:bg-purple-400 text-sm font-bold uppercase px-6 py-3 rounded shadow mt-3 outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+                                        className="bg-indigo-500 text-blueGray-300 active:bg-indigo-500 hover:bg-purple-400 text-sm font-bold uppercase px-6 py-2 rounded shadow mt-3 outline-none focus:outline-none mr-1 mb-1 w-10/12 ease-linear transition-all duration-250"
                                         type="button"
                                     >
                                         Başvuru Yap
@@ -220,18 +374,28 @@ function HomeJobAdvertList() {
                                 </div>
                                 <div
                                     className="w-full lg:w-1/3 flex-col flex justify-center items-center px-12 py-8">
-                                    <h2 className="text-center text-sm text-blueGray-300 dark:text-gray-100 font-medium tracking-normal">{jobAdvert.salary + " ₺"}</h2>
-                                    <h2 className="text-center text-sm text-blueGray-400 dark:text-gray-100 font-normal mt-2 mb-4 tracking-normal">Maaş</h2>
+                                    <h2 className={index % 2 == 1 ? "text-center text-sm text-blueGray-800 dark:text-gray-100 font-medium tracking-normal" : "text-center text-sm text-blueGray-300 dark:text-gray-100 font-medium tracking-normal"}>{jobAdvert.salary + " ₺"}</h2>
+                                    <h2 className={index % 2 == 1 ? "text-center text-sm text-blueGray-600 dark:text-gray-100 font-normal mt-2 mb-4 tracking-normal" : "text-center text-sm text-blueGray-400 dark:text-gray-100 font-normal mt-2 mb-4 tracking-normal"}>Maaş</h2>
                                     <span style={{display: "none"}}>{airdate = jobAdvert.airdate.toString()
                                         .split("T")}</span>
-                                    <h2 className="text-center text-sm text-blueGray-300 dark:text-gray-100 font-medium tracking-normal">{airdate[0]}</h2>
-                                    <h2 className="text-center text-sm text-blueGray-400 dark:text-gray-100 font-normal mt-2 mb-4 tracking-normal">Başlangıç
-                                                                                                                                                   Tarihi</h2>
-                                    <h2 className="text-center text-sm text-blueGray-300 dark:text-gray-100 font-medium tracking-normal">{jobAdvert.deadline}</h2> {/*moment js kullanılabilir*/}
-                                    <h2 className="text-center text-sm text-blueGray-400 dark:text-gray-100 font-normal mt-2 mb-4 tracking-normal">Son
-                                                                                                                                                   Başvuru
-                                                                                                                                                   Tarihi</h2>
+                                    <h2 className={index % 2 == 1 ? "text-center text-sm text-blueGray-800 dark:text-gray-100 font-medium tracking-normal" : "text-center text-sm text-blueGray-300 dark:text-gray-100 font-medium tracking-normal"}>{airdate[0]}</h2>
+                                    <h2 className={index % 2 == 1 ? "text-center text-sm text-blueGray-600 dark:text-gray-100 font-normal mt-2 mb-4 tracking-normal" : "text-center text-sm text-blueGray-400 dark:text-gray-100 font-normal mt-2 mb-4 tracking-normal"}>Başlangıç
+                                                                                                                                                                                                                                                                         Tarihi</h2>
+                                    <h2 className={index % 2 == 1 ? "text-center text-sm text-blueGray-800 dark:text-gray-100 font-medium tracking-normal" : "text-center text-sm text-blueGray-300 dark:text-gray-100 font-medium tracking-normal"}>{jobAdvert.deadline}</h2> {/*moment js kullanılabilir*/}
+                                    <h2 className={index % 2 == 1 ? "text-center text-sm text-blueGray-600 dark:text-gray-100 font-normal mt-2 mb-4 tracking-normal" : "text-center text-sm text-blueGray-400 dark:text-gray-100 font-normal mt-2 mb-4 tracking-normal"}>Son
+                                                                                                                                                                                                                                                                         Başvuru
+                                                                                                                                                                                                                                                                         Tarihi</h2>
                                 </div>
+                                <div className="lg:w-1/3 flex flex-col items-center"
+                                     style={{width: "15%", backgroundColor: index % 2 == 1 ? "#6366F1" : "#7D2BA3FF"}}>
+                                    <button
+                                        className="text-blueGray-300 active:bg-indigo-500 hover:bg-purple-400 text-sm font-bold uppercase h-full rounded shadow outline-none focus:outline-none px-3 ease-linear transition-all duration-250"
+                                        type="button"
+                                    >
+                                        <i className="far fa-lg fa-heart"></i>
+                                    </button>
+                                </div>
+
                             </div>
                         </div>
                     </div>

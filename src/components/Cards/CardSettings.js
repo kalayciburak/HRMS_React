@@ -1,15 +1,36 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Select from 'react-select'
-
-// components
+import SchoolService from "../../services/SchoolService"
+import DepartmentService from "../../services/DepartmentService";
+import LangugageService from "../../services/LangugageService";
 
 export default function CardSettings() {
 
-    const options = [
-        {value: 'chocolate', label: 'Chocolate'},
-        {value: 'strawberry', label: 'Strawberry'},
-        {value: 'vanilla', label: 'Vanilla'}
+    const schoolService = new SchoolService();
+
+    const departmentService = new DepartmentService();
+
+    const languageService = new LangugageService();
+
+    const [school, setSchool] = useState([]);
+
+    const [department, setDepartment] = useState([]);
+
+    const [language, setLanguage] = useState([]);
+
+    const languageDegree = [
+        {label: 'Orta Altı Seviye', value: 'A2'},
+        {label: 'Orta Seviye', value: 'B1'},
+        {label: 'Orta Üstü Seviye', value: 'B2'},
+        {label: 'İleri Seviye', value: 'C1'},
+        {label: 'Profesyonel Seviye', value: 'C2'}
     ]
+
+    useEffect(() => {
+        schoolService.getSchools().then((res) => setSchool(res.data.data))
+        departmentService.getDepartments().then((res) => setDepartment(res.data.data))
+        languageService.getLanguages().then((res) => setLanguage(res.data.data))
+    }, []);
 
     return (
         <>
@@ -29,6 +50,7 @@ export default function CardSettings() {
                                         type="text"
                                         className="border-0 px-3 py-2 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                         placeholder={"Ad"}
+                                        readOnly={true}
                                     />
                                 </div>
                             </div>
@@ -38,6 +60,7 @@ export default function CardSettings() {
                                         type="text"
                                         className="border-0 px-3 py-2 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                         placeholder={"Soyad"}
+                                        readOnly={true}
                                     />
                                 </div>
                             </div>
@@ -47,6 +70,7 @@ export default function CardSettings() {
                                         type="email"
                                         className="border-0 px-3 py-2 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                         placeholder={"E-Posta Adresi"}
+                                        readOnly={true}
                                     />
                                 </div>
                             </div>
@@ -56,6 +80,7 @@ export default function CardSettings() {
                                         type="text"
                                         className="border-0 px-3 py-2 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                         placeholder={"Tc kimlik numarası"}
+                                        readOnly={true}
                                     />
                                 </div>
                             </div>
@@ -86,13 +111,15 @@ export default function CardSettings() {
                         <div className="flex flex-wrap">
                             <div className="w-full lg:w-6/12 px-12">
                                 <div className="relative w-full mb-3">
-                                    <Select className={"placeholder-blueGray-600 text-sm"} options={options}
+                                    <Select className={"placeholder-blueGray-600 text-sm"}
+                                            options={school.map((sc, e) => ({label: sc.schoolName, value: e}))}
                                             placeholder={"Üniversite Adı"}/>
                                 </div>
                             </div>
                             <div className="w-full lg:w-6/12 px-12">
                                 <div className="relative w-full mb-3">
-                                    <Select className={"placeholder-blueGray-600 text-sm"} options={options}
+                                    <Select className={"placeholder-blueGray-600 text-sm"}
+                                            options={department.map((dp, e) => ({label: dp.departmentName, value: e}))}
                                             placeholder={"Bölüm Adı"}/>
                                 </div>
                             </div>
@@ -187,13 +214,15 @@ export default function CardSettings() {
                         <div className="flex flex-wrap">
                             <div className="w-full lg:w-6/12 px-12">
                                 <div className="relative w-full mb-3">
-                                    <Select className={"placeholder-blueGray-600 text-sm"} options={options}
+                                    <Select className={"placeholder-blueGray-600 text-sm"}
+                                            options={language.map((lg, e) => ({label: lg.languageName, value: e}))}
                                             placeholder={"Yabancı Dil"}/>
                                 </div>
                             </div>
                             <div className="w-full lg:w-6/12 px-12">
                                 <div className="relative w-full mb-3">
-                                    <Select className={"placeholder-blueGray-600 text-sm"} options={options}
+                                    <Select className={"placeholder-blueGray-600 text-sm"}
+                                            options={languageDegree}
                                             placeholder={"Dil Seviyesi"}/>
 
                                 </div>

@@ -17,30 +17,28 @@ export default function Home() {
 
     useEffect(() => {
         let isMounted = true;
-        jobAdvertService.getJobAdverts()
+        jobAdvertService.getJobAdvertByIsActiveTrueAndIsConfirmedTrueByPageAsc(1, 10)
             .then(result => {
                 if (isMounted) setJobAdverts(result.data.data)
             })
-        if (jobAdverts.length < 0) {
+        if (jobAdverts.length <= 0) {
             if (isMounted) setNull(true);
 
         } else {
             if (isMounted) setNull(false);
 
         }
-
         return () => {
             isMounted = false
         }
     }, [jobAdverts])
 
     return (
-        <div style={{background: "linear-gradient(#fff, #8BA5BEFF)"}}>
+        <div style={{background: "linear-gradient(#fff, #8BA5BEFF)", backgroundColor: "#51627f"}}>
             <HomeNavbar fixed/>
             {/*<section className="header relative pt-16 items-center absolute h-screen max-h-860-px">*/}
 
             {isNull ? <EmptyJobAdvertList/> : <HomeJobAdvertList/>}
-
 
             {/*img dosyası*/}
             {/*<img*/}

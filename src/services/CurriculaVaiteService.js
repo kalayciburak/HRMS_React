@@ -1,6 +1,6 @@
 import axios from "axios";
 
-class CurriculaVaiteService {
+export default class CurriculaVaiteService {
     findCvByJobSeekerId(jobSeekerId) {
         return axios.get(`http://localhost:8080/api/cvs/getCvWithJobSeekerId?jobseekerId=${jobSeekerId}`);
     }

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-class TechnologieService {
+export default class TechnologieService {
     getTechnologies() {
         return axios.get(`http://localhost:8080/api/programmingLanguages/getProgrammingLanguages`);
     }

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-class JobSeekerLanguageService {
+export default class JobSeekerLanguageService {
     addJobSeekerLanguage(jobSeekerLanguage) {
         axios({
                   method: "POST",

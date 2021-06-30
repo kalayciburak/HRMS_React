@@ -69,11 +69,7 @@ function EmployerRegister(props) {
                                               icon: 'error',
                                               text: res.split("Error: ")[1],
                                               confirmButtonText: `Tamam`,
-                                              backdrop: ` rgba(161,0,0,0.44)
-                                                          url("/images/nyan-cat.gif")
-                                                          left top
-                                                          no-repeat
-                                                        `
+                                              backdrop: ` rgba(161,0,0,0.44) `
                                           })
                             } else {
                                 Swal.fire({
@@ -81,11 +77,7 @@ function EmployerRegister(props) {
                                               text: res.split("Success: ")[1],
                                               confirmButtonText: `Tamam`,
                                               timer: 7000,
-                                              backdrop: ` rgba(0,120,0,0.44)
-                                                          url("/images/nyan-cat.gif")
-                                                          left top
-                                                          no-repeat
-                                                        `
+                                              backdrop: ` rgba(0,120,0,0.44) `
                                           }).then((result) => {
                                     if (!result.isConfirmed) {
                                         setTimeout(() => {
@@ -99,8 +91,6 @@ function EmployerRegister(props) {
                                         window.location.href = "Login.js"
                                     }
                                 })
-
-
                             }
                         }).catch((err) => {
                             console.log(err.error)
@@ -175,7 +165,6 @@ function EmployerRegister(props) {
                                     <div className={"text-red-500 mt-2"}>{errors.phoneNumber}</div>
                                 ) : null}
                             </div>
-
                             <div className="relative w-full mb-3">
                                 <input
                                     type="password"
@@ -211,7 +200,6 @@ function EmployerRegister(props) {
                                     <div className={"text-red-500 mt-2"}>{errors.confirmPassword}</div>
                                 ) : null}
                             </div>
-
                             <div>
                                 <label className="items-center cursor-pointer">
                                     <input
@@ -237,7 +225,6 @@ function EmployerRegister(props) {
                                 {(values.isTerm ? "" :
                                     <span className={"text-red-500 mt-2 block"}>Sözleşme kabul edilmeli!</span>)}
                             </div>
-
                             <div className="text-center mt-4 mb-3">
                                 <button
                                     className={isDisabled ? " bg-blueGray-700 text-blueGray-500 text-sm font-bold uppercase px-6 py-3 rounded shadow outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150 " : "bg-lightBlue-600 active:bg-blueGray-600 hover.bg-lightBlue-300 text-white text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"}

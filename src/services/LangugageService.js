@@ -1,6 +1,6 @@
 import axios from "axios";
 
-class LangugageService {
+export default class LangugageService {
     getLanguages() {
         return axios.get(`http://localhost:8080/api/languages/getLanguages`)
     }

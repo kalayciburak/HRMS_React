@@ -1,6 +1,6 @@
 import axios from "axios";
 
-class EducationService {
+export default class EducationService {
     getEducations() {
         return axios.get(`http://localhost:8080/api/educations/getEducations`);
     }

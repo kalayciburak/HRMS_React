@@ -17,6 +17,8 @@ export default function AdminJobAdvertList() {
 
     const [jobAdverts, setJobAdverts] = useState([]);
 
+    const [confirmed, setConfirmed] = useState(true);
+
     const [searchTerm, setSearchTerm] = useState('')
 
     useEffect(() => {
@@ -44,7 +46,7 @@ export default function AdminJobAdvertList() {
                 className="fas fa-briefcase"></i> İş İlanları</h3>
             <div className="relative mb-2 lg:w-3/12 ml-auto mr-auto rounded">
               <span
-                  className="z-10 h-full leading-snug font-normal absolute text-center text-blueGray-300 absolute bg-transparent rounded text-base items-center justify-center w-8 pl-3 py-3">
+                  className="z-10 h-full leading-snug font-normal text-center text-blueGray-300 absolute bg-transparent rounded text-base items-center justify-center w-8 pl-3 py-3">
                 <i className="fas fa-search"></i>
               </span>
                 <input
@@ -217,7 +219,7 @@ export default function AdminJobAdvertList() {
                                     <input
                                         id="isConfirmed"
                                         type="checkbox"
-                                        defaultChecked={jobAdvert.confirmed ? true : false}
+                                        defaultChecked={jobAdvert.confirmed}
                                         className="form-checkbox border-0 rounded text-red-500 ml-1 w-5 h-5 ease-linear transition-all duration-150"
                                         style={{border: "2px solid #fff", color: "#9150ff"}}
                                         onClick={() => jobAdvert.confirmed ? systemPersonelService.approveJobAdvert(

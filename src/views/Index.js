@@ -1,6 +1,5 @@
 /*eslint-disable*/
 import React from "react";
-import {Link} from "react-router-dom";
 
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import Footer from "components/Footers/Footer.js";
@@ -17,12 +16,14 @@ export default function Index() {
                                 className={"mx-auto"}
                             src={require("assets/img/index_logo.png").default}
                             />
-                            <h2 className="font-semibold text-center text-4xl text-blueGray-600" style={{marginTop:-90}}>
+                            <h2 className="font-semibold text-center text-4xl text-blueGray-600"
+                                style={{marginTop: -90}}>
                                 İnsan Kaynakları Yönetim Sistemi
                             </h2>
                             <p className="mt-4 text-lg leading-relaxed text-center text-blueGray-500 mb-4">
-                                Bu proje <a className={"text-lightBlue-500 hover:text-purple-400"} href="https://www.kodlama.io/courses/1332369/author_bio"
-                                            target="_blank">Engin Demiroğ'</a>un önderliğin de ki Java-React kampı için
+                                Bu proje <a className={"text-lightBlue-500 hover:text-purple-400"}
+                                            href="https://www.kodlama.io/courses/1332369/author_bio"
+                                            target="_blank">Engin Demiroğ'</a>un Java-React kampı için
                                 geliştirilmiştir.
                             </p>
                         </div>

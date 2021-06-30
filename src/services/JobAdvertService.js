@@ -19,8 +19,12 @@ export default class JobAdvertService {
             `http://localhost:8080/api/jobadverts/getActiveJobAdvertsSorted?isDesc=${isDesc}`);
     }
 
-    getActiveandConfirmedJobAdvert(isDesc = true) {
-        return axios.get(`http://localhost:8080/api/jobadverts/getJobAdvertByIsActiveTrueAndIsConfirmedTrue?isDesc=${isDesc}`);
+    getJobAdvertByIsActiveTrueAndIsConfirmedTrueByPageAsc(pageNo = 1, pageSize = 10) {
+        return axios.get(`http://localhost:8080/api/jobadverts/getJobAdvertByIsActiveTrueAndIsConfirmedTrueByPageAsc?pageNo=${pageNo}&pageSize=${pageSize}`);
+    }
+
+    getJobAdvertByIsActiveTrueAndIsConfirmedTrueByPageDesc(pageNo = 1, pageSize = 10) {
+        return axios.get(`http://localhost:8080/api/jobadverts/getJobAdvertByIsActiveTrueAndIsConfirmedTrueByPageDesc?pageNo=${pageNo}&pageSize=${pageSize}`);
     }
 
     addJobAdvert(jobAdvert) {

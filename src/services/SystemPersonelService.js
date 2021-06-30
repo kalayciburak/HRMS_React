@@ -23,6 +23,19 @@ export default class SystemPersonelService {
         })
     }
 
+    async updateSystemPersonel(personel) {
+        return await axios({
+                               method: "UPDATE",
+                               url: `http://localhost:8080/api/systemPersonels/addSystemPersonel`,
+                               data: personel,
+                               headers: {"Content-Type": "application/json;charset-UTF-8"}
+                           }).then((res) => {
+            return res.data.message
+        }).catch((err) => {
+            return err.error.error
+        })
+    }
+
     deleteSystemPersonelById(id) {
         axios.delete(
             `http://localhost:8080/api/systemPersonels/deleteSystemPersonelById?systemPersonelId=${id}`);
