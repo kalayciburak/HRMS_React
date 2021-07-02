@@ -1,7 +1,6 @@
 /*eslint-disable*/
 import React from "react";
 import {Link} from "react-router-dom";
-import HomeDropdown from "../Dropdowns/HomeDropwdown";
 // components
 export default function Navbar() {
     return (
@@ -33,7 +32,7 @@ export default function Navbar() {
                                     Giriş Yap
 
                                 </Link>
-                                 <Link
+                                <Link
                                     to="/auth/register"
                                     className="ml-1 text-white font-bold px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-700 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150"
 

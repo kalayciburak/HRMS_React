@@ -13,14 +13,14 @@ export default function Modal() {
         <>
             <button
                 onClick={() => setShowModal(true)}
-                className={"absolute bg-emerald-500 text-white font-bold uppercase text-sm px-6 py-3 rounded shadow outline-none focus:outline-none ease-linear transition-all duration-150"}>
+                className={"absolute bg-emerald-500 text-white rounded-full font-bold uppercase text-sm px-6 py-3 rounded shadow outline-none focus:outline-none ease-linear transition-all duration-150"}>
                 <i className="fas fa-plus"></i> Personel Ekle
             </button>
 
             {showModal ? (
                 <>
                     <div
-                        className="justify-center items-center mt-6 flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
+                        className="justify-center items-center mt-6 flex overflow-x-hidden overflow-y-auto fixed inset-0 rounded z-50 outline-none focus:outline-none"
                     >
                         <div className="relative w-auto my-6 mx-auto max-w-3xl">
                             {/*content*/}
@@ -111,7 +111,7 @@ export default function Modal() {
                                                 <div className="relative w-full mb-3">
                                                     <input
                                                         type="text"
-                                                        className="border-blueGray-600 px-3 py-3 placeholder-blueGray-300 text-white bg-blueGray-800 rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                                        className="border-blueGray-600 px-4 py-3 mt-2 placeholder-blueGray-300 font-semibold text-white bg-blueGray-800 rounded-full shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                                         placeholder="Kullanıcı Adı"
                                                         id={"username"}
                                                         onChange={handleChange}
@@ -125,7 +125,7 @@ export default function Modal() {
                                                 <div className="relative w-full mb-3">
                                                     <input
                                                         type="email"
-                                                        className="border-blueGray-600 px-3 py-3 placeholder-blueGray-300 text-white bg-blueGray-800 rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                                        className="border-blueGray-600 px-4 py-3 placeholder-blueGray-300 text-white font-semibold bg-blueGray-800 rounded-full shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                                         placeholder="E-posta adresi"
                                                         id={"email"}
                                                         onChange={handleChange}
@@ -139,7 +139,7 @@ export default function Modal() {
                                                 <div className="relative w-full mb-3">
                                                     <input
                                                         type="password"
-                                                        className="border-blueGray-600 px-3 py-3 placeholder-blueGray-300 text-white bg-blueGray-800 rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                                        className="border-blueGray-600 px-4 py-3 placeholder-blueGray-300 text-white font-semibold bg-blueGray-800 rounded-full shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                                         placeholder="Şifre"
                                                         id="password"
                                                         maxLength={25}
@@ -155,14 +155,14 @@ export default function Modal() {
                                                 <div
                                                     className="flex items-center mb-2 justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
                                                     <button
-                                                        className="text-white bg-red-500 font-bold mt-2 ml-1 uppercase px-6 py-3 text-sm outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                                        className="text-white bg-red-500 rounded-full font-bold mt-2 ml-1 uppercase px-6 py-3 text-sm outline-none focus:outline-none mr-1 ease-linear transition-all duration-200"
                                                         type="button"
                                                         onClick={() => setShowModal(false)}
                                                     >
                                                         Vazgeç
                                                     </button>
                                                     <button
-                                                        className={isDisabled ? " mt-2 mr-1 bg-blueGray-700 text-white text-blueGray-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150 " : "mt-2 mr-1 bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150"}
+                                                        className={isDisabled ? " mt-2 mr-1 rounded-full bg-blueGray-700 text-white text-blueGray-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150 " : "mt-2 mr-1 bg-emerald-500 text-white active:bg-emerald-600 font-bold rounded-full uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150"}
                                                         type="submit"
                                                         disabled={isDisabled ? true : false}
                                                     >

@@ -57,14 +57,21 @@ function AdminSystemPersonelList(props) {
                         <tr>
                             <th
                                 className={
-                                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center"
+                                    "px-6 align-middle border border-solid py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center"
                                 }
                             >
                                 Kullanıcı Adı
                             </th>
                             <th
                                 className={
-                                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center"
+                                    "px-6 align-middle border border-solid py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center"
+                                }
+                            >
+                                E-Posta
+                            </th>
+                            <th
+                                className={
+                                    "px-6 align-middle border border-solid py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center"
                                 }
                             ></th>
                         </tr>
@@ -79,12 +86,15 @@ function AdminSystemPersonelList(props) {
                                 return value
                             }
                         }).map((systemPersonel, index) => (
-                            <tr className={index % 2 == 0 ? "bg-lightBlue-600" : "bg-blueGray-800"}
+                            <tr className={index % 2 == 0 ? "bg-lightBlue-600 font-semibold" : "bg-blueGray-800 font-semibold"}
                                 key={systemPersonel.id}>
-                                <td className="border-b border-indigo-400 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-center">
+                                <td className="border-b border-indigo-400 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4 text-center">
                                     {systemPersonel.username}
                                 </td>
-                                <td className="border-b border-indigo-400 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-center">
+                                <td className="border-b border-indigo-400 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4 text-center">
+                                    {systemPersonel.email}
+                                </td>
+                                <td className="border-b border-indigo-400 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4 text-center">
                                     <SystemPersonelDropdown
                                         deleteSystemPersonel={() => deleteSystemPersonel(systemPersonel.id)}/>
                                 </td>

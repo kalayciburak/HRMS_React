@@ -8,7 +8,6 @@ import FooterAdmin from "components/Footers/FooterAdmin.js";
 
 // views
 import EmployerList from "views/admin/EmployerList.js";
-import Settings from "views/admin/Settings.js";
 import jobAdvertList from "views/admin/JobAdvertList.js";
 import jobseekerList from "../views/admin/JobseekerList";
 import systemPersonelList from "../views/admin/SystemPersonelList";
@@ -26,7 +25,6 @@ export default function Admin() {
                         <Route path="/admin/systemPersonelList" exact component={systemPersonelList}/>
                         <Route path="/admin/jobseekerList" exact component={jobseekerList}/>
                         <Route path="/admin/employerList" exact component={EmployerList}/>
-                        <Route path="/admin/settings" exact component={Settings}/>
                         <Route path="/admin/jobAdvertList" exact component={jobAdvertList}/>
                         <Redirect from="/admin" to="/admin/employerList"/>
                     </Switch>

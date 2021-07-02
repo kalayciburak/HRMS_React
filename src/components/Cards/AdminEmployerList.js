@@ -47,16 +47,17 @@ export default function AdminEmployerList({color}) {
                 />
             </div>
             <div
-                className={"relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg text-white rounded-lg bg-blueGray-800"}
-                style={{width: "50%", marginLeft: "25%"}}>
+                className={"relative flex flex-col min-w-0 break-words mx-auto w-full mb-6 shadow-lg text-white rounded-lg bg-blueGray-800"}
+                style={{width: "60%"}}>
                 <div className="block overflow-x-auto rounded-lg ">
                     {/* Projects table */}
-                    <table className="items-center w-full bg-transparent border-collapse tr-even:bg-red-200 rounded-lg">
+                    <table
+                        className="items-center w-full mx-auto bg-transparent border-collapse tr-even:bg-red-200 rounded-lg">
                         <thead>
                         <tr>
                             <th
                                 className={
-                                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center " +
+                                    "px-6 align-middle border border-solid py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center " +
                                     (color === "light")
                                 }
                             >
@@ -64,7 +65,15 @@ export default function AdminEmployerList({color}) {
                             </th>
                             <th
                                 className={
-                                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center " +
+                                    "px-6 align-middle border border-solid py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center " +
+                                    (color === "light")
+                                }
+                            >
+                                E-Posta
+                            </th>
+                            <th
+                                className={
+                                    "px-6 align-middle border border-solid py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center " +
                                     (color === "light")
                                 }
                             >
@@ -72,7 +81,7 @@ export default function AdminEmployerList({color}) {
                             </th>
                             <th
                                 className={
-                                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center " +
+                                    "px-6 align-middle border border-solid py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center " +
                                     (color === "light")
                                 }
                             >
@@ -80,7 +89,7 @@ export default function AdminEmployerList({color}) {
                             </th>
                             <th
                                 className={
-                                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center " +
+                                    "px-6 align-middle border border-solid py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center " +
                                     (color === "light")
                                 }
                             ></th>
@@ -96,17 +105,21 @@ export default function AdminEmployerList({color}) {
                                 return value
                             }
                         }).map((employer, index) => (
-                            <tr className={index % 2 == 0 ? "bg-lightBlue-600" : "bg-blueGray-800"} key={employer.id}>
-                                <td className="border-b border-indigo-400 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-center">
+                            <tr className={index % 2 == 0 ? "bg-lightBlue-600 font-semibold" : "bg-blueGray-800 font-semibold"}
+                                key={employer.id}>
+                                <td className="border-b border-indigo-400 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4 text-center">
                                     {employer.companyName}
                                 </td>
-                                <td className="border-b border-indigo-400 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-center">
+                                <td className="border-b border-indigo-400 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4 text-center">
+                                    {employer.email}
+                                </td>
+                                <td className="border-b border-indigo-400 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4 text-center">
                                     {employer.website}
                                 </td>
-                                <td className="border-b border-indigo-400 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-center">
+                                <td className="border-b border-indigo-400 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4 text-center">
                                     {employer.phoneNumber}
                                 </td>
-                                <td className="border-b border-indigo-400 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-center">
+                                <td className="border-b border-indigo-400 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4 text-center">
                                     <EmployerDropdown deleteEmployer={() => deleteEmployer(employer.id)}/>
                                 </td>
                             </tr>

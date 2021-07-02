@@ -121,27 +121,6 @@ export default function Sidebar() {
                                     İş İlanları
                                 </Link>
                             </li>
-                            <li className="items-center">
-                                <Link
-                                    className={
-                                        "text-xs uppercase py-3 font-bold block " +
-                                        (window.location.href.indexOf("/admin/settings") !== -1
-                                            ? "text-lightBlue-500 hover:text-lightBlue-600"
-                                            : "text-blueGray-800 hover:text-blueGray-500")
-                                    }
-                                    to="/admin/settings"
-                                >
-                                    <i
-                                        className={
-                                            "fas fa-tools mr-2 text-sm " +
-                                            (window.location.href.indexOf("/admin/settings") !== -1
-                                                ? "opacity-75"
-                                                : "text-blueGray-800")
-                                        }
-                                    ></i>{" "}
-                                    Ayarlar
-                                </Link>
-                            </li>
                             <hr className="my-4 md:min-w-full border-blueGray-600"/>
                             <li className="items-center">
                                 <Link

@@ -14,7 +14,7 @@ export default function Index() {
                         <div className="pt-32 sm:pt-0">
                             <img
                                 className={"mx-auto"}
-                            src={require("assets/img/index_logo.png").default}
+                                src={require("assets/img/index_logo.png").default}
                             />
                             <h2 className="font-semibold text-center text-4xl text-blueGray-600"
                                 style={{marginTop: -90}}>
@@ -36,7 +36,7 @@ export default function Index() {
                     alt="..."
                 />
             </section>
-            <section className="pt-24 relative bg-blueGray-200" style={{paddingBottom:120}}>
+            <section className="pt-24 relative bg-blueGray-200" style={{paddingBottom: 120}}>
                 <div className="container mx-auto">
                     <div className="flex flex-wrap items-center">
                         <div className="w-10/12 md:w-6/12 lg:w-4/12 px-12 md:px-4 mr-auto ml-auto">

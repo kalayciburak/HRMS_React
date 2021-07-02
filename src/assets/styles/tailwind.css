@@ -2193,6 +2193,7 @@ select {
     --tw-text-opacity: 1;
     color: rgba(2, 132, 199, var(--tw-text-opacity));
 }
+
 .hover\:text-blueGray-300:hover {
     --tw-text-opacity: 1;
     color: rgba(203, 213, 225, var(--tw-text-opacity));

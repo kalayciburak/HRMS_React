@@ -11,16 +11,27 @@ function HomeJobAdvertList() {
 
     const [jobAdverts, setJobAdverts] = useState([])
 
+    const [jobAdvertLength, setJobAdvertLength] = useState([]);
+
     const [searchTerm, setSearchTerm] = useState('')
 
     const [sort, setSort] = useState(true)
 
-    const [pageSize, setPageSize] = useState(10);
+    const [pageSize, setPageSize] = useState(5);
+
+    const [pageNo, setPageNo] = useState(1);
+
+    const [paginationSize, setPaginationSize] = useState(4);
 
     useEffect(() => {
         let isMounted = true;
         if (sort) {
-            jobAdvertService.getJobAdvertByIsActiveTrueAndIsConfirmedTrueByPageDesc(1, pageSize)
+            jobAdvertService.getJobAdvertByIsActiveTrueAndIsConfirmedTrue().then((res) => {
+                if (isMounted) {
+                    setJobAdvertLength(res.data.data)
+                }
+            })
+            jobAdvertService.getJobAdvertByIsActiveTrueAndIsConfirmedTrueByPageDesc(pageNo, pageSize)
                 .then((result) => {
                     if (isMounted) {
                         setJobAdverts(result.data.data)
@@ -28,7 +39,7 @@ function HomeJobAdvertList() {
                 })
 
         } else {
-            jobAdvertService.getJobAdvertByIsActiveTrueAndIsConfirmedTrueByPageAsc(1, pageSize)
+            jobAdvertService.getJobAdvertByIsActiveTrueAndIsConfirmedTrueByPageAsc(pageNo, pageSize)
                 .then((result) => {
                     if (isMounted) {
                         setJobAdverts(result.data.data)
@@ -55,6 +66,7 @@ function HomeJobAdvertList() {
     return (
         <div>
             <BackToTop/>
+
             <h3 className="text-4xl mt-20 font-semibold leading-normal text-blueGray-800 text-center"><i
                 className="fas fa-briefcase"></i> İş İlanları</h3>
             <div className="relative mt-3 lg:w-3/12 ml-auto mr-auto rounded">
@@ -89,11 +101,42 @@ function HomeJobAdvertList() {
                                                 <a
                                                     style={{borderBottom: "2px solid #1E293B"}}
                                                     className={classNames(
+                                                        pageSize == 5 ? 'bg-indigo-500 text-white font-semibold' : 'bg-blueGray-600 text-blueGray-300 hover:bg-purple-400 font-semibold',
+                                                        'block px-4 py-2 text-sm'
+                                                    )}
+                                                    onClick={() => {
+                                                        setPageSize(5)
+                                                        setPaginationSize(Math.round(jobAdvertLength.length / 5) < 1 ? 1 : Math.round(
+                                                            jobAdvertLength.length / 5))
+                                                        setPageNo(1)
+                                                        if (pageSize != 5) {
+                                                            Swal.fire({
+                                                                          timerProgressBar: true,
+                                                                          showConfirmButton: false,
+                                                                          timer: 500,
+                                                                      })
+                                                            Swal.showLoading()
+                                                        }
+
+                                                    }}
+                                                >
+                                                    5 Adet İlan {pageSize == 5 ? check : ""}
+                                                </a>
+                                            )}
+                                        </Menu.Item>
+                                        <Menu.Item>
+                                            {({active}) => (
+                                                <a
+                                                    style={{borderBottom: "2px solid #1E293B"}}
+                                                    className={classNames(
                                                         pageSize == 10 ? 'bg-indigo-500 text-white font-semibold' : 'bg-blueGray-600 text-blueGray-300 hover:bg-purple-400 font-semibold',
                                                         'block px-4 py-2 text-sm'
                                                     )}
                                                     onClick={() => {
                                                         setPageSize(10)
+                                                        setPaginationSize(Math.round(jobAdvertLength.length / 10) < 1 ? 1 : Math.round(
+                                                            jobAdvertLength.length / 10))
+                                                        setPageNo(1)
                                                         if (pageSize != 10) {
                                                             Swal.fire({
                                                                           timerProgressBar: true,
@@ -119,6 +162,9 @@ function HomeJobAdvertList() {
                                                     )}
                                                     onClick={() => {
                                                         setPageSize(20)
+                                                        setPaginationSize(Math.round(jobAdvertLength.length / 20) < 1 ? 1 : Math.round(
+                                                            jobAdvertLength.length / 20))
+                                                        setPageNo(1)
                                                         if (pageSize != 20) {
                                                             Swal.fire({
                                                                           timerProgressBar: true,
@@ -144,6 +190,9 @@ function HomeJobAdvertList() {
                                                     )}
                                                     onClick={() => {
                                                         setPageSize(50)
+                                                        setPaginationSize(Math.round(jobAdvertLength.length / 50) < 1 ? 1 : Math.round(
+                                                            jobAdvertLength.length / 50))
+                                                        setPageNo(1)
                                                         if (pageSize != 50) {
                                                             Swal.fire({
                                                                           timerProgressBar: true,
@@ -169,6 +218,9 @@ function HomeJobAdvertList() {
                                                     )}
                                                     onClick={() => {
                                                         setPageSize(100)
+                                                        setPaginationSize(Math.round(jobAdvertLength.length / 100) < 1 ? 1 : Math.round(
+                                                            jobAdvertLength.length / 100))
+                                                        setPageNo(1)
                                                         if (pageSize != 100) {
                                                             Swal.fire({
                                                                           timerProgressBar: true,
@@ -200,7 +252,9 @@ function HomeJobAdvertList() {
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-300 relative bg-blueGray-800 rounded text-sm shadow outline-none focus:outline-none focus:ring w-full pl-10"
                     onChange={(event) => {
                         setSearchTerm(event.target.value)
+                        setPageSize(100)
                     }}
+
                 />
                 <Menu as="div" className="absolute inline-block text-left ml-2">
                     {({open}) => (
@@ -284,7 +338,7 @@ function HomeJobAdvertList() {
                     )}
                 </Menu>
             </div>
-            {jobAdverts.filter(value => {
+            {jobAdverts.filter((value) => {
                 if (setSearchTerm == '') {
                     return value
                 } else if (value.description.toLocaleLowerCase()
@@ -400,8 +454,41 @@ function HomeJobAdvertList() {
                         </div>
                     </div>
                 </div>
-
             ))}
+            <div className={"mt-2 mx-auto text-blueGray-900"}>
+                <div className="flex flex-col cursor-pointer sm:flex-row items-center justify-center">
+                    <div>
+                    </div>
+                    <div className="flex-1 flex flex-wrap rounded-full item-center justify-center"
+                         style={{border: "5px solid rgba(125,43,163,0.4)", backgroundColor: "rgba(31,32,102,0.7)"}}>
+                        <a
+                            className="no-underline w-10 h-10 mx-2 rounded-full  sm:my-0 flex text-white justify-center items-center transition-colors duration-200 ease hover:bg-purple-400"
+                            onClick={() => setPageNo(pageNo <= 1 ? 1 : pageNo - 1)}
+                        >
+                            <i className={"fas fa-chevron-left"}></i>
+                        </a>
+                        {
+                            jobAdvertLength.map((jl, index) => (
+
+                                paginationSize <= index ? "" : <a
+                                    className={pageNo == index + 1 ? "no-underline w-10 h-10 mx-2 sm:my-0 bg-indigo-500 flex rounded-full text-white justify-center items-center transition-colors duration-200 ease hover:bg-purple-400" : "no-underline w-10 h-10 mx-2 sm:my-0 flex rounded-full text-white justify-center items-center transition-colors duration-200 ease hover:bg-purple-400"}
+                                    onClick={() => setPageNo(index + 1)}
+                                >
+                                    {paginationSize <= index ? null : index + 1}
+                                </a>
+                            ))
+                        }
+                        <a
+                            className="no-underline w-10 h-10 mx-2 sm:my-0 rounded-full flex text-white justify-center items-center transition-colors duration-200 ease hover:bg-purple-400"
+                            onClick={() => setPageNo(pageNo >= paginationSize ? paginationSize : pageNo + 1)}
+                        >
+                            <i className={"fas fa-chevron-right"}></i>
+                        </a>
+                    </div>
+                    <div>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }

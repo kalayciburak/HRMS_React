@@ -35,8 +35,8 @@ export default function SystemPersonelDropdown(props) {
                     >
                         <Menu.Items
                             static
-                            className="absolute bg-blueGray-700 right-0 text-base  float-left list-none rounded shadow-lg min-w-48 mr-2"
-                            style={{marginTop: -10, textAlign: "center", border: "solid 1px #F1F5F9"}}
+                            className="absolute bg-blueGray-700 text-base  float-left list-none rounded shadow-lg min-w-48"
+                            style={{marginTop: -10, textAlign: "center", border: "solid 1px #F1F5F9", marginLeft: -25}}
                         >
                             <div>
                                 <Menu.Item>
