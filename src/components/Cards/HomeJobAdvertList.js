@@ -51,7 +51,7 @@ function HomeJobAdvertList() {
             isMounted = false; //cleaunp
         }
 
-    }, [sort, jobAdverts])
+    }, [sort, paginationSize, pageNo])
 
     function classNames(...classes) {
         return classes.filter(Boolean).join(' ')
@@ -75,7 +75,7 @@ function HomeJobAdvertList() {
                         <>
                             <div>
                                 <Menu.Button
-                                    className="flex justify-center shadow-sm mt-1 md:px-10 py-2 rounded bg-blueGray-800 text-sm text-blueGray-300 shadow hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500">
+                                    className="flex justify-center font-semibold shadow-sm mt-1 md:px-10 py-2 rounded bg-blueGray-800 text-sm text-blueGray-300 shadow hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500">
                                     İlan Sayısı
                                     <ChevronDownIcon className="-mr-1 ml-2 h-5 w-5" aria-hidden="true"/>
                                 </Menu.Button>
@@ -249,7 +249,7 @@ function HomeJobAdvertList() {
                 <input
                     type="text"
                     placeholder="Örn: Full-stack developer..."
-                    className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-300 relative bg-blueGray-800 rounded text-sm shadow outline-none focus:outline-none focus:ring w-full pl-10"
+                    className="border-0 px-3 py-3 placeholder-blueGray-300 font-semibold text-blueGray-300 relative bg-blueGray-800 rounded text-sm shadow outline-none focus:outline-none focus:ring w-full pl-10"
                     onChange={(event) => {
                         setSearchTerm(event.target.value)
                         setPageSize(100)
@@ -261,7 +261,7 @@ function HomeJobAdvertList() {
                         <>
                             <div>
                                 <Menu.Button
-                                    className="flex justify-center shadow-sm mt-1 md:px-10 py-2 rounded bg-blueGray-800 text-sm text-blueGray-300 shadow hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500">
+                                    className="flex justify-center shadow-sm font-semibold mt-1 md:px-10 py-2 rounded bg-blueGray-800 text-sm text-blueGray-300 shadow hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500">
                                     Sırala
                                     <ChevronDownIcon className="-mr-1 ml-2 h-5 w-5" aria-hidden="true"/>
                                 </Menu.Button>
@@ -375,30 +375,20 @@ function HomeJobAdvertList() {
                                              className="xl:w-8/12 h-full overflow-hidden object-cover rounded-full"
                                              src={`${jobAdvert.employer.pictureUrl}`} alt="avatar"/>
                                     </div>
-                                    <h2 className={index % 2 == 1 ? "text-blueGray-800 dark:text-gray-100 text-xl tracking-normal font-medium" : "text-blueGray-300 dark:text-gray-100 text-xl tracking-normal font-medium"}>{jobAdvert.employer.companyName}</h2>
-                                    <p className={index % 2 == 1 ? "flex text-blueGray-700 dark:text-gray-100 text-xs tracking-normal font-normal mt-2 text-center" : "flex text-blueGray-400 dark:text-gray-100 text-xs tracking-normal font-normal mt-2 text-center"}>
-                                    <span className="mr-1 text-gray-600 dark:text-gray-100">
-                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                             className="icon icon-tabler icon-tabler-map-pin" width={20} height={20}
-                                             viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none"
-                                             strokeLinecap="round" strokeLinejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z"/>
-                                            <circle cx={12} cy={11} r={3}/>
-                                            <path
-                                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 0 1 -2.827 0l-4.244-4.243a8 8 0 1 1 11.314 0z"/>
-                                        </svg>
-                                    </span>
+                                    <h2 className={index % 2 == 1 ? "text-blueGray-800 dark:text-gray-100 text-xl tracking-normal font-semibold" : "text-blueGray-300 dark:text-gray-100 text-xl tracking-normal font-semibold"}>{jobAdvert.employer.companyName}</h2>
+                                    <p className={index % 2 == 1 ? "flex text-blueGray-700 dark:text-gray-100 text-xs tracking-normal font-semibold mt-2 text-center" : "flex text-blueGray-400 dark:text-gray-100 text-xs tracking-normal font-semibold mt-2 text-center"}>
+                                        <i className="fas fa-lg mr-1 mt-1 fa-map-marker-alt"></i>
                                         {jobAdvert.city.cityName}
                                     </p>
-                                    <p className={index % 2 == 1 ? "text-blueGray-700 dark:text-gray-100 text-xs tracking-normal font-normal mt-2 text-center w-10/12" : "text-blueGray-400 dark:text-gray-100 text-xs tracking-normal font-normal mt-2 text-center w-10/12"}>
+                                    <p className={index % 2 == 1 ? "text-blueGray-700 dark:text-gray-100 text-xs tracking-normal font-semibold mt-2 text-center w-10/12" : "text-blueGray-400 dark:text-gray-100 text-xs tracking-normal font-semibold mt-2 text-center w-10/12"}>
                                         <i className="fas fa-sm fa-phone mr-1"></i> {jobAdvert.employer.phoneNumber}
                                     </p>
-                                    <p className={index % 2 == 1 ? "text-blueGray-700 dark:text-gray-100 text-xs tracking-normal font-normal mt-2 text-center w-10/12" : "text-blueGray-400 dark:text-gray-100 text-xs tracking-normal font-normal mt-2 text-center w-10/12"}>
+                                    <p className={index % 2 == 1 ? "text-blueGray-700 dark:text-gray-100 text-xs tracking-normal font-semibold mt-2 text-center w-10/12" : "text-blueGray-400 dark:text-gray-100 text-xs tracking-normal font-semibold mt-2 text-center w-10/12"}>
                                         <span
                                             style={{display: "none"}}>{website = jobAdvert.employer.website.split('.')}</span>
                                         <i className="fas fa-globe-europe"></i> {website[1] + "." + website[2]}</p>
 
-                                    <p className={index % 2 == 1 ? "text-blueGray-700 dark:text-gray-100 text-xs tracking-normal font-normal mt-2 text-center w-10/12" : "text-blueGray-400 dark:text-gray-100 text-xs tracking-normal font-normal mt-2 text-center w-10/12"}>
+                                    <p className={index % 2 == 1 ? "text-blueGray-700 dark:text-gray-100 text-xs tracking-normal font-semibold mt-2 text-center w-10/12" : "text-blueGray-400 dark:text-gray-100 text-xs tracking-normal font-semibold mt-2 text-center w-10/12"}>
                                         <i className="far fa-envelope mt-1"></i> {jobAdvert.employer.email}</p>
 
                                 </div>
@@ -414,10 +404,11 @@ function HomeJobAdvertList() {
                                             <polyline points="4 12 12 16 20 12"/>
                                             <polyline points="4 16 12 20 20 16"/>
                                         </svg>
+                                        {/*<i className={"fas fa-3x fa-handshake"}></i>*/}
                                     </div>
-                                    <h2 className={index % 2 == 1 ? "text-blueGray-800 dark:text-gray-100 text-xl tracking-normal text-center font-medium mb-1" : "text-blueGray-300 dark:text-gray-100 text-xl tracking-normal text-center font-medium mb-1"}>{jobAdvert.jobPosition.jobTitle}</h2>
-                                    <p className={index % 2 == 1 ? "text-blueGray-700 dark:text-gray-100 text-sm tracking-normal font-normal text-center" : "text-blueGray-400 dark:text-gray-100 text-sm tracking-normal font-normal text-center"}>{jobAdvert.typeOfEmployment}/{jobAdvert.upTime}</p>
-                                    <p className={index % 2 == 1 ? "text-blueGray-700 dark:text-gray-100 text-sm tracking-normal font-normal mt-2 mb-6 text-center w-10/12" : "text-blueGray-400 dark:text-gray-100 text-sm tracking-normal font-normal mt-2 mb-6 text-center w-10/12"}>{jobAdvert.description}</p>
+                                    <h2 className={index % 2 == 1 ? "text-blueGray-800 dark:text-gray-100 text-xl tracking-normal text-center font-semibold mb-1" : "text-blueGray-300 dark:text-gray-100 text-xl tracking-normal text-center font-semibold mb-1"}>{jobAdvert.jobPosition.jobTitle}</h2>
+                                    <p className={index % 2 == 1 ? "text-blueGray-700 dark:text-gray-100 text-sm tracking-normal font-semibold text-center" : "text-blueGray-400 dark:text-gray-100 text-sm tracking-normal font-semibold text-center"}>{jobAdvert.typeOfEmployment}/{jobAdvert.upTime}</p>
+                                    <p className={index % 2 == 1 ? "text-blueGray-700 dark:text-gray-100 text-sm tracking-normal font-semibold mt-2 mb-6 text-center w-10/12" : "text-blueGray-400 dark:text-gray-100 text-sm tracking-normal font-semibold mt-2 mb-6 text-center w-10/12"}>{jobAdvert.description}</p>
                                     <button
                                         className="bg-indigo-500 text-blueGray-300 active:bg-indigo-500 hover:bg-purple-400 text-sm font-bold uppercase px-6 py-2 rounded shadow mt-3 outline-none focus:outline-none mr-1 mb-1 w-10/12 ease-linear transition-all duration-250"
                                         type="button"
@@ -428,17 +419,17 @@ function HomeJobAdvertList() {
                                 </div>
                                 <div
                                     className="w-full lg:w-1/3 flex-col flex justify-center items-center px-12 py-8">
-                                    <h2 className={index % 2 == 1 ? "text-center text-sm text-blueGray-800 dark:text-gray-100 font-medium tracking-normal" : "text-center text-sm text-blueGray-300 dark:text-gray-100 font-medium tracking-normal"}>{jobAdvert.salary + " ₺"}</h2>
-                                    <h2 className={index % 2 == 1 ? "text-center text-sm text-blueGray-600 dark:text-gray-100 font-normal mt-2 mb-4 tracking-normal" : "text-center text-sm text-blueGray-400 dark:text-gray-100 font-normal mt-2 mb-4 tracking-normal"}>Maaş</h2>
+                                    <h2 className={index % 2 == 1 ? "text-center text-sm text-blueGray-800 dark:text-gray-100 font-semibold tracking-normal" : "text-center text-sm text-blueGray-300 dark:text-gray-100 font-semibold tracking-normal"}>{jobAdvert.salary + " ₺"}</h2>
+                                    <h2 className={index % 2 == 1 ? "text-center text-sm text-blueGray-600 dark:text-gray-100 font-semibold mt-2 mb-4 tracking-normal" : "text-center text-sm text-blueGray-400 dark:text-gray-100 font-semibold mt-2 mb-4 tracking-normal"}>Maaş</h2>
                                     <span style={{display: "none"}}>{airdate = jobAdvert.airdate.toString()
                                         .split("T")}</span>
-                                    <h2 className={index % 2 == 1 ? "text-center text-sm text-blueGray-800 dark:text-gray-100 font-medium tracking-normal" : "text-center text-sm text-blueGray-300 dark:text-gray-100 font-medium tracking-normal"}>{airdate[0]}</h2>
-                                    <h2 className={index % 2 == 1 ? "text-center text-sm text-blueGray-600 dark:text-gray-100 font-normal mt-2 mb-4 tracking-normal" : "text-center text-sm text-blueGray-400 dark:text-gray-100 font-normal mt-2 mb-4 tracking-normal"}>Başlangıç
-                                                                                                                                                                                                                                                                         Tarihi</h2>
-                                    <h2 className={index % 2 == 1 ? "text-center text-sm text-blueGray-800 dark:text-gray-100 font-medium tracking-normal" : "text-center text-sm text-blueGray-300 dark:text-gray-100 font-medium tracking-normal"}>{jobAdvert.deadline}</h2> {/*moment js kullanılabilir*/}
-                                    <h2 className={index % 2 == 1 ? "text-center text-sm text-blueGray-600 dark:text-gray-100 font-normal mt-2 mb-4 tracking-normal" : "text-center text-sm text-blueGray-400 dark:text-gray-100 font-normal mt-2 mb-4 tracking-normal"}>Son
-                                                                                                                                                                                                                                                                         Başvuru
-                                                                                                                                                                                                                                                                         Tarihi</h2>
+                                    <h2 className={index % 2 == 1 ? "text-center text-sm text-blueGray-800 dark:text-gray-100 font-semibold tracking-normal" : "text-center text-sm text-blueGray-300 dark:text-gray-100 font-semibold tracking-normal"}>{airdate[0]}</h2>
+                                    <h2 className={index % 2 == 1 ? "text-center text-sm text-blueGray-600 dark:text-gray-100 font-semibold mt-2 mb-4 tracking-normal" : "text-center text-sm text-blueGray-400 dark:text-gray-100 font-semibold mt-2 mb-4 tracking-normal"}>Başlangıç
+                                                                                                                                                                                                                                                                             Tarihi</h2>
+                                    <h2 className={index % 2 == 1 ? "text-center text-sm text-blueGray-800 dark:text-gray-100 font-semibold tracking-normal" : "text-center text-sm text-blueGray-300 dark:text-gray-100 font-semibold tracking-normal"}>{jobAdvert.deadline}</h2> {/*moment js kullanılabilir*/}
+                                    <h2 className={index % 2 == 1 ? "text-center text-sm text-blueGray-600 dark:text-gray-100 font-semibold mt-2 mb-4 tracking-normal" : "text-center text-sm text-blueGray-400 dark:text-gray-100 font-semibold mt-2 mb-4 tracking-normal"}>Son
+                                                                                                                                                                                                                                                                             Başvuru
+                                                                                                                                                                                                                                                                             Tarihi</h2>
                                 </div>
                                 <div className="lg:w-1/3 flex flex-col items-center"
                                      style={{width: "15%", backgroundColor: index % 2 == 1 ? "#6366F1" : "#7D2BA3FF"}}>
@@ -470,9 +461,9 @@ function HomeJobAdvertList() {
                         {
                             jobAdvertLength.map((jl, index) => (
 
-                                paginationSize <= index ? "" : <a
-                                    className={pageNo == index + 1 ? "no-underline w-10 h-10 mx-2 sm:my-0 bg-indigo-500 flex rounded-full text-white justify-center items-center transition-colors duration-200 ease hover:bg-purple-400" : "no-underline w-10 h-10 mx-2 sm:my-0 flex rounded-full text-white justify-center items-center transition-colors duration-200 ease hover:bg-purple-400"}
-                                    onClick={() => setPageNo(index + 1)}
+                                paginationSize <= index ? "" : <a key={jl.id}
+                                                                  className={pageNo == index + 1 ? "no-underline w-10 h-10 mx-2 sm:my-0 bg-indigo-500 flex rounded-full text-white justify-center items-center transition-colors duration-200 ease hover:bg-purple-400" : "no-underline w-10 h-10 mx-2 sm:my-0 flex rounded-full text-white justify-center items-center transition-colors duration-200 ease hover:bg-purple-400"}
+                                                                  onClick={() => setPageNo(index + 1)}
                                 >
                                     {paginationSize <= index ? null : index + 1}
                                 </a>

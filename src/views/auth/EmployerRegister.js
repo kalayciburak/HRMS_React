@@ -114,46 +114,46 @@ function EmployerRegister(props) {
                             <div className="relative w-full mb-3">
                                 <input
                                     type="text"
-                                    className="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                    className="border-0 px-3 py-3 placeholder-blueGray-600 font-semibold text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                     placeholder="Şirket Adı"
                                     id={"companyName"}
                                     onChange={handleChange}
                                     value={values.companyName}
                                 />
                                 {errors.companyName && touched.companyName ? (
-                                    <div className={"text-red-500 mt-2"}>{errors.companyName}</div>
+                                    <div className={"text-red-500 font-semibold mt-2"}>{errors.companyName}</div>
                                 ) : null}
                             </div>
                             <div className="relative w-full mb-3">
                                 <input
                                     type="email"
-                                    className="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                    className="border-0 px-3 py-3 placeholder-blueGray-600 font-semibold text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                     placeholder="E-posta adresi"
                                     id={"email"}
                                     onChange={handleChange}
                                     value={values.email}
                                 />
                                 {errors.email && touched.email ? (
-                                    <div className={"text-red-500 mt-2"}>{errors.email}</div>
+                                    <div className={"text-red-500 font-semibold mt-2"}>{errors.email}</div>
                                 ) : null}
                             </div>
                             <div className="relative w-full mb-3">
                                 <input
                                     type="text"
-                                    className="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                    className="border-0 px-3 py-3 placeholder-blueGray-600 font-semibold text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                     placeholder="Website adresi"
                                     id={"website"}
                                     onChange={handleChange}
                                     value={values.website}
                                 />
                                 {errors.website && touched.website ? (
-                                    <div className={"text-red-500 mt-2"}>{errors.website}</div>
+                                    <div className={"text-red-500 font-semibold mt-2"}>{errors.website}</div>
                                 ) : null}
                             </div>
                             <div className="relative w-full mb-3">
                                 <input
                                     type="text"
-                                    className="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                    className="border-0 px-3 py-3 placeholder-blueGray-600 font-semibold text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                     placeholder="Telefon Numarası"
                                     id={"phoneNumber"}
                                     minLength={7}
@@ -162,13 +162,13 @@ function EmployerRegister(props) {
                                     value={values.phoneNumber}
                                 />
                                 {errors.phoneNumber && touched.phoneNumber ? (
-                                    <div className={"text-red-500 mt-2"}>{errors.phoneNumber}</div>
+                                    <div className={"text-red-500 font-semibold mt-2"}>{errors.phoneNumber}</div>
                                 ) : null}
                             </div>
                             <div className="relative w-full mb-3">
                                 <input
                                     type="password"
-                                    className="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                    className="border-0 px-3 py-3 font-semibold placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                     placeholder="Şifre"
                                     id="password"
                                     maxLength={25}
@@ -176,14 +176,14 @@ function EmployerRegister(props) {
                                     onChange={handleChange}
                                 />
                                 {errors.password && touched.password ? (
-                                    <div className={"text-red-500 mt-2"}>{errors.password}</div>
+                                    <div className={"text-red-500 font-semibold mt-2"}>{errors.password}</div>
                                 ) : null}
 
                             </div>
                             <div className="relative w-full mb-5">
                                 <input
                                     type="password"
-                                    className="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                    className="border-0 px-3 py-3 font-semibold placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                     placeholder="Şifre onay"
                                     maxLength={25}
                                     id="confirmPassword"
@@ -193,25 +193,25 @@ function EmployerRegister(props) {
                                 />
                                 {
                                     (values.password != values.confirmPassword && values.confirmPassword != "") ?
-                                        <span className={"block text-red-500 mt-2"}>
+                                        <span className={"block text-red-500 font-semibold mt-2"}>
                                     Şifreler uyuşmuyor </span> : ""
                                 }
                                 {errors.confirmPassword && touched.confirmPassword ? (
-                                    <div className={"text-red-500 mt-2"}>{errors.confirmPassword}</div>
+                                    <div className={"text-red-500 font-semibold mt-2"}>{errors.confirmPassword}</div>
                                 ) : null}
                             </div>
                             <div>
                                 <label className="items-center cursor-pointer">
                                     <input
                                         type="checkbox"
-                                        className="form-checkbox border-0 rounded text-lightBlue-500 ml-1 w-5 h-5 ease-linear transition-all duration-150"
+                                        className="form-checkbox border-0 rounded font-semibold text-lightBlue-500 ml-1 w-5 h-5 ease-linear transition-all duration-150"
                                         id="isTerm"
                                         onChange={handleChange}
                                         onClick={() => values.isTerm = true}
                                     />
                                 </label>
                                 {errors.isTerm && touched.isTerm ? (
-                                    <div className={"text-red-500 mt-2"}>{errors.isTerm}</div>
+                                    <div className={"text-red-500 font-semibold mt-2"}>{errors.isTerm}</div>
                                 ) : null}
                                 <span className="ml-2 text-sm font-semibold text-white">
                         <a
@@ -223,7 +223,8 @@ function EmployerRegister(props) {
                         </a>{" "}onaylıyorum
                       </span>
                                 {(values.isTerm ? "" :
-                                    <span className={"text-red-500 mt-2 block"}>Sözleşme kabul edilmeli!</span>)}
+                                    <span
+                                        className={"text-red-500 font-semibold mt-2 block"}>Sözleşme kabul edilmeli!</span>)}
                             </div>
                             <div className="text-center mt-4 mb-3">
                                 <button

@@ -12,7 +12,7 @@ export default function Navbar() {
                     className="w-full mx-autp items-center flex justify-between md:flex-nowrap flex-wrap md:px-10 px-4">
                     {/* Form */}
                     <form className="md:flex hidden flex-row flex-wrap items-center lg:ml-auto mr-3">
-                        <div className="relative flex w-full flex-wrap items-stretch">
+                        <div className="relative flex w-full font-semibold flex-wrap items-stretch">
                             Admin{/* giriş yapmış kullanıcının adı yazılacak*/}
                         </div>
                     </form>

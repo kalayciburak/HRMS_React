@@ -19,10 +19,12 @@ function AdminSystemPersonelList(props) {
         return () => {
             isMounted = false
         }
-    }, [systemPersonels])
+    }, [])
 
     function deleteSystemPersonel(id) {
         systemPersonelService.deleteSystemPersonelById(id);
+        const filteredSystemPersonels = systemPersonels.filter((systemPersonel) => systemPersonel.id != id)
+        setSystemPersonels(filteredSystemPersonels);
     }
 
     return (

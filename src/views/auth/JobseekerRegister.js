@@ -3,10 +3,13 @@ import JobSeekerService from "../../services/JobSeekerService";
 import {Form, Formik} from 'formik';
 import * as Yup from "yup";
 import Swal from 'sweetalert2'
+import CurriculaVaiteService from "../../services/CurriculaVaiteService";
 
 function JobseekerRegister(props) {
 
     const jobSeekerService = new JobSeekerService();
+
+    const curriculaVitaeService = new CurriculaVaiteService();
 
     let isDisabled;
 
@@ -113,14 +116,14 @@ function JobseekerRegister(props) {
                             {isDisabled = (values.firstName == '' || values.lastName == '' || values.ídentityNumber == '' || values.identityNumber.length < 11 || values.birthDate == '' || values.email == '' || values.confirmPassword == '' || values.isTerm == false || values.password != values.confirmPassword)}
                             <div className="flex w-full">
                                 <input type="text"
-                                       className="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 mr-2 bg-white rounded text-sm shadow focus:outline-none focus:ring w-1/2 ease-linear transition-all duration-150"
+                                       className="border-0 px-3 py-3 placeholder-blueGray-600 font-semibold text-blueGray-600 mr-2 bg-white rounded text-sm shadow focus:outline-none focus:ring w-1/2 ease-linear transition-all duration-150"
                                        placeholder="İsim"
                                        id="firstName"
                                        value={values.firstName}
                                        onChange={handleChange}
                                 />
                                 <input type="text"
-                                       className="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-1/2 ease-linear transition-all duration-150"
+                                       className="border-0 px-3 py-3 placeholder-blueGray-600 font-semibold text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-1/2 ease-linear transition-all duration-150"
                                        placeholder="Soyisim"
                                        id="lastName"
                                        value={values.lastName}
@@ -130,16 +133,16 @@ function JobseekerRegister(props) {
                             <div className={"w-full flex mb-2 mt-1"}>
                                 {errors.firstName && touched.firstName ? (
                                     <div
-                                        className={"text-red-500 w-1/2"}>{errors.firstName}</div>
+                                        className={"text-red-500 font-semibold w-1/2"}>{errors.firstName}</div>
                                 ) : null}
                                 {errors.lastName && touched.lastName ? (
                                     <div
-                                        className={"text-red-500 w-1/2 "}>{errors.lastName}</div>
+                                        className={"text-red-500 font-semibold w-1/2 "}>{errors.lastName}</div>
                                 ) : null}
                             </div>
                             <div className="relative w-full mb-3">
                                 <input type="text"
-                                       className="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                       className="border-0 px-3 py-3 placeholder-blueGray-600 font-semibold text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                        placeholder="Tc kimlik numarası"
                                        id="identityNumber"
                                        maxLength={11}
@@ -148,13 +151,13 @@ function JobseekerRegister(props) {
                                 />
                                 {
                                     (values.identityNumber.length < 11 && values.identityNumber != "") ?
-                                        <span className={"block text-red-500 mt-2"}>
+                                        <span className={"block text-red-500 font-semibold mt-2"}>
                                     Gerçek bir kişi değil </span> : ""
                                 }
                             </div>
                             <div className="relative w-full mb-3">
                                 <input type="date"
-                                       className="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                       className="border-0 px-3 py-3 placeholder-blueGray-600 font-semibold text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                        placeholder="Doğum Tarihi"
                                        id="birthDate"
                                        value={values.birthDate}
@@ -168,19 +171,19 @@ function JobseekerRegister(props) {
                             <div className="relative w-full mb-3">
                                 <input
                                     type="email"
-                                    className="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                    className="border-0 px-3 py-3 placeholder-blueGray-600 font-semibold text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                     placeholder="E-posta adresi"
                                     id={"email"}
                                     value={values.email}
                                     onChange={handleChange}
                                 />
                                 {errors.email && touched.email ? (
-                                    <div className={"text-red-500 mt-2"}>{errors.email}</div>
+                                    <div className={"text-red-500 font-semibold mt-2"}>{errors.email}</div>
                                 ) : null}
                             </div>
                             <div className="relative w-full mb-3">
                                 <input type="password"
-                                       className="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                       className="border-0 px-3 py-3 font-semibold placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                        placeholder="Şifre"
                                        id="password"
                                        maxLength={25}
@@ -188,13 +191,13 @@ function JobseekerRegister(props) {
                                        onChange={handleChange}
                                 />
                                 {errors.password && touched.password ? (
-                                    <div className={"text-red-500 mt-2"}>{errors.password}</div>
+                                    <div className={"text-red-500 font-semibold mt-2"}>{errors.password}</div>
                                 ) : null}
                             </div>
                             <div className="relative w-full mb-5">
                                 <input
                                     type="password"
-                                    className="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                    className="border-0 px-3 py-3 placeholder-blueGray-600 font-semibold text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                     placeholder="Şifre onay"
                                     id="confirmPassword"
                                     maxLength={25}
@@ -204,11 +207,11 @@ function JobseekerRegister(props) {
                                 />
                                 {
                                     (values.password != values.confirmPassword && values.confirmPassword != "") ?
-                                        <span className={"block text-red-500 mt-2"}>
+                                        <span className={"block text-red-500 font-semibold mt-2"}>
                                     Şifreler uyuşmuyor </span> : ""
                                 }
                                 {errors.confirmPassword && touched.confirmPassword ? (
-                                    <div className={"text-red-500 mt-2"}>{errors.confirmPassword}</div>
+                                    <div className={"text-red-500 font-semibold mt-2"}>{errors.confirmPassword}</div>
                                 ) : null}
                             </div>
 
@@ -216,7 +219,7 @@ function JobseekerRegister(props) {
                                 <label className="items-center cursor-pointer">
                                     <input
                                         type="checkbox"
-                                        className="form-checkbox border-0 rounded text-lightBlue-500 ml-1 w-5 h-5 ease-linear transition-all duration-150"
+                                        className="form-checkbox border-0 rounded font-semibold text-lightBlue-500 ml-1 w-5 h-5 ease-linear transition-all duration-150"
                                         id="isTerm"
                                         onChange={handleChange}
                                         onClick={() => values.isTerm = true}
@@ -225,16 +228,17 @@ function JobseekerRegister(props) {
                                 {errors.isTerm && touched.isTerm ? (
                                     <div className={"text-red-500 mt-2"}>{errors.isTerm}</div>
                                 ) : null}
-                                <span className="ml-2 text-sm font-semibold text-white">
+                                <span className="ml-2 text-sm font-semibold font-semibold text-white">
                         <a
                             href="#"
-                            className="text-lightBlue-500"
+                            className="text-lightBlue-500 "
                         >
                           Hizmet Sözleşmesini
                         </a>{" "}onaylıyorum
                       </span>
                                 {(values.isTerm ? "" :
-                                    <span className={"text-red-500 mt-2 block"}>Sözleşme kabul edilmeli!</span>)}
+                                    <span
+                                        className={"text-red-500 font-semibold mt-2 block"}>Sözleşme kabul edilmeli!</span>)}
                             </div>
 
                             <div className="text-center mt-4 mb-3">

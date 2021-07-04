@@ -14,8 +14,13 @@ export default class EducationService {
                   method: "POST",
                   url: `http://localhost:8080/api/educations/addEducation`,
                   data: education,
-                  headers: "content-type: application/json",
+                  headers: {"Content-Type": "application/json;charset-UTF-8"}
               });
+    }
+
+    deleteEducationById(id) {
+        axios.delete(
+            `http://localhost:8080/api/educations/deleteEducationById?id=${id}`);
     }
 
 }

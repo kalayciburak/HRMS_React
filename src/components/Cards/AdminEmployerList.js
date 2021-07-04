@@ -13,6 +13,8 @@ export default function AdminEmployerList({color}) {
 
     const [searchTerm, setSearchTerm] = useState('')
 
+    const [deleted, setDeleted] = useState(false);
+
     useEffect(() => {
         let isMounted = true
         employerService.getEmployers().then(result => {
@@ -21,10 +23,12 @@ export default function AdminEmployerList({color}) {
         return () => {
             isMounted = false
         }
-    }, [employers])
+    }, [])
 
     function deleteEmployer(id) {
         employerService.deleteEmployerById(id);
+        const filteredEmployer = employers.filter((employer) => employer.id != id)
+        setEmployers(filteredEmployer)
     }
 
     return (

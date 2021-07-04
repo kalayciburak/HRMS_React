@@ -31,12 +31,14 @@ export default function AdminJobAdvertList() {
         return () => {
             isMounted = false
         }
-    }, [jobAdverts]);
+    }, []);
 
     let airdate;
 
     function deleteJobAdvert(id) {
         jobAdvertService.deleteJobAdvertById(id);
+        const filteredJobAdverts = jobAdverts.filter((jobAdvert) => jobAdvert.id != id)
+        setJobAdverts(filteredJobAdverts)
     }
 
     return (

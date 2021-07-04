@@ -5,13 +5,17 @@ export default class CurriculaVaiteService {
         return axios.get(`http://localhost:8080/api/cvs/getCvWithJobSeekerId?jobseekerId=${jobSeekerId}`);
     }
 
-    addCv(cv) {
-        axios({
-                  method: "POST",
-                  url: `http://localhost:8080/api/cvs/addCv`,
-                  data: cv,
-                  headers: "content-type: application/json",
-              });
+    async addCv(cv) {
+        return await axios({
+                               method: "POST",
+                               url: `http://localhost:8080/api/cvs/addCv`,
+                               data: cv,
+                               headers: {"Content-Type": "application/json;charset-UTF-8"}
+                           }).then((res) => {
+            return res.data.message
+        }).catch((err) => {
+            return err.error.error
+        });
     }
 
     addPicture(cvId, file) {

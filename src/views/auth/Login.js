@@ -65,12 +65,12 @@ export default function Login() {
                                                         setTimeout(() => {
                                                             values = ''
                                                         }, 7000)
-                                                        window.location.href = "Home.js"; //* giriş yapmış kullanıcıları anasayfaya yönlendir
+                                                        window.location.href = "/jobseeker/addCv"; //* giriş yapmış kullanıcıları anasayfaya yönlendir
                                                     } else {
                                                         setTimeout(() => {
                                                             values = ''
                                                         }, 7000)
-                                                        window.location.href = "Home.js"
+                                                        window.location.href = "/jobseeker/addCv"
                                                     }
                                                 })
                                             }
@@ -95,27 +95,29 @@ export default function Login() {
                                                 <div className="relative w-full mb-3">
                                                     <input
                                                         type="email"
-                                                        className="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                                        className="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded font-semibold text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                                         placeholder="E-posta adresi"
                                                         id={"email"}
                                                         onChange={handleChange}
                                                         value={values.email}
                                                     />
                                                     {errors.email && touched.email ? (
-                                                        <div className={"text-red-500 mt-2"}>{errors.email}</div>
+                                                        <div
+                                                            className={"text-red-500 font-semibold mt-2"}>{errors.email}</div>
                                                     ) : null}
                                                 </div>
                                                 <div className="relative w-full mb-3">
                                                     <input
                                                         type="password"
-                                                        className="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                                        className="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded font-semibold text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                                         placeholder="Şifre"
                                                         id="password"
                                                         value={values.password}
                                                         onChange={handleChange}
                                                     />
                                                     {errors.password && touched.password ? (
-                                                        <div className={"text-red-500 mt-2"}>{errors.password}</div>
+                                                        <div
+                                                            className={"text-red-500 font-semibold mt-2"}>{errors.password}</div>
                                                     ) : null}
 
                                                 </div>
@@ -142,7 +144,7 @@ export default function Login() {
                                     </div>
                                     <div className="btn-wrapper text-center">
                                         <button
-                                            className="bg-white active:bg-blueGray-50 text-blueGray-700 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-2 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150"
+                                            className="bg-white active:bg-blueGray-50 text-blueGray-700 font-semibold px-4 py-2 rounded outline-none focus:outline-none mr-2 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150"
                                             type="button"
                                         >
                                             <img
@@ -153,7 +155,7 @@ export default function Login() {
                                             Github
                                         </button>
                                         <button
-                                            className="bg-white active:bg-blueGray-50 text-blueGray-700 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150"
+                                            className="bg-white active:bg-blueGray-50 text-blueGray-700 font-semibold px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150"
                                             type="button"
                                         >
                                             <img
@@ -173,13 +175,14 @@ export default function Login() {
                                 <a
                                     href="#pablo"
                                     onClick={(e) => e.preventDefault()}
-                                    className="text-blueGray-800 hover:text-purple-400"
+                                    className="text-blueGray-800 font-semibold hover:text-purple-400"
                                 >
                                     <small>Şifreni mi Unuttun?</small>
                                 </a>
                             </div>
                             <div className="w-1/2 text-right">
-                                <Link to="/auth/register" className="text-blueGray-800 hover:text-purple-400">
+                                <Link to="/auth/register"
+                                      className="text-blueGray-800 font-semibold hover:text-purple-400">
                                     <small>Yeni Hesap Oluştur</small>
                                 </Link>
                             </div>

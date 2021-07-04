@@ -6,6 +6,7 @@ import Profile from "./views/Profile";
 import Index from "./views/Index";
 import Home from "./views/Home";
 import "tailwindcss/tailwind.css"
+import AddCurriculaVitae from "./views/jobseeker/AddCurriculaVitae";
 
 function App() {
     return (
@@ -16,6 +17,7 @@ function App() {
                 <Route path="/auth" component={Auth}/>
                 {/* add routes without layouts */}
                 <Route path="/profile" exact component={Profile}/>
+                <Route path="/jobseeker/addCv" exact component={AddCurriculaVitae}/>
                 <Route path="/home" exact component={Home}/>
                 <Route path="/" exact component={Index}/>
                 {/* add redirect for first page */}

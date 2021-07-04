@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import JobSeekerService from "../../services/JobSeekerService";
-import HeadleeDropdown from "../Dropdowns/JobseekerDropdown"
+import JobseekerDropdown from "../Dropdowns/JobseekerDropdown"
 import PropTypes from "prop-types";
 
 function AdminJobseekerList(props) {
@@ -11,8 +11,6 @@ function AdminJobseekerList(props) {
 
     const [jobSeekers, setJobSeekers] = useState([])
 
-    const [remove, setRemove] = useState(true)
-
     useEffect(() => {
         let isMounted = true
         jobSeekerService.getJobSeekers().then((result) => {
@@ -22,11 +20,12 @@ function AdminJobseekerList(props) {
             isMounted = false
         }
 
-    }, [jobSeekers])
+    }, [])
 
     function deleteJobseeker(id) {
         jobSeekerService.deleteJobSeekerById(id);
-        setRemove(true);
+        const filteredJobSeeker = jobSeekers.filter((jobSeeker) => jobSeeker.id != id)
+        setJobSeekers(filteredJobSeeker)
     }
 
     return (
@@ -48,8 +47,8 @@ function AdminJobseekerList(props) {
                 />
             </div>
             <div
-                className={"relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg text-white rounded-lg bg-blueGray-800"}
-                style={{width: "50%", marginLeft: "25%"}}>
+                className={"relative flex mx-auto flex-col min-w-0 break-words w-full mb-6 shadow-lg text-white rounded-lg bg-blueGray-800"}
+                style={{width: "55%"}}>
                 <div className="block overflow-x-auto rounded-lg ">
                     {/* Projects table */}
                     <table className="items-center w-full bg-transparent border-collapse tr-even:bg-red-200 rounded-lg">
@@ -127,7 +126,7 @@ function AdminJobseekerList(props) {
                                     {jobseeker.birthDate}
                                 </td>
                                 <td className="border-b border-indigo-400 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4 text-center">
-                                    <HeadleeDropdown deleteJobseeker={() => deleteJobseeker(jobseeker.id)}/>
+                                    <JobseekerDropdown deleteJobseeker={() => deleteJobseeker(jobseeker.id)}/>
                                 </td>
                             </tr>
 

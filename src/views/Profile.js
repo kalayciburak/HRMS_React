@@ -2,90 +2,47 @@ import React, {useEffect, useState} from "react";
 
 import ProfileNavbar from "components/Navbars/ProfileNavbar.js";
 import Footer from "components/Footers/Footer.js";
-import JobSeekerService from "../services/JobSeekerService";
 import CurriculaVaiteService from "../services/CurriculaVaiteService";
+import Swal from "sweetalert2";
+import EducationDropdown from "../components/Dropdowns/CurriculaVitaeDropdown/EducationDropdown";
+import JobExperienceDropdown from "../components/Dropdowns/CurriculaVitaeDropdown/JobExperienceDropdown";
+import LanguageDropdown from "../components/Dropdowns/CurriculaVitaeDropdown/LanguageDropdown";
+import AddEducation from "../components/Utility/AddEducation";
 import EducationService from "../services/EducationService";
-import JobExperienceService from "../services/JobExperienceService";
-import JobSeekerLanguageService from "../services/JobSeekerLanguageService";
-import TechnologieService from "../services/TechnologieService";
-import SocialMediService from "../services/SocialMediService";
 
 export default function Profile() {
-
-    const jobSeekerService = new JobSeekerService();
 
     const curriculaVitaeService = new CurriculaVaiteService();
 
     const educationService = new EducationService();
 
-    const jobExperienceService = new JobExperienceService();
-
-    const languageService = new JobSeekerLanguageService();
-
-    const technologyService = new TechnologieService();
-
-    const socialMediaService = new SocialMediService();
-
-    const [jobSeeker, setJobSeeker] = useState([]);
-
     const [cv, setCv] = useState([]);
 
-    const [educations, setEducations] = useState([]);
-
-    const [jobExperiences, setJobExperiences] = useState([]);
-
-    const [languages, setLanguages] = useState([]);
-
-    const [technologies, setTechnologies] = useState([]);
-
-    const [socialMedias, setSocialMedias] = useState([]);
-
-    let cvId = 1
     let jobSeekerId = 1
 
     useEffect(() => {
         let isMounted = true;
-        socialMediaService.getSocialMediaByCurriculaVitaeId(cvId).then((res) => {
-            if (isMounted) {
-                setSocialMedias(res.data.data)
-            }
-        })
-        technologyService.getTechnologieByCurriculaVitaeId(cvId).then((res) => {
-            if (isMounted) {
-                setTechnologies(res.data.data)
-            }
-        })
-        languageService.getJobseekerLanguagesByCvId(cvId).then((res) => {
-            if (isMounted) {
-                setLanguages(res.data.data)
-            }
-        })
-        jobExperienceService.getJobExperienceByCvId(cvId).then((res) => {
-            if (isMounted) {
-                setJobExperiences(res.data.data)
-            }
-        })
-        educationService.getEducationsByCvId(cvId).then((res) => {
-            if (isMounted) {
-                setEducations(res.data.data)
-            }
-        })
         curriculaVitaeService.findCvByJobSeekerId(jobSeekerId).then((res) => {
             if (isMounted) {
                 setCv(res.data.data)
             }
         })
-        jobSeekerService.getJobSeekerById(jobSeekerId).then((result) => {
-            if (isMounted) {
-                setJobSeeker(result.data.data)
-            }
-        })
         return () => {
             isMounted = false;
         };
-    }, [jobSeeker]);
+    }, []);
 
-    let plNames = technologies != null ? technologies.map((technology, index) => (technology.plName)) : "";
+    let plNames
+    if (cv?.id != null) {
+        plNames = cv.technologies != null ? cv.technologies?.map((technology, index) => (technology.plName)) : "";
+    } else {
+        plNames = ""
+    }
+
+
+    function deleteEducationById(id) {
+        educationService.deleteEducationById(id);
+    }
 
     return (
         <>
@@ -99,10 +56,10 @@ export default function Profile() {
                                 "url('https://images.pexels.com/photos/167699/pexels-photo-167699.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')",
                         }}
                     >
-            <span
-                id="blackOverlay"
-                className="w-full h-full absolute opacity-50 bg-black"
-            ></span>
+                    <span
+                        id="blackOverlay"
+                        className="w-full h-full absolute opacity-50 bg-black"
+                    ></span>
                     </div>
                     <div
                         className="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden h-70-px"
@@ -127,37 +84,65 @@ export default function Profile() {
                 <section className="relative py-16 bg-blueGray-200">
                     <div
                         className="relative flex flex-col min-w-0 break-words w-1/2 mx-auto mb-6 shadow-lg rounded-lg  border-0"
-                        style={{marginTop: "-20em", background: "rgba(43,62,80,0.57)"}}>
-
+                        style={{
+                            marginTop: "-20em",
+                            background: "rgba(43,62,80,0.3)",
+                            border: "2px solid rgba(99,102,241,0.55)",
+                            boxShadow: "3px 5px 4px rgba(0,0,0,0.64)"
+                        }}>
                         <div className="flex-auto px-4 mt-6 lg:px-10 py-10 pt-0">
                             <div className="w-full px-4 flex justify-center">
                                 <div className="relative">
                                     <img
                                         alt="..."
-                                        src={cv.pictureUrl}
-                                        className="shadow-xl px-6 py-4 rounded-full align-middle border-none flex lg:-ml-16 max-w-150-px"
-                                        style={{marginLeft: "0"}}
+                                        src={cv?.pictureUrl}
+                                        className="shadow-xl rounded-full cursor-pointer hover:bg-purple-400 align-middle mt-2 border-none flex lg:-ml-16 max-w-150-px"
+                                        style={{marginLeft: "-24rem", border: "2px solid rgba(99,102,241,0.3)"}}
+                                        onClick={async () => {
+                                            const {value: file} = await Swal.fire({
+                                                                                      title: 'Fotoğraf Seç',
+                                                                                      input: 'file',
+                                                                                      inputAttributes: {
+                                                                                          'accept': 'image/*',
+                                                                                          'aria-label': 'Upload your profile picture'
+                                                                                      },
+                                                                                      showCancelButton: true,
+                                                                                      cancelButtonText: "Vazgeç",
+                                                                                      confirmButtonText: "Kaydet"
+                                                                                  })
+
+                                            if (file) {
+                                                const reader = new FileReader()
+                                                reader.onload = (e) => {
+                                                    Swal.fire({
+                                                                  title: 'Your uploaded picture',
+                                                                  imageUrl: e.target.result,
+                                                                  imageAlt: 'The uploaded picture'
+                                                              })
+                                                }
+                                                reader.readAsDataURL(file)
+                                            }
+                                        }}
                                     />
                                 </div>
-                                <div className="w-full absolute lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center"
-                                     style={{marginLeft: "27em"}}>
-                                    <div className="py-6 px-3 mt-32 sm:mt-0">
-                                        <button
-                                            className="bg-indigo-500 text-blueGray-300 active:bg-indigo-500 hover:bg-purple-400 text-sm font-bold uppercase px-6 py-2 rounded shadow mt-3 outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-250"
-                                            type="button"
-                                        >
-                                            <i className={"fas fa-lg fa-user-edit"}></i> Düzenle
-                                        </button>
-                                    </div>
-                                </div>
+                                {/*<div*/}
+                                {/*    className="w-full absolute lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center"*/}
+                                {/*    style={{marginLeft: "27em"}}>*/}
+                                {/*    <div className="py-6 px-3 mt-32 sm:mt-0">*/}
+                                {/*        <button*/}
+                                {/*            className="bg-indigo-500 text-blueGray-300 active:bg-indigo-500 hover:bg-purple-400 text-sm font-bold uppercase px-6 py-2 rounded shadow mt-3 outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-250"*/}
+
+                                {/*        >*/}
+                                {/*            <i className={"fas fa-lg fa-user-edit"}></i> Düzenle*/}
+                                {/*        </button>*/}
+                                {/*    </div>*/}
+                                {/*</div>*/}
                             </div>
-
-
                             <form>
-                                <h6 className="text-white text-sm mt-3 mb-6 font-bold uppercase">
-                                    Kişisel Bilgiler
-                                </h6>
-                                <div className="flex flex-wrap">
+                                {/*<h6 className="text-black text-sm mt-3 mb-6 font-bold uppercase">*/}
+                                {/*    Kişisel Bilgiler*/}
+                                {/*</h6>*/}
+                                <div className="flex flex-wrap mt-10">
 
                                     <div className="w-full lg:w-6/12 px-12">
                                         <div className="relative w-full mb-3">
@@ -165,7 +150,7 @@ export default function Profile() {
                                                 type="text"
                                                 className="border-0 px-3 py-2 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm font-semibold shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                                 placeholder={"Ad"}
-                                                defaultValue={jobSeeker.firstName}
+                                                defaultValue={cv?.jobSeeker?.firstName}
                                                 style={{cursor: "default"}}
                                                 readOnly={true}
                                             />
@@ -177,7 +162,7 @@ export default function Profile() {
                                                 type="text"
                                                 className="border-0 px-3 py-2 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm font-semibold shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                                 placeholder={"Soyad"}
-                                                defaultValue={jobSeeker.lastName}
+                                                defaultValue={cv?.jobSeeker?.lastName}
                                                 style={{cursor: "default"}}
                                                 readOnly={true}
                                             />
@@ -189,7 +174,7 @@ export default function Profile() {
                                                 type="email"
                                                 className="border-0 px-3 py-2 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm font-semibold shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                                 placeholder={"E-Posta Adresi"}
-                                                defaultValue={jobSeeker.email}
+                                                defaultValue={cv?.jobSeeker?.email}
                                                 style={{cursor: "default"}}
                                                 readOnly={true}
                                             />
@@ -201,7 +186,7 @@ export default function Profile() {
                                                 type="text"
                                                 className="border-0 px-3 py-2 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm font-semibold shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                                 placeholder={"Tc kimlik numarası"}
-                                                defaultValue={jobSeeker.identityNumber}
+                                                defaultValue={cv?.jobSeeker?.identityNumber}
                                                 style={{cursor: "default"}}
                                                 readOnly={true}
                                             />
@@ -209,33 +194,81 @@ export default function Profile() {
                                     </div>
                                     <div className="w-full mx-auto lg:w-12/12 px-12">
                                         <div className="relative w-full mb-3">
-                                            <label
-                                                className="block uppercase text-blueGray-200 text-xs mt-2 font-bold mb-2"
-                                                htmlFor="grid-password"
-                                            >
-                                                Hakkımda
-                                            </label>
+                                            <div className={"flex flex-wrap mt-2"}>
+                                                <label
+                                                    className="block uppercase text-black text-xs mt-2 font-bold mb-3"
+                                                    htmlFor="grid-password"
+                                                >
+                                                    Hakkımda
+                                                </label>
+
+                                                <div
+                                                    className="w-full absolute lg:w-4/12 px-4 lg:order-3 mb-1 lg:text-right lg:self-center"
+                                                    style={{marginLeft: "70%"}}>
+                                                    <div className="py-2 px-2 sm:mt-0">
+                                                        <span
+                                                            className="bg-indigo-500 cursor-pointer text-blueGray-300 active:bg-indigo-500 hover:bg-purple-400 text-xs font-semibold capitalize px-1 rounded shadow outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-250"
+                                                            onClick={async () => {
+
+                                                                const {value: text} = await Swal.fire({
+                                                                                                          input: 'textarea',
+                                                                                                          inputLabel: 'Hakkımda',
+                                                                                                          inputPlaceholder: cv.coverLetter,
+                                                                                                          inputAttributes: {
+                                                                                                              'aria-label': 'Type your message here'
+                                                                                                          },
+                                                                                                          showCancelButton: true,
+                                                                                                          cancelButtonText: "Vazgeç",
+                                                                                                          confirmButtonText: "Kaydet"
+                                                                                                      })
+
+                                                                if (text) {
+                                                                    Swal.fire(text)
+                                                                }
+                                                            }}
+
+                                                        >
+                                                            <i className={"far fa-sm fa-edit"}></i> Düzenle
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                             <textarea
                                                 type="text"
                                                 className="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm font-semibold shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                                 rows="2"
                                                 placeholder={"Hobilerin, hedeflerin vb."}
-                                                defaultValue={cv.coverLetter}
+                                                defaultValue={cv?.coverLetter}
                                                 style={{cursor: "default"}}
                                                 maxLength={200}
                                                 readOnly={true}
                                             ></textarea>
+
                                         </div>
                                     </div>
                                 </div>
 
-                                <hr className="mt-6 border-b-1 border-blueGray-300"/>
+                                <hr className="mt-6 " style={{borderBottom: "1px solid black"}}/>
+                                <div className={"flex flex-wrap mt-2"}>
+                                    <label
+                                        className="block uppercase text-black text-sm mt-2 font-bold mb-3"
+                                        htmlFor="grid-password"
+                                    >
+                                        Eğitim Bilgileri
+                                    </label>
 
-                                <h6 className="text-white text-sm mt-3 mb-6 font-bold uppercase">
-                                    Eğitim Bilgileri
-                                </h6>
+                                    <div
+                                        className="w-full absolute lg:w-4/12 px-4 lg:order-3 mb-1 lg:text-right lg:self-center"
+                                        style={{marginLeft: "56%"}}>
+                                        <div className="py-2 px-2 sm:mt-0">
+                                            <AddEducation/>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 {
-                                    educations != null ? educations.map((education, index) => (
+                                    cv?.educations != null ? cv?.educations?.map((education, index) => (
                                         <div className="flex flex-wrap" key={education.id}>
                                             <div className="w-full lg:w-6/12 px-12">
                                                 <div className="relative w-full mb-3">
@@ -243,7 +276,7 @@ export default function Profile() {
                                                         type="text"
                                                         className="border-0 px-3 py-2 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm font-semibold shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                                         placeholder={"Okul Adı"}
-                                                        defaultValue={education.school.schoolName}
+                                                        defaultValue={education.school?.schoolName}
                                                         style={{cursor: "default"}}
                                                         readOnly={true}
                                                     />
@@ -255,7 +288,7 @@ export default function Profile() {
                                                         type="text"
                                                         className="border-0 px-3 py-2 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm font-semibold shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                                         placeholder={"Bölüm Adı"}
-                                                        defaultValue={education.department.departmentName}
+                                                        defaultValue={education.department?.departmentName}
                                                         style={{cursor: "default"}}
                                                         readOnly={true}
                                                     />
@@ -264,7 +297,7 @@ export default function Profile() {
                                             <div className="w-full lg:w-6/12 px-12">
                                                 <div className="relative w-full mb-3">
                                                     <label
-                                                        className="block uppercase text-blueGray-200 text-xs font-semibold font-bold mb-2"
+                                                        className="block uppercase text-black text-xs font-semibold font-bold mb-2"
                                                     >
                                                         Başlangıç Tarihi
                                                     </label>
@@ -280,7 +313,7 @@ export default function Profile() {
                                             <div className="w-full lg:w-6/12 px-12">
                                                 <div className="relative w-full mb-3">
                                                     <label
-                                                        className="block uppercase text-blueGray-200 text-xs font-semibold font-bold mb-2"
+                                                        className="block uppercase black text-xs font-semibold font-bold mb-2"
                                                     >
                                                         Bitiş Tarihi
                                                     </label>
@@ -293,23 +326,28 @@ export default function Profile() {
                                                     />
                                                 </div>
                                             </div>
-                                            <span className={"mt-2 mb-6 border-b-1 border-blueGray-300 mx-auto"}
-                                                  style={index % 2 == 0 ? {
-                                                      borderTop: "1px solid #CBD5E1",
+                                            <div className={"absolute"}
+                                                 style={{marginLeft: "90%", marginTop: "2.7rem"}}>
+                                                <EducationDropdown
+                                                    deleteEducation={() => deleteEducationById(education.id)}/>
+                                            </div>
+                                            <span className={"mt-2 mb-6 mx-auto"}
+                                                  style={{
+                                                      borderBottom: "1px solid #000",
                                                       width: "89%"
-                                                  } : {}}></span>
+                                                  }}></span>
                                         </div>
 
                                     )) : ""
                                 }
 
-                                <hr className="mt-6 border-b-1 border-blueGray-300"/>
+                                <hr className="mt-6 " style={{borderBottom: "1px solid black"}}/>
 
-                                <h6 className="text-white text-sm mt-3 mb-6 font-bold uppercase">
+                                <h6 className="text-black text-sm mt-3 mb-6 font-bold uppercase">
                                     İş Tecrübeleri
                                 </h6>
                                 {
-                                    jobExperiences != null ? jobExperiences.map((jobExperience, index) => (
+                                    cv?.jobExperiences != null ? cv?.jobExperiences?.map((jobExperience, index) => (
                                         <div className="flex flex-wrap" key={jobExperience.id}>
                                             <div className="w-full lg:w-6/12 px-12">
                                                 <div className="relative w-full mb-3">
@@ -338,7 +376,7 @@ export default function Profile() {
                                             <div className="w-full lg:w-6/12 px-12">
                                                 <div className="relative w-full mb-3">
                                                     <label
-                                                        className="block uppercase text-blueGray-200 text-xs font-semibold font-bold mb-2"
+                                                        className="block uppercase text-black text-xs font-semibold font-bold mb-2"
                                                     >
                                                         Başlangıç Tarihi
                                                     </label>
@@ -354,7 +392,7 @@ export default function Profile() {
                                             <div className="w-full lg:w-6/12 px-12">
                                                 <div className="relative w-full mb-3">
                                                     <label
-                                                        className="block uppercase text-blueGray-200 text-xs font-semibold font-bold mb-2"
+                                                        className="block uppercase text-black text-xs font-semibold font-bold mb-2"
                                                     >
                                                         Bitiş Tarihi
                                                     </label>
@@ -367,21 +405,27 @@ export default function Profile() {
                                                     />
                                                 </div>
                                             </div>
-                                            <span className={"mt-2 mb-6 border-b-1 border-blueGray-300 mx-auto"}
+                                            <div className={"absolute"}
+                                                 style={{marginLeft: "90%", marginTop: "2.7rem"}}>
+                                                <JobExperienceDropdown/>
+                                            </div>
+                                            <span className={"mt-2 mb-6 mx-auto"}
                                                   style={index % 2 == 0 ? {
-                                                      borderTop: "1px solid #CBD5E1",
+                                                      borderBottom: "1px solid #000",
                                                       width: "89%"
                                                   } : {}}></span>
                                         </div>
                                     )) : ""
                                 }
-                                <hr className="mt-6 border-b-1 border-blueGray-300"/>
+                                <hr className="mt-6 " style={{borderBottom: "1px solid black"}}/>
 
-                                <h6 className="text-white text-sm mt-3 mb-6 font-bold uppercase">
+                                <h6 className="text-black text-sm mt-3 mb-6 font-bold uppercase">
                                     Yabancı Diller
                                 </h6>
                                 {
-                                    languages != null ? languages.map((language, index) => (
+                                    cv?.jobSeekerLanguages != null ? cv?.jobSeekerLanguages?.map((
+                                                                                                     language,
+                                                                                                     index) => (
                                         <div className="flex flex-wrap" key={language.id}>
                                             <div className="w-full lg:w-6/12 px-12">
                                                 <div className="relative w-full mb-3">
@@ -390,7 +434,7 @@ export default function Profile() {
                                                         className="border-0 px-3 py-2 placeholder-blueGray-600 font-semibold text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                                         style={{cursor: "default"}}
                                                         placeholder={"Yabancı Dil"}
-                                                        defaultValue={language.language.languageName}
+                                                        defaultValue={language.language?.languageName}
                                                         readOnly={true}
                                                     />
                                                 </div>
@@ -416,12 +460,16 @@ export default function Profile() {
                                                     </span>
                                                 </div>
                                             </div>
+                                            <div className={"absolute"}
+                                                 style={{marginLeft: "90%", marginTop: "0.1.5rem"}}>
+                                                <LanguageDropdown/>
+                                            </div>
                                         </div>
                                     )) : ""
                                 }
-                                <hr className="mt-6 border-b-1 border-blueGray-300"/>
+                                <hr className="mt-6 " style={{borderBottom: "1px solid black"}}/>
 
-                                <h6 className="text-white text-sm mt-3 mb-6 font-bold uppercase">
+                                <h6 className="text-black text-sm mt-3 mb-6 font-bold uppercase">
                                     Yetenekler/Teknolojiler
                                 </h6>
                                 <div className="flex flex-wrap">
@@ -440,20 +488,20 @@ export default function Profile() {
                                         </div>
                                     </div>
                                 </div>
-                                <hr className="mt-6 border-b-1 border-blueGray-300"/>
+                                <hr className="mt-6 " style={{borderBottom: "1px solid black"}}/>
 
-                                <h6 className="text-blueGray-200 text-sm mt-3 mb-6 font-bold uppercase">
+                                <h6 className="text-black text-sm mt-3 mb-6 font-bold uppercase">
                                     Sosyal Hesaplar
                                 </h6>
                                 {
-                                    socialMedias != null ? socialMedias.map((socialMedia, index) => (
+                                    cv?.socialMedias != null ? cv?.socialMedias?.map((socialMedia, index) => (
                                         <div className="flex flex-wrap" key={socialMedia.id}>
                                             <div className="w-full lg:w-6/12 px-12">
                                                 <div className="relative w-full mb-3">
                                                     <label
-                                                        className="block uppercase text-blueGray-200 text-xs font-semibold font-bold mb-2"
+                                                        className="block uppercase text-black text-xs font-semibold font-bold mb-2"
                                                     >
-                                                        Github
+                                                        <i className={"fab fa-lg fa-github text-black"}></i> Github
                                                     </label>
                                                     <input
                                                         type="text"
@@ -468,9 +516,9 @@ export default function Profile() {
                                             <div className="w-full lg:w-6/12 px-12">
                                                 <div className="relative w-full mb-3">
                                                     <label
-                                                        className="block uppercase text-blueGray-200 text-xs font-semibold font-bold mb-2"
+                                                        className="block uppercase text-black text-xs font-semibold font-bold mb-2"
                                                     >
-                                                        Linkedin
+                                                        <i className={"fab fa-lg fa-linkedin text-black"}></i> Linkedin
                                                     </label>
                                                     <input
                                                         type="text"
@@ -484,6 +532,7 @@ export default function Profile() {
                                             </div>
                                         </div>
                                     )) : ""
+
                                 }
                                 {/*<hr className="mt-6 border-b-1 border-blueGray-300"/>*/}
 

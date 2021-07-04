@@ -21,6 +21,7 @@ export default function Home() {
             .then(result => {
                 if (isMounted) setJobAdverts(result.data.data)
             })
+
         if (jobAdverts.length <= 0) {
             if (isMounted) setNull(true);
 
@@ -31,7 +32,7 @@ export default function Home() {
         return () => {
             isMounted = false
         }
-    }, [jobAdverts])
+    }, [jobAdverts.length])
 
     return (
         <div style={{background: "linear-gradient(#fff, #8BA5BEFF)", backgroundColor: "#51627f"}}>

@@ -14,7 +14,7 @@ export default function HomeDropdown(props) {
                 <>
                     <div className="items-center flex">
                         <Menu.Button
-                            className="inline-flex justify-center w-full rounded-md shadow-sm text-sm font-medium text-blueGray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500">
+                            className="inline-flex justify-center w-full rounded-md shadow-sm text-sm font-semibold text-blueGray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500">
                             <i className={"fas fa-lg fa-bars mr-2 mt-1"}></i>Menü
                         </Menu.Button>
                     </div>
