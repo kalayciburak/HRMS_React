@@ -11,7 +11,12 @@ export default class JobSeekerLanguageService {
                   method: "POST",
                   url: `http://localhost:8080/api/jobseekerLanguages/addJobseekerLanguages`,
                   data: jobSeekerLanguage,
-                  headers: "content-type: application/json",
+                  headers: {"Content-Type": "application/json;charset-UTF-8"}
               });
+    }
+
+    deleteJobSeekerLanguageById(id) {
+        axios.delete(
+            `http://localhost:8080/api/jobseekerLanguages/deleteJobSeekerLanguageById?id=${id}`);
     }
 }

@@ -9,12 +9,23 @@ import JobExperienceDropdown from "../components/Dropdowns/CurriculaVitaeDropdow
 import LanguageDropdown from "../components/Dropdowns/CurriculaVitaeDropdown/LanguageDropdown";
 import AddEducation from "../components/Utility/AddEducation";
 import EducationService from "../services/EducationService";
+import AddJobExperiences from "../components/Utility/AddJobExperiences";
+import JobExperienceService from "../services/JobExperienceService";
+import AddJobSeekerLanguage from "../components/Utility/AddJobSeekerLanguage";
+import JobSeekerLanguageService from "../services/JobSeekerLanguageService";
+import SocialMediService from "../services/SocialMediService";
 
 export default function Profile() {
 
     const curriculaVitaeService = new CurriculaVaiteService();
 
     const educationService = new EducationService();
+
+    const jobExperienceService = new JobExperienceService();
+
+    const jobSeekerLanguageService = new JobSeekerLanguageService();
+
+    const socialMediaService = new SocialMediService();
 
     const [cv, setCv] = useState([]);
 
@@ -42,6 +53,22 @@ export default function Profile() {
 
     function deleteEducationById(id) {
         educationService.deleteEducationById(id);
+    }
+
+    function deleteJobExperienceById(id) {
+        jobExperienceService.deleteJobExperienceById(id);
+    }
+
+    function deleteJobSeekerLanguageById(id) {
+        jobSeekerLanguageService.deleteJobSeekerLanguageById(id);
+    }
+
+    function updateCv(cv) {
+        curriculaVitaeService.updateCv(cv);
+    }
+
+    function addSocialMedia(socialMedia) {
+        socialMediaService.addSocialMedia(socialMedia);
     }
 
     return (
@@ -223,7 +250,27 @@ export default function Profile() {
                                                                                                       })
 
                                                                 if (text) {
-                                                                    Swal.fire(text)
+                                                                    let curriculaVitae = {
+                                                                        coverLetter: text,
+                                                                        id: cv.id,
+                                                                        jobSeekerId: jobSeekerId,
+                                                                        pictureUrl: cv.pictureUrl
+                                                                    }
+                                                                    updateCv(curriculaVitae)
+                                                                    Swal.fire({
+                                                                                  icon: 'success',
+                                                                                  title: 'Hakkımda bilgisi başarıyla güncellendi!',
+                                                                                  showConfirmButton: false,
+                                                                                  timer: 1500
+                                                                              })
+                                                                } else {
+                                                                    Swal.fire({
+                                                                                  position: 'top',
+                                                                                  icon: 'info',
+                                                                                  title: 'İşlemi iptal ettiniz!',
+                                                                                  showConfirmButton: false,
+                                                                                  timer: 1500
+                                                                              })
                                                                 }
                                                             }}
 
@@ -343,9 +390,22 @@ export default function Profile() {
 
                                 <hr className="mt-6 " style={{borderBottom: "1px solid black"}}/>
 
-                                <h6 className="text-black text-sm mt-3 mb-6 font-bold uppercase">
-                                    İş Tecrübeleri
-                                </h6>
+                                <div className={"flex flex-wrap mt-2"}>
+                                    <label
+                                        className="block uppercase text-black text-sm mt-2 font-bold mb-3"
+                                        htmlFor="grid-password"
+                                    >
+                                        İş Tecrübeleri
+                                    </label>
+
+                                    <div
+                                        className="w-full absolute lg:w-4/12 px-4 lg:order-3 mb-1 lg:text-right lg:self-center"
+                                        style={{marginLeft: "56%"}}>
+                                        <div className="py-2 px-2 sm:mt-0">
+                                            <AddJobExperiences/>
+                                        </div>
+                                    </div>
+                                </div>
                                 {
                                     cv?.jobExperiences != null ? cv?.jobExperiences?.map((jobExperience, index) => (
                                         <div className="flex flex-wrap" key={jobExperience.id}>
@@ -407,21 +467,35 @@ export default function Profile() {
                                             </div>
                                             <div className={"absolute"}
                                                  style={{marginLeft: "90%", marginTop: "2.7rem"}}>
-                                                <JobExperienceDropdown/>
+                                                <JobExperienceDropdown
+                                                    deleteJobExperienceById={() => deleteJobExperienceById(jobExperience.id)}/>
                                             </div>
                                             <span className={"mt-2 mb-6 mx-auto"}
-                                                  style={index % 2 == 0 ? {
+                                                  style={{
                                                       borderBottom: "1px solid #000",
                                                       width: "89%"
-                                                  } : {}}></span>
+                                                  }}></span>
                                         </div>
                                     )) : ""
                                 }
                                 <hr className="mt-6 " style={{borderBottom: "1px solid black"}}/>
 
-                                <h6 className="text-black text-sm mt-3 mb-6 font-bold uppercase">
-                                    Yabancı Diller
-                                </h6>
+                                <div className={"flex flex-wrap mt-2"}>
+                                    <label
+                                        className="block uppercase text-black text-sm mt-2 font-bold mb-3"
+                                        htmlFor="grid-password"
+                                    >
+                                        Yabancı Diller
+                                    </label>
+
+                                    <div
+                                        className="w-full absolute lg:w-4/12 px-4 lg:order-3 mb-1 lg:text-right lg:self-center"
+                                        style={{marginLeft: "56%"}}>
+                                        <div className="py-2 px-2 sm:mt-0">
+                                            <AddJobSeekerLanguage/>
+                                        </div>
+                                    </div>
+                                </div>
                                 {
                                     cv?.jobSeekerLanguages != null ? cv?.jobSeekerLanguages?.map((
                                                                                                      language,
@@ -462,16 +536,23 @@ export default function Profile() {
                                             </div>
                                             <div className={"absolute"}
                                                  style={{marginLeft: "90%", marginTop: "0.1.5rem"}}>
-                                                <LanguageDropdown/>
+                                                <LanguageDropdown
+                                                    deleteJobSeekerLanguageById={() => deleteJobSeekerLanguageById(
+                                                        language.id)}/>
                                             </div>
                                         </div>
                                     )) : ""
                                 }
                                 <hr className="mt-6 " style={{borderBottom: "1px solid black"}}/>
 
-                                <h6 className="text-black text-sm mt-3 mb-6 font-bold uppercase">
-                                    Yetenekler/Teknolojiler
-                                </h6>
+                                <div className={"flex flex-wrap mt-2"}>
+                                    <label
+                                        className="block uppercase text-black text-sm mt-2 font-bold mb-3"
+                                        htmlFor="grid-password"
+                                    >
+                                        Yetenekler/Teknolojiler
+                                    </label>
+                                </div>
                                 <div className="flex flex-wrap">
                                     <div className="w-full mx-auto lg:w-12/12 px-12">
                                         <div className="relative w-full mb-3">

@@ -64,7 +64,7 @@ function AddCurriculaVitae(props) {
                                                   icon: "info",
                                                   iconColor: "#675CD8",
                                                   // background: "rgba(255,255,255,0.65)",
-                                                  html: "<span style='font-size: 18px;color: black'>Oluştur butonuna bastıktan sonra profilinize yönlendirileceksiniz ve bütün bilgilerinizi düzenleyebileceksiniz!</span>",
+                                                  html: "<span style='font-size: 18px;color: black;'>Oluştur butonuna bastıktan sonra profilinize yönlendirileceksiniz ve bütün bilgilerinizi düzenleyebileceksiniz!</span>",
                                                   confirmButtonText: "Tamam",
                                               })
                                 }}></i></h2>
