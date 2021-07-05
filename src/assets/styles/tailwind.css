@@ -2204,6 +2204,11 @@ select {
     color: rgba(198, 72, 255, var(--tw-text-opacity));
 }
 
+.hover\:text-red-400:hover {
+    --tw-text-opacity: 1;
+    color: rgba(252, 2, 2, var(--tw-text-opacity));
+}
+
 .hover\:text-blueGray-500:hover {
     --tw-text-opacity: 1;
     color: rgba(100, 116, 139, var(--tw-text-opacity));

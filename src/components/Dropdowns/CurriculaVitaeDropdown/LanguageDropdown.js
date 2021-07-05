@@ -78,7 +78,13 @@ function LanguageDropdown(props) {
                                                             Swal.fire('Başarıyla Kaldırıldı!', '', 'success')
                                                             props.deleteJobSeekerLanguageById()
                                                         } else if (result.isDenied) {
-                                                            // Swal.fire('Changes are not saved', '', 'info')
+                                                            Swal.fire({
+                                                                          position: 'center',
+                                                                          icon: 'info',
+                                                                          title: 'İşlemi iptal ettiniz!',
+                                                                          showConfirmButton: false,
+                                                                          timer: 1500
+                                                                      })
                                                         }
                                                     })
                                                 }}

@@ -124,7 +124,13 @@ function EducationDropdown(props) {
                                                             Swal.fire('Başarıyla Kaldırıldı!', '', 'success')
                                                             props.deleteEducation()
                                                         } else if (result.isDenied) {
-                                                            // Swal.fire('Silme işlemini iptal ettiniz!', '', 'info')
+                                                            Swal.fire({
+                                                                          position: 'center',
+                                                                          icon: 'info',
+                                                                          title: 'İşlemi iptal ettiniz!',
+                                                                          showConfirmButton: false,
+                                                                          timer: 1500
+                                                                      })
                                                         }
                                                     })
                                                 }}

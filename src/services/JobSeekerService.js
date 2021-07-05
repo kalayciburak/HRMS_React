@@ -23,6 +23,6 @@ export default class JobSeekerService {
     }
 
     deleteJobSeekerById(id) {
-        axios.delete(`http://localhost:8080/api/jobseekers/deleteJobSeekerById?jobSeekerId=${id}`);
+       return axios.delete(`http://localhost:8080/api/jobseekers/deleteJobSeekerById?jobSeekerId=${id}`);
     }
 }

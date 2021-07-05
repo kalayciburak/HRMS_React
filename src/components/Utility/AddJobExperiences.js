@@ -28,7 +28,9 @@ function AddJobExperiences(props) {
 
 
     function addJobExperience(jobExperience) {
-        jobExperienceService.addJobExperience(jobExperience);
+        jobExperienceService.addJobExperience(jobExperience).then(() => {
+            props.getJobExperiences()
+        })
     }
 
     return (
@@ -44,6 +46,7 @@ function AddJobExperiences(props) {
                                                                          showCancelButton: true,
                                                                          cancelButtonText: "Vazgeç",
                                                                          confirmButtonText: "Devam Et",
+                                                                         allowOutsideClick: false,
                                                                          inputValidator: (value) => {
                                                                              return new Promise(
                                                                                  (resolve) => {
@@ -65,6 +68,7 @@ function AddJobExperiences(props) {
                                                                               showCancelButton: true,
                                                                               cancelButtonText: "Vazgeç",
                                                                               confirmButtonText: "Devam Et",
+                                                                              allowOutsideClick: false,
                                                                               inputValidator: (value) => {
                                                                                   return new Promise(
                                                                                       (resolve) => {
@@ -136,7 +140,7 @@ function AddJobExperiences(props) {
                                 }
                             } else {
                                 Swal.fire({
-                                              position: 'top',
+                                              position: 'center',
                                               icon: 'info',
                                               title: 'İşlemi iptal ettiniz!',
                                               showConfirmButton: false,
@@ -145,7 +149,7 @@ function AddJobExperiences(props) {
                             }
                         } else {
                             Swal.fire({
-                                          position: 'top',
+                                          position: 'center',
                                           icon: 'info',
                                           title: 'İşlemi iptal ettiniz!',
                                           showConfirmButton: false,

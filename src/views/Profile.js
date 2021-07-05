@@ -13,11 +13,14 @@ import AddJobExperiences from "../components/Utility/AddJobExperiences";
 import JobExperienceService from "../services/JobExperienceService";
 import AddJobSeekerLanguage from "../components/Utility/AddJobSeekerLanguage";
 import JobSeekerLanguageService from "../services/JobSeekerLanguageService";
-import SocialMediService from "../services/SocialMediService";
+import AddTechnology from "../components/Utility/AddTechnology";
+import TechnologyService from "../services/TechnologyService";
 
 export default function Profile() {
 
     const curriculaVitaeService = new CurriculaVaiteService();
+
+    const technologyService = new TechnologyService();
 
     const educationService = new EducationService();
 
@@ -25,50 +28,114 @@ export default function Profile() {
 
     const jobSeekerLanguageService = new JobSeekerLanguageService();
 
-    const socialMediaService = new SocialMediService();
-
     const [cv, setCv] = useState([]);
+
+    const [cvEducations, setCvEducations] = useState([]);
+
+    const [cvJobExperiences, setCvJobExperiences] = useState([]);
+
+    const [cvJobSeekerLanguages, setCvJobSeekerLanguages] = useState([]);
+
+    const [cvTechnologies, setCvTechnologies] = useState([]);
 
     let jobSeekerId = 1
 
+    function findCvByJobSeekerId() {
+        return curriculaVitaeService.findCvByJobSeekerId(jobSeekerId)
+    }
+
     useEffect(() => {
         let isMounted = true;
-        curriculaVitaeService.findCvByJobSeekerId(jobSeekerId).then((res) => {
+        findCvByJobSeekerId().then((res) => {
             if (isMounted) {
                 setCv(res.data.data)
             }
+        })
+        findCvByJobSeekerId().then((res) => {
+            if (isMounted) {
+                setCvEducations(res.data.data.educations)
+            }
+        })
+        findCvByJobSeekerId().then((res) => {
+            if (isMounted) {
+                setCvJobExperiences(res.data.data.jobExperiences)
+            }
+        })
+        findCvByJobSeekerId().then((res) => {
+            if (isMounted) {
+                setCvJobSeekerLanguages(res.data.data.jobSeekerLanguages)
+            }
+        })
+        findCvByJobSeekerId().then((res) => {
+            setCvTechnologies(res.data.data.technologies)
         })
         return () => {
             isMounted = false;
         };
     }, []);
 
-    let plNames
-    if (cv?.id != null) {
-        plNames = cv.technologies != null ? cv.technologies?.map((technology, index) => (technology.plName)) : "";
-    } else {
-        plNames = ""
-    }
-
-
     function deleteEducationById(id) {
-        educationService.deleteEducationById(id);
+        educationService.deleteEducationById(id).then((response) => {
+            findCvByJobSeekerId().then((res) => {
+                setCvEducations(res.data.data.educations)
+            })
+        })
     }
 
     function deleteJobExperienceById(id) {
-        jobExperienceService.deleteJobExperienceById(id);
+        jobExperienceService.deleteJobExperienceById(id).then(() => {
+            findCvByJobSeekerId().then((res) => {
+                setCvJobExperiences(res.data.data.jobExperiences)
+            })
+        })
+    }
+
+    function deleteTechnologyById(id) {
+        technologyService.deleteTechnologyById(id).then(() => {
+            findCvByJobSeekerId().then((res) => {
+                setCvTechnologies(res.data.data.technologies)
+            })
+        })
     }
 
     function deleteJobSeekerLanguageById(id) {
-        jobSeekerLanguageService.deleteJobSeekerLanguageById(id);
+        jobSeekerLanguageService.deleteJobSeekerLanguageById(id).then(() => {
+            findCvByJobSeekerId().then((res) => {
+                setCvJobSeekerLanguages(res.data.data.jobSeekerLanguages)
+            })
+        })
     }
 
     function updateCv(cv) {
-        curriculaVitaeService.updateCv(cv);
+        curriculaVitaeService.updateCv(cv).then(() => {
+            findCvByJobSeekerId().then((res) => {
+                setCv(res.data.data)
+            })
+        })
     }
 
-    function addSocialMedia(socialMedia) {
-        socialMediaService.addSocialMedia(socialMedia);
+    function getEducations() {
+        findCvByJobSeekerId().then((res) => {
+            setCvEducations(res.data.data.educations)
+        })
+    }
+
+    function getJobEXperiences() {
+        findCvByJobSeekerId().then((res) => {
+            setCvJobExperiences(res.data.data.jobExperiences)
+        })
+    }
+
+    function getJobSeekerLanguages() {
+        findCvByJobSeekerId().then((res) => {
+            setCvJobSeekerLanguages(res.data.data.jobSeekerLanguages)
+        })
+    }
+
+    function getTechnologies() {
+        findCvByJobSeekerId().then((res) => {
+            setCvTechnologies(res.data.data.technologies)
+        })
     }
 
     return (
@@ -251,10 +318,10 @@ export default function Profile() {
 
                                                                 if (text) {
                                                                     let curriculaVitae = {
-                                                                        coverLetter: text,
                                                                         id: cv.id,
                                                                         jobSeekerId: jobSeekerId,
-                                                                        pictureUrl: cv.pictureUrl
+                                                                        pictureUrl: cv.pictureUrl,
+                                                                        coverLetter: text,
                                                                     }
                                                                     updateCv(curriculaVitae)
                                                                     Swal.fire({
@@ -265,7 +332,7 @@ export default function Profile() {
                                                                               })
                                                                 } else {
                                                                     Swal.fire({
-                                                                                  position: 'top',
+                                                                                  position: 'center',
                                                                                   icon: 'info',
                                                                                   title: 'İşlemi iptal ettiniz!',
                                                                                   showConfirmButton: false,
@@ -309,13 +376,13 @@ export default function Profile() {
                                         className="w-full absolute lg:w-4/12 px-4 lg:order-3 mb-1 lg:text-right lg:self-center"
                                         style={{marginLeft: "56%"}}>
                                         <div className="py-2 px-2 sm:mt-0">
-                                            <AddEducation/>
+                                            <AddEducation getEducations={() => getEducations()}/>
                                         </div>
                                     </div>
                                 </div>
 
                                 {
-                                    cv?.educations != null ? cv?.educations?.map((education, index) => (
+                                    cvEducations != null ? cvEducations.map((education, index) => (
                                         <div className="flex flex-wrap" key={education.id}>
                                             <div className="w-full lg:w-6/12 px-12">
                                                 <div className="relative w-full mb-3">
@@ -402,12 +469,12 @@ export default function Profile() {
                                         className="w-full absolute lg:w-4/12 px-4 lg:order-3 mb-1 lg:text-right lg:self-center"
                                         style={{marginLeft: "56%"}}>
                                         <div className="py-2 px-2 sm:mt-0">
-                                            <AddJobExperiences/>
+                                            <AddJobExperiences getJobExperiences={() => getJobEXperiences()}/>
                                         </div>
                                     </div>
                                 </div>
                                 {
-                                    cv?.jobExperiences != null ? cv?.jobExperiences?.map((jobExperience, index) => (
+                                    cvJobExperiences != null ? cvJobExperiences.map((jobExperience, index) => (
                                         <div className="flex flex-wrap" key={jobExperience.id}>
                                             <div className="w-full lg:w-6/12 px-12">
                                                 <div className="relative w-full mb-3">
@@ -492,14 +559,15 @@ export default function Profile() {
                                         className="w-full absolute lg:w-4/12 px-4 lg:order-3 mb-1 lg:text-right lg:self-center"
                                         style={{marginLeft: "56%"}}>
                                         <div className="py-2 px-2 sm:mt-0">
-                                            <AddJobSeekerLanguage/>
+                                            <AddJobSeekerLanguage
+                                                getJobSeekerLanguages={() => getJobSeekerLanguages()}/>
                                         </div>
                                     </div>
                                 </div>
                                 {
-                                    cv?.jobSeekerLanguages != null ? cv?.jobSeekerLanguages?.map((
-                                                                                                     language,
-                                                                                                     index) => (
+                                    cvJobSeekerLanguages != null ? cvJobSeekerLanguages.map((
+                                                                                                language,
+                                                                                                index) => (
                                         <div className="flex flex-wrap" key={language.id}>
                                             <div className="w-full lg:w-6/12 px-12">
                                                 <div className="relative w-full mb-3">
@@ -552,20 +620,76 @@ export default function Profile() {
                                     >
                                         Yetenekler/Teknolojiler
                                     </label>
+
+                                    <div
+                                        className="w-full absolute lg:w-4/12 px-4 lg:order-3 mb-1 lg:text-right lg:self-center"
+                                        style={{marginLeft: "56%"}}>
+                                        <div className="py-2 px-2 sm:mt-0">
+                                            {
+                                                cvTechnologies.length >= 5 ? "" :
+                                                    <AddTechnology getTechnologies={() => getTechnologies()}/>
+                                            }
+
+                                        </div>
+                                    </div>
                                 </div>
                                 <div className="flex flex-wrap">
-                                    <div className="w-full mx-auto lg:w-12/12 px-12">
-                                        <div className="relative w-full mb-3">
-                                    <textarea
-                                        type="text"
-                                        className="border-0 px-3 py-3 placeholder-blueGray-600 font-semibold text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                        rows="2"
-                                        placeholder={"Örn: Python,C#,Excel vb"}
-                                        maxLength={200}
-                                        defaultValue={plNames}
-                                        readOnly={true}
-                                        style={{cursor: "default"}}
-                                    ></textarea>
+                                    <div className=" mx-auto lg:w-12/12 px-12">
+                                        <div className="flex mx-auto mt-1">
+
+                                            {
+                                                cvTechnologies.map((technology, index) => (
+                                                    <span
+                                                        className="w-1/3 text-white text-sm font-bold uppercase px-3 py-2 mr-2 rounded-full shadow outline-none focus:outline-none ease-linear transition-all duration-150"
+                                                        style={index % 2 == 0 ? {
+                                                            backgroundColor: "#6366F1",
+                                                            cursor: "default"
+                                                        } : {backgroundColor: "#A855F7", cursor: "default"}}
+                                                    >
+                                                          <i className={"fas fa-times mr-2 cursor-pointer hover:text-red-400"}
+                                                             onClick={() => {
+                                                                 Swal.fire({
+                                                                               icon: 'warning',
+                                                                               title: 'Emin misiniz?',
+                                                                               showDenyButton: true,
+                                                                               // showCancelButton: true,
+                                                                               confirmButtonText: `Sil`,
+                                                                               denyButtonText: `Vazgeç`,
+                                                                           }).then((result) => {
+                                                                     /* Read more about isConfirmed, isDenied below */
+                                                                     if (result.isConfirmed) {
+                                                                         Swal.fire(
+                                                                             'Başarıyla Kaldırıldı!',
+                                                                             '',
+                                                                             'success')
+                                                                         deleteTechnologyById(technology.id)
+                                                                     } else if (result.isDenied) {
+                                                                         Swal.fire({
+                                                                                       position: 'center',
+                                                                                       icon: 'info',
+                                                                                       title: 'İşlemi iptal ettiniz!',
+                                                                                       showConfirmButton: false,
+                                                                                       timer: 1500
+                                                                                   })
+                                                                     }
+                                                                 })
+
+                                                             }
+                                                             }></i> {technology.plName}
+                                            </span>
+                                                ))
+
+                                            }
+                                            {/*<textarea*/}
+                                            {/*    type="text"*/}
+                                            {/*    className="border-0 px-3 py-3 placeholder-blueGray-600 font-semibold text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"*/}
+                                            {/*    rows="2"*/}
+                                            {/*    placeholder={"Örn: Python,C#,Excel vb"}*/}
+                                            {/*    maxLength={200}*/}
+                                            {/*    defaultValue={plNames}*/}
+                                            {/*    readOnly={true}*/}
+                                            {/*    style={{cursor: "default"}}*/}
+                                            {/*></textarea>*/}
                                         </div>
                                     </div>
                                 </div>

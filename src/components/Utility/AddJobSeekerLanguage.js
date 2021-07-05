@@ -37,7 +37,9 @@ function AddJobSeekerLanguage(props) {
     }, []);
 
     function addjobSeekerLanguage(language) {
-        jobSeekerLanguageService.addJobSeekerLanguage(language);
+        return jobSeekerLanguageService.addJobSeekerLanguage(language).then(() => {
+            props.getJobSeekerLanguages()
+        })
     }
 
     let languageNames = languages.map((language, index) => (language.languageName))
@@ -66,6 +68,7 @@ function AddJobSeekerLanguage(props) {
                                                                           showCancelButton: true,
                                                                           cancelButtonText: "Vazgeç",
                                                                           confirmButtonText: "Devam Et",
+                                                                          allowOutsideClick: false,
                                                                           inputValidator: (value) => {
                                                                               return new Promise(
                                                                                   (resolve) => {
@@ -90,6 +93,7 @@ function AddJobSeekerLanguage(props) {
                                                                                 showCancelButton: true,
                                                                                 cancelButtonText: "Vazgeç",
                                                                                 confirmButtonText: "Kaydet",
+                                                                                allowOutsideClick: false,
                                                                                 inputValidator: (value) => {
                                                                                     return new Promise(
                                                                                         (resolve) => {
@@ -110,7 +114,7 @@ function AddJobSeekerLanguage(props) {
                                     languageDegree: Number(languageDegree) + 1,
                                     languageId: Number(languageName) + 1
                                 }
-                                addjobSeekerLanguage(language);
+                                addjobSeekerLanguage(language)
                                 Swal.fire({
                                               icon: 'success',
                                               title: 'Yabancı Dil bilgisi başarıyla eklendi!',
@@ -119,7 +123,7 @@ function AddJobSeekerLanguage(props) {
                                           })
                             } else {
                                 Swal.fire({
-                                              position: 'top',
+                                              position: 'center',
                                               icon: 'info',
                                               title: 'İşlemi iptal ettiniz!',
                                               showConfirmButton: false,
@@ -128,7 +132,7 @@ function AddJobSeekerLanguage(props) {
                             }
                         } else {
                             Swal.fire({
-                                          position: 'top',
+                                          position: 'center',
                                           icon: 'info',
                                           title: 'İşlemi iptal ettiniz!',
                                           showConfirmButton: false,
@@ -141,7 +145,7 @@ function AddJobSeekerLanguage(props) {
                         Swal.fire({
                                       icon: 'error',
                                       title: 'HATA',
-                                      text: 'Sadece bitiş tarihi boş bırakılabilir!',
+                                      text: e,
                                       confirmButtonText: "Tamam"
                                   })
                     }

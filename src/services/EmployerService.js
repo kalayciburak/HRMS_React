@@ -25,12 +25,12 @@ export default class EmployerService {
     }
 
     deleteEmployerById(id) {
-        axios.delete(
+        return axios.delete(
             `http://localhost:8080/api/employers/deleteEmployerById?employerId=${id}`);
     }
 
     deactiveJobAdvert(active, id) {
-        axios.post(`http://localhost:8080/api/employers/changeIsActive?active=${active}&jobAdvertId=${id}`)
+        return axios.post(`http://localhost:8080/api/employers/changeIsActive?active=${active}&jobAdvertId=${id}`)
     }
 
 }

@@ -10,6 +10,10 @@ function AddCurriculaVitae(props) {
 
     let jobSeekerId = 42
 
+    function addCv(cv) {
+        return curriculaVitaeService.addCv(cv);
+    }
+
     return (
         <>
             <main className="profile-page">
@@ -80,7 +84,7 @@ function AddCurriculaVitae(props) {
                                         coverLetter: values.coverLetter
                                     };
 
-                                    curriculaVitaeService.addCv(curriculaVitae).then((res) => {
+                                    addCv(curriculaVitae).then((res) => {
                                         if (res.includes("Error")) {
                                             Swal.fire({
                                                           icon: 'error',

@@ -7,16 +7,20 @@ export default class JobSeekerLanguageService {
     }
 
     addJobSeekerLanguage(jobSeekerLanguage) {
-        axios({
-                  method: "POST",
-                  url: `http://localhost:8080/api/jobseekerLanguages/addJobseekerLanguages`,
-                  data: jobSeekerLanguage,
-                  headers: {"Content-Type": "application/json;charset-UTF-8"}
-              });
+        return axios({
+                         method: "POST",
+                         url: `http://localhost:8080/api/jobseekerLanguages/addJobseekerLanguages`,
+                         data: jobSeekerLanguage,
+                         headers: {"Content-Type": "application/json;charset-UTF-8"}
+                     }).then((res) => {
+            return res.data.message
+        }).catch((err) => {
+            return err.error.error
+        });
     }
 
     deleteJobSeekerLanguageById(id) {
-        axios.delete(
+        return axios.delete(
             `http://localhost:8080/api/jobseekerLanguages/deleteJobSeekerLanguageById?id=${id}`);
     }
 }

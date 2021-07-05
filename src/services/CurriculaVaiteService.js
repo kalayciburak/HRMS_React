@@ -32,11 +32,11 @@ export default class CurriculaVaiteService {
     }
 
     addPicture(cvId, file) {
-        axios({
-                  method: "POST",
-                  url: `http://localhost:8080/api/cvs/addPicture?cvId=${cvId}`,
-                  data: file,
-                  headers: "content-type: application/json",
-              });
+       return axios({
+                        method: "POST",
+                        url: `http://localhost:8080/api/cvs/addPicture?cvId=${cvId}`,
+                        data: file,
+                        headers: "content-type: application/json",
+                    });
     }
 }

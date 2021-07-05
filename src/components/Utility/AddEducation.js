@@ -47,7 +47,9 @@ function AddEducation(props) {
 
 
     function addEducation(education) {
-        educationService.addEducation(education);
+        educationService.addEducation(education).then(() => {
+            props.getEducations()
+        })
     }
 
     let schoolNames = school.map((sc, e) => (sc.schoolName))
@@ -70,6 +72,7 @@ function AddEducation(props) {
                                                                         showCancelButton: true,
                                                                         cancelButtonText: "Vazgeç",
                                                                         confirmButtonText: "Devam Et",
+                                                                        allowOutsideClick: false,
                                                                         inputValidator: (value) => {
                                                                             return new Promise(
                                                                                 (resolve) => {
@@ -94,6 +97,7 @@ function AddEducation(props) {
                                                                                 showCancelButton: true,
                                                                                 cancelButtonText: "Vazgeç",
                                                                                 confirmButtonText: "Devam Et",
+                                                                                allowOutsideClick: false,
                                                                                 inputValidator: (value) => {
                                                                                     return new Promise(
                                                                                         (resolve) => {
@@ -142,8 +146,7 @@ function AddEducation(props) {
                                         startDate: formValues[0],
                                         endDate: formValues[1],
                                         schoolId: Number(schoolName) + 1,
-                                        departmentId: Number(departmentName) + 1,
-
+                                        departmentId: Number(departmentName) + 1
                                     }
                                     addEducation(education)
                                     Swal.fire({
@@ -164,7 +167,7 @@ function AddEducation(props) {
                                 }
                             } else {
                                 Swal.fire({
-                                              position: 'top',
+                                              position: 'center',
                                               icon: 'info',
                                               title: 'İşlemi iptal ettiniz!',
                                               showConfirmButton: false,
@@ -173,7 +176,7 @@ function AddEducation(props) {
                             }
                         } else {
                             Swal.fire({
-                                          position: 'top',
+                                          position: 'center',
                                           icon: 'info',
                                           title: 'İşlemi iptal ettiniz!',
                                           showConfirmButton: false,

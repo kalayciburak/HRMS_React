@@ -32,12 +32,16 @@ export default class JobAdvertService {
     }
 
     addJobAdvert(jobAdvert) {
-        axios({
-                  method: "POST",
-                  url: `http://localhost:8080/api/jobadverts/addJobadvert`,
-                  data: jobAdvert,
-                  headers: "content-type: application/json",
-              });
+       return axios({
+                        method: "POST",
+                        url: `http://localhost:8080/api/jobadverts/addJobadvert`,
+                        data: jobAdvert,
+                        headers: "content-type: application/json",
+                    }).then((res) => {
+           return res.data.message
+       }).catch((err) => {
+           return err.error.error
+       });
     }
 
     getJobAdvertById(id) {
@@ -51,7 +55,7 @@ export default class JobAdvertService {
     }
 
     deleteJobAdvertById(id) {
-        axios.delete(
+        return axios.delete(
             `http://localhost:8080/api/jobadverts/deleteJobAdvertById?jobAdvertId=${id}`);
     }
 }

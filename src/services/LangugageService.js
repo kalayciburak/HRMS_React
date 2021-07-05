@@ -6,12 +6,16 @@ export default class LangugageService {
     }
 
     addLanguage(language) {
-        axios({
-                  method: "POST",
-                  url: `http://localhost:8080/api/languages/addLanguages`,
-                  data: language,
-                  headers: "content-type: application/json",
-              });
+       return axios({
+                        method: "POST",
+                        url: `http://localhost:8080/api/languages/addLanguages`,
+                        data: language,
+                        headers: "content-type: application/json",
+                    }).then((res) => {
+           return res.data.message
+       }).catch((err) => {
+           return err.error.error
+       });
     }
 
 }
