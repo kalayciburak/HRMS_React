@@ -36,11 +36,12 @@ function UpdateSocialMedia(props) {
     return (
         <div>
             <span
+                title={"Kullanıcı Adını Değiştir"}
                 className="bg-indigo-500 cursor-pointer px-2 text-blueGray-300 active:bg-indigo-500 hover:bg-purple-400 text-xs font-semibold capitalize px-1 rounded shadow outline-none focus:outline-none mr-1 ease-linear transition-all duration-250"
                 onClick={async () => {
                     try {
                         const {value: githubUserName} = await Swal.fire({
-                                                                            title: 'Github Kullanıcı Adı',
+                                                                            title: '1/2 Github Kullanıcı Adı',
                                                                             input: 'text',
                                                                             inputPlaceholder: 'Github kullanıcı adınızı giriniz',
                                                                             inputValue: smId.githubUsername,
@@ -67,7 +68,7 @@ function UpdateSocialMedia(props) {
 
                         if (githubUserName) {
                             const {value: linkedinUserName} = await Swal.fire({
-                                                                                  title: 'Linkedin Kullanıcı Adı',
+                                                                                  title: '2/2 Linkedin Kullanıcı Adı',
                                                                                   input: 'text',
                                                                                   inputPlaceholder: 'Linkedin kullanıcı adınızı giriniz',
                                                                                   inputValue: smId.linkedinUsername,
@@ -115,6 +116,14 @@ function UpdateSocialMedia(props) {
                                               timer: 1500
                                           })
                             }
+                        } else {
+                            Swal.fire({
+                                          position: 'center',
+                                          icon: 'info',
+                                          title: 'İşlemi iptal ettiniz!',
+                                          showConfirmButton: false,
+                                          timer: 1500
+                                      })
                         }
 
                     } catch (e) {

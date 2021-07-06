@@ -70,8 +70,28 @@ export default function EmployerDropdown(props) {
                                                           }).then((result) => {
                                                     /* Read more about isConfirmed, isDenied below */
                                                     if (result.isConfirmed) {
-                                                        Swal.fire('Başarıyla Kaldırıldı!', '', 'success')
                                                         props.deleteEmployer()
+                                                        const Toast = Swal.mixin({
+                                                                                     toast: true,
+                                                                                     position: 'top-end',
+                                                                                     showConfirmButton: false,
+                                                                                     timer: 3000,
+                                                                                     timerProgressBar: true,
+                                                                                     background: "#66B96F",
+                                                                                     didOpen: (toast) => {
+                                                                                         toast.addEventListener(
+                                                                                             'mouseenter',
+                                                                                             Swal.stopTimer)
+                                                                                         toast.addEventListener(
+                                                                                             'mouseleave',
+                                                                                             Swal.resumeTimer)
+                                                                                     }
+                                                                                 })
+
+                                                        Toast.fire({
+                                                                       icon: 'success',
+                                                                       html: "<h1 style='font-family: Ubuntu;color: white;'>Başarıyla Kaldırıldı!</h1>"
+                                                                   })
                                                     } else if (result.isDenied) {
                                                         // Swal.fire('Changes are not saved', '', 'info')
                                                     }

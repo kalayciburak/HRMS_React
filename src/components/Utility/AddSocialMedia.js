@@ -15,6 +15,7 @@ function AddSocialMedia(props) {
     return (
         <div>
             <span
+                title={"Kullanıcı Adı Ekle"}
                 className="bg-indigo-500 cursor-pointer px-2 text-blueGray-300 active:bg-indigo-500 hover:bg-purple-400 text-xs font-semibold capitalize px-1 rounded shadow outline-none focus:outline-none mr-1 ease-linear transition-all duration-250"
                 onClick={async () => {
                     try {

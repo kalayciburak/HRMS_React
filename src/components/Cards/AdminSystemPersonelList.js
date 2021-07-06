@@ -22,9 +22,11 @@ function AdminSystemPersonelList(props) {
     }, [])
 
     function deleteSystemPersonel(id) {
-        systemPersonelService.deleteSystemPersonelById(id);
-        const filteredSystemPersonels = systemPersonels.filter((systemPersonel) => systemPersonel.id != id)
-        setSystemPersonels(filteredSystemPersonels);
+        systemPersonelService.deleteSystemPersonelById(id).then(() => {
+            getPersonels()
+        })
+        // const filteredSystemPersonels = systemPersonels.filter((systemPersonel) => systemPersonel.id != id)
+        // setSystemPersonels(filteredSystemPersonels);
     }
 
     function getPersonels() {

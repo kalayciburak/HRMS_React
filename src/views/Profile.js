@@ -4,9 +4,9 @@ import ProfileNavbar from "components/Navbars/ProfileNavbar.js";
 import Footer from "components/Footers/Footer.js";
 import CurriculaVaiteService from "../services/CurriculaVaiteService";
 import Swal from "sweetalert2";
-import EducationDropdown from "../components/Dropdowns/CurriculaVitaeDropdown/EducationDropdown";
-import JobExperienceDropdown from "../components/Dropdowns/CurriculaVitaeDropdown/JobExperienceDropdown";
-import LanguageDropdown from "../components/Dropdowns/CurriculaVitaeDropdown/LanguageDropdown";
+import EducationDelete from "../components/Dropdowns/CurriculaVitaeDropdown/EducationDelete";
+import JobExperienceDelete from "../components/Dropdowns/CurriculaVitaeDropdown/JobExperienceDelete";
+import LanguageDelete from "../components/Dropdowns/CurriculaVitaeDropdown/LanguageDelete";
 import AddEducation from "../components/Utility/AddEducation";
 import EducationService from "../services/EducationService";
 import AddJobExperiences from "../components/Utility/AddJobExperiences";
@@ -42,7 +42,7 @@ export default function Profile() {
 
     const [cvSocialMedias, setCvSocialMedias] = useState([]);
 
-    let jobSeekerId = 42
+    let jobSeekerId = 1 //burası login yapmış olan kullanıcıdan alınacak
 
     function findCvByJobSeekerId() {
         return curriculaVitaeService.findCvByJobSeekerId(jobSeekerId)
@@ -161,11 +161,12 @@ export default function Profile() {
     }
 
     function uploadImage() {
-        document.getElementById("image").src = "https://i.ibb.co/9GfdYrw/Untitled-1.png";
+        document.getElementById("image").src = "https://res.cloudinary.com/torukobyte/image/upload/v1625589853/svg-cloud-upload-long-shadow-icon-1_akc2uc.png";
     }
 
     function originalImage() {
         document.getElementById("image").src = cv.pictureUrl;
+        document.getElementById("image").title = "Fotoğraf Yükle";
     }
 
     return (
@@ -338,6 +339,7 @@ export default function Profile() {
                                                     style={{marginLeft: "70%"}}>
                                                     <div className="py-2 px-2 sm:mt-0">
                                                         <span
+                                                            title={"Hakkımda Bilgisini Düzenle"}
                                                             className="bg-indigo-500 cursor-pointer text-blueGray-300 active:bg-indigo-500 hover:bg-purple-400 text-xs font-semibold capitalize px-1 rounded shadow outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-250"
                                                             onClick={async () => {
 
@@ -491,7 +493,7 @@ export default function Profile() {
                                             </div>
                                             <div className={"absolute"}
                                                  style={{marginLeft: "90%", marginTop: "2.7rem"}}>
-                                                <EducationDropdown
+                                                <EducationDelete
                                                     deleteEducation={() => deleteEducationById(education.id)}/>
                                             </div>
                                             <span className={"mt-2 mb-6 mx-auto"}
@@ -583,7 +585,7 @@ export default function Profile() {
                                             </div>
                                             <div className={"absolute"}
                                                  style={{marginLeft: "90%", marginTop: "2.7rem"}}>
-                                                <JobExperienceDropdown
+                                                <JobExperienceDelete
                                                     deleteJobExperienceById={() => deleteJobExperienceById(jobExperience.id)}/>
                                             </div>
                                             <span className={"mt-2 mb-6 mx-auto"}
@@ -653,7 +655,7 @@ export default function Profile() {
                                             </div>
                                             <div className={"absolute"}
                                                  style={{marginLeft: "90%", marginTop: "0.1.5rem"}}>
-                                                <LanguageDropdown
+                                                <LanguageDelete
                                                     deleteJobSeekerLanguageById={() => deleteJobSeekerLanguageById(
                                                         language.id)}/>
                                             </div>
@@ -696,7 +698,8 @@ export default function Profile() {
                                                             cursor: "default"
                                                         } : {backgroundColor: "#A855F7", cursor: "default"}}
                                                     >
-                                                          <i className={"fas fa-times mr-2 cursor-pointer hover:text-red-400"}
+                                                          <i title={"Sil"}
+                                                             className={"fas fa-times mr-2 cursor-pointer hover:text-red-400"}
                                                              onClick={() => {
                                                                  Swal.fire({
                                                                                icon: 'warning',
@@ -708,14 +711,28 @@ export default function Profile() {
                                                                            }).then((result) => {
                                                                      /* Read more about isConfirmed, isDenied below */
                                                                      if (result.isConfirmed) {
-                                                                         Swal.fire({
-                                                                                       position: 'center',
-                                                                                       icon: 'success',
-                                                                                       title: 'Başarıyla kaldırıldı!',
-                                                                                       showConfirmButton: false,
-                                                                                       timer: 1500
-                                                                                   })
                                                                          deleteTechnologyById(technology.id)
+                                                                         const Toast = Swal.mixin({
+                                                                                                      toast: true,
+                                                                                                      position: 'top-end',
+                                                                                                      showConfirmButton: false,
+                                                                                                      timer: 3000,
+                                                                                                      timerProgressBar: true,
+                                                                                                      background: "#66B96F",
+                                                                                                      didOpen: (toast) => {
+                                                                                                          toast.addEventListener(
+                                                                                                              'mouseenter',
+                                                                                                              Swal.stopTimer)
+                                                                                                          toast.addEventListener(
+                                                                                                              'mouseleave',
+                                                                                                              Swal.resumeTimer)
+                                                                                                      }
+                                                                                                  })
+
+                                                                         Toast.fire({
+                                                                                        icon: 'success',
+                                                                                        html: "<h1 style='font-family: Ubuntu;color: white;'>Başarıyla Kaldırıldı!</h1>"
+                                                                                    })
                                                                      } else if (result.isDenied) {
                                                                          Swal.fire({
                                                                                        position: 'center',

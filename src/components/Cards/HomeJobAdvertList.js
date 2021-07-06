@@ -23,6 +23,8 @@ function HomeJobAdvertList() {
 
     const [paginationSize, setPaginationSize] = useState(4);
 
+    const [windowY, setWindowY] = useState(0);
+
     useEffect(() => {
         let isMounted = true;
         if (sort) {
@@ -47,6 +49,7 @@ function HomeJobAdvertList() {
                 })
         }
 
+
         return () => {
             isMounted = false; //cleaunp
         }
@@ -64,7 +67,7 @@ function HomeJobAdvertList() {
     const check = <i className="font-bold fas fa-check"></i>
 
     return (
-        <div>
+        <div onMouseMove={() => setWindowY(window.pageYOffset)}>
             <BackToTop/>
 
             <h3 className="text-4xl mt-20 font-semibold leading-normal text-blueGray-800 text-center"><i
@@ -106,7 +109,7 @@ function HomeJobAdvertList() {
                                                     )}
                                                     onClick={() => {
                                                         setPageSize(5)
-                                                        setPaginationSize(Math.round(jobAdvertLength.length / 5) < 1 ? 1 : Math.round(
+                                                        setPaginationSize(Math.round(jobAdvertLength.length / 5) < 1 ? 1 : Math.ceil(
                                                             jobAdvertLength.length / 5))
                                                         setPageNo(1)
                                                         if (pageSize != 5) {
@@ -134,7 +137,7 @@ function HomeJobAdvertList() {
                                                     )}
                                                     onClick={() => {
                                                         setPageSize(10)
-                                                        setPaginationSize(Math.round(jobAdvertLength.length / 10) < 1 ? 1 : Math.round(
+                                                        setPaginationSize(Math.round(jobAdvertLength.length / 10) < 1 ? 1 : Math.ceil(
                                                             jobAdvertLength.length / 10))
                                                         setPageNo(1)
                                                         if (pageSize != 10) {
@@ -162,7 +165,7 @@ function HomeJobAdvertList() {
                                                     )}
                                                     onClick={() => {
                                                         setPageSize(20)
-                                                        setPaginationSize(Math.round(jobAdvertLength.length / 20) < 1 ? 1 : Math.round(
+                                                        setPaginationSize(Math.round(jobAdvertLength.length / 20) < 1 ? 1 : Math.ceil(
                                                             jobAdvertLength.length / 20))
                                                         setPageNo(1)
                                                         if (pageSize != 20) {
@@ -190,7 +193,7 @@ function HomeJobAdvertList() {
                                                     )}
                                                     onClick={() => {
                                                         setPageSize(50)
-                                                        setPaginationSize(Math.round(jobAdvertLength.length / 50) < 1 ? 1 : Math.round(
+                                                        setPaginationSize(Math.round(jobAdvertLength.length / 50) < 1 ? 1 : Math.ceil(
                                                             jobAdvertLength.length / 50))
                                                         setPageNo(1)
                                                         if (pageSize != 50) {
@@ -218,7 +221,7 @@ function HomeJobAdvertList() {
                                                     )}
                                                     onClick={() => {
                                                         setPageSize(100)
-                                                        setPaginationSize(Math.round(jobAdvertLength.length / 100) < 1 ? 1 : Math.round(
+                                                        setPaginationSize(Math.round(jobAdvertLength.length / 100) < 1 ? 1 : Math.ceil(
                                                             jobAdvertLength.length / 100))
                                                         setPageNo(1)
                                                         if (pageSize != 100) {
