@@ -16,8 +16,6 @@ function AddJobSeekerLanguage(props) {
 
     const [languages, setLanguages] = useState([]);
 
-    let jobSeekerId = 1
-
     useEffect(() => {
         let isMounted = true
         languageService.getLanguages().then((res) => {
@@ -25,7 +23,7 @@ function AddJobSeekerLanguage(props) {
                 setLanguages(res.data.data)
             }
         })
-        curriculaVitaeService.findCvByJobSeekerId(jobSeekerId).then((res) => {
+        curriculaVitaeService.findCvByJobSeekerId(props.getJobSeekerLanguages()).then((res) => {
             if (isMounted) {
                 setCv(res.data.data)
             }

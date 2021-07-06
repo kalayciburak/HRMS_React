@@ -4,11 +4,19 @@ import {Form, Formik} from "formik";
 import * as Yup from "yup";
 import Swal from "sweetalert2";
 
-export default function Modal() {
+export default function AddSystemPersonel(props) {
     const [showModal, setShowModal] = React.useState(false);
+
     const personelService = new SystemPersonelService();
 
     let isDisabled;
+
+    function addSystemPersonel(systemPersonel) {
+        return personelService.addSystemPersonel(systemPersonel).then(() => {
+            props.getPersonels()
+        })
+    }
+
     return (
         <>
             <button
@@ -58,7 +66,7 @@ export default function Modal() {
                                             password: values.password
                                         };
 
-                                        personelService.addSystemPersonel(personel).then((res) => {
+                                        addSystemPersonel(personel).then((res) => {
                                             // console.log(res)
                                             if (res.includes("Error")) {
                                                 Swal.fire({

@@ -11,11 +11,9 @@ function AddJobExperiences(props) {
 
     const [cv, setCv] = useState([]);
 
-    let jobSeekerId = 1
-
     useEffect(() => {
         let isMounted = true
-        curriculaVitaeService.findCvByJobSeekerId(jobSeekerId).then((res) => {
+        curriculaVitaeService.findCvByJobSeekerId(props.getJobExperiences()).then((res) => {
             if (isMounted) {
                 setCv(res.data.data)
             }

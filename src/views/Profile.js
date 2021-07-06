@@ -15,6 +15,8 @@ import AddJobSeekerLanguage from "../components/Utility/AddJobSeekerLanguage";
 import JobSeekerLanguageService from "../services/JobSeekerLanguageService";
 import AddTechnology from "../components/Utility/AddTechnology";
 import TechnologyService from "../services/TechnologyService";
+import AddSocialMedia from "../components/Utility/AddSocialMedia";
+import UpdateSocialMedia from "../components/Utility/UpdateSocialMedia";
 
 export default function Profile() {
 
@@ -38,7 +40,9 @@ export default function Profile() {
 
     const [cvTechnologies, setCvTechnologies] = useState([]);
 
-    let jobSeekerId = 1
+    const [cvSocialMedias, setCvSocialMedias] = useState([]);
+
+    let jobSeekerId = 42
 
     function findCvByJobSeekerId() {
         return curriculaVitaeService.findCvByJobSeekerId(jobSeekerId)
@@ -67,7 +71,14 @@ export default function Profile() {
             }
         })
         findCvByJobSeekerId().then((res) => {
-            setCvTechnologies(res.data.data.technologies)
+            if (isMounted) {
+                setCvTechnologies(res.data.data.technologies)
+            }
+        })
+        findCvByJobSeekerId().then((res) => {
+            if (isMounted) {
+                setCvSocialMedias(res.data.data.socialMedia)
+            }
         })
         return () => {
             isMounted = false;
@@ -118,24 +129,43 @@ export default function Profile() {
         findCvByJobSeekerId().then((res) => {
             setCvEducations(res.data.data.educations)
         })
+        return jobSeekerId;
     }
 
     function getJobEXperiences() {
         findCvByJobSeekerId().then((res) => {
             setCvJobExperiences(res.data.data.jobExperiences)
         })
+        return jobSeekerId;
     }
 
     function getJobSeekerLanguages() {
         findCvByJobSeekerId().then((res) => {
             setCvJobSeekerLanguages(res.data.data.jobSeekerLanguages)
         })
+        return jobSeekerId;
     }
 
     function getTechnologies() {
         findCvByJobSeekerId().then((res) => {
             setCvTechnologies(res.data.data.technologies)
         })
+        return jobSeekerId;
+    }
+
+    function getSocialMedias() {
+        findCvByJobSeekerId().then((res) => {
+            setCvSocialMedias(res.data.data.socialMedia)
+        })
+        return cv.id
+    }
+
+    function uploadImage() {
+        document.getElementById("image").src = "https://i.ibb.co/9GfdYrw/Untitled-1.png";
+    }
+
+    function originalImage() {
+        document.getElementById("image").src = cv.pictureUrl;
     }
 
     return (
@@ -188,9 +218,16 @@ export default function Profile() {
                             <div className="w-full px-4 flex justify-center">
                                 <div className="relative">
                                     <img
+                                        id={"image"}
                                         alt="..."
                                         src={cv?.pictureUrl}
                                         className="shadow-xl rounded-full cursor-pointer hover:bg-purple-400 align-middle mt-2 border-none flex lg:-ml-16 max-w-150-px"
+                                        onMouseOver={() => {
+                                            uploadImage()
+                                        }}
+                                        onMouseOut={() => {
+                                            originalImage()
+                                        }}
                                         style={{marginLeft: "-24rem", border: "2px solid rgba(99,102,241,0.3)"}}
                                         onClick={async () => {
                                             const {value: file} = await Swal.fire({
@@ -308,12 +345,24 @@ export default function Profile() {
                                                                                                           input: 'textarea',
                                                                                                           inputLabel: 'Hakkımda',
                                                                                                           inputPlaceholder: cv.coverLetter,
+                                                                                                          inputValue: cv.coverLetter,
                                                                                                           inputAttributes: {
-                                                                                                              'aria-label': 'Type your message here'
+                                                                                                              maxlength: 200
                                                                                                           },
                                                                                                           showCancelButton: true,
                                                                                                           cancelButtonText: "Vazgeç",
-                                                                                                          confirmButtonText: "Kaydet"
+                                                                                                          confirmButtonText: "Kaydet",
+                                                                                                          inputValidator: (value) => {
+                                                                                                              return new Promise(
+                                                                                                                  (resolve) => {
+                                                                                                                      if (value != '') {
+                                                                                                                          resolve()
+                                                                                                                      } else {
+                                                                                                                          resolve(
+                                                                                                                              'Bu alan boş bırakılamaz!')
+                                                                                                                      }
+                                                                                                                  })
+                                                                                                          }
                                                                                                       })
 
                                                                 if (text) {
@@ -351,7 +400,7 @@ export default function Profile() {
                                             <textarea
                                                 type="text"
                                                 className="border-0 px-3 py-3 placeholder-blueGray-600 text-blueGray-600 bg-white rounded text-sm font-semibold shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                                rows="2"
+                                                rows="3"
                                                 placeholder={"Hobilerin, hedeflerin vb."}
                                                 defaultValue={cv?.coverLetter}
                                                 style={{cursor: "default"}}
@@ -641,6 +690,7 @@ export default function Profile() {
                                                 cvTechnologies.map((technology, index) => (
                                                     <span
                                                         className="w-1/3 text-white text-sm font-bold uppercase px-3 py-2 mr-2 rounded-full shadow outline-none focus:outline-none ease-linear transition-all duration-150"
+                                                        key={technology.id}
                                                         style={index % 2 == 0 ? {
                                                             backgroundColor: "#6366F1",
                                                             cursor: "default"
@@ -658,10 +708,13 @@ export default function Profile() {
                                                                            }).then((result) => {
                                                                      /* Read more about isConfirmed, isDenied below */
                                                                      if (result.isConfirmed) {
-                                                                         Swal.fire(
-                                                                             'Başarıyla Kaldırıldı!',
-                                                                             '',
-                                                                             'success')
+                                                                         Swal.fire({
+                                                                                       position: 'center',
+                                                                                       icon: 'success',
+                                                                                       title: 'Başarıyla kaldırıldı!',
+                                                                                       showConfirmButton: false,
+                                                                                       timer: 1500
+                                                                                   })
                                                                          deleteTechnologyById(technology.id)
                                                                      } else if (result.isDenied) {
                                                                          Swal.fire({
@@ -695,50 +748,66 @@ export default function Profile() {
                                 </div>
                                 <hr className="mt-6 " style={{borderBottom: "1px solid black"}}/>
 
-                                <h6 className="text-black text-sm mt-3 mb-6 font-bold uppercase">
-                                    Sosyal Hesaplar
-                                </h6>
-                                {
-                                    cv?.socialMedias != null ? cv?.socialMedias?.map((socialMedia, index) => (
-                                        <div className="flex flex-wrap" key={socialMedia.id}>
-                                            <div className="w-full lg:w-6/12 px-12">
-                                                <div className="relative w-full mb-3">
-                                                    <label
-                                                        className="block uppercase text-black text-xs font-semibold font-bold mb-2"
-                                                    >
-                                                        <i className={"fab fa-lg fa-github text-black"}></i> Github
-                                                    </label>
-                                                    <input
-                                                        type="text"
-                                                        className="border-0 px-3 py-2 placeholder-blueGray-600 font-semibold text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                                        placeholder={"Github Kullanıcı Adı"}
-                                                        defaultValue={socialMedia.githubUsername}
-                                                        style={{cursor: "default"}}
-                                                        readOnly={true}
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div className="w-full lg:w-6/12 px-12">
-                                                <div className="relative w-full mb-3">
-                                                    <label
-                                                        className="block uppercase text-black text-xs font-semibold font-bold mb-2"
-                                                    >
-                                                        <i className={"fab fa-lg fa-linkedin text-black"}></i> Linkedin
-                                                    </label>
-                                                    <input
-                                                        type="text"
-                                                        className="border-0 px-3 py-2 placeholder-blueGray-600 font-semibold text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                                        placeholder={"Linkedin Kullanıcı Adı"}
-                                                        defaultValue={socialMedia.linkedinUsername}
-                                                        style={{cursor: "default"}}
-                                                        readOnly={true}
-                                                    />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    )) : ""
+                                <div className={"flex flex-wrap mt-2"}>
+                                    <label
+                                        className="block uppercase text-black text-sm mt-2 font-bold mb-3"
+                                        htmlFor="grid-password"
+                                    >
+                                        Sosyal Hesaplar
+                                    </label>
 
-                                }
+                                    <div
+                                        className="w-full absolute lg:w-4/12 px-4 lg:order-3 mb-1 lg:text-right lg:self-center"
+                                        style={{marginLeft: "56%"}}>
+                                        <div className="py-2 px-2 sm:mt-0">
+                                            {
+
+                                                cvSocialMedias?.githubUsername != null || cvSocialMedias?.linkedinUsername != null ?
+                                                    <UpdateSocialMedia getSocialMedias={() => getSocialMedias()}/> :
+                                                    <AddSocialMedia getSocialMedias={() => getSocialMedias()}/>
+
+                                            }
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="flex flex-wrap">
+                                    <div className="w-full lg:w-6/12 px-12">
+                                        <div className="relative w-full mb-3">
+                                            <label
+                                                className="block uppercase text-black text-xs font-semibold font-bold mb-2"
+                                            >
+                                                <i className={"fab fa-lg fa-github text-black"}></i> Github
+                                            </label>
+                                            <input
+                                                type="text"
+                                                className="border-0 px-3 py-2 placeholder-blueGray-600 font-semibold text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                                placeholder={"Github Kullanıcı Adı"}
+                                                defaultValue={cvSocialMedias?.githubUsername}
+                                                style={{cursor: "default"}}
+                                                readOnly={true}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="w-full lg:w-6/12 px-12">
+                                        <div className="relative w-full mb-3">
+                                            <label
+                                                className="block uppercase text-black text-xs font-semibold font-bold mb-2"
+                                            >
+                                                <i className={"fab fa-lg fa-linkedin text-black"}></i> Linkedin
+                                            </label>
+                                            <input
+                                                type="text"
+                                                className="border-0 px-3 py-2 placeholder-blueGray-600 font-semibold text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                                placeholder={"Linkedin Kullanıcı Adı"}
+                                                defaultValue={cvSocialMedias?.linkedinUsername}
+                                                style={{cursor: "default"}}
+                                                readOnly={true}
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+
                                 {/*<hr className="mt-6 border-b-1 border-blueGray-300"/>*/}
 
                                 {/*<div className="w-full lg:w-6/12 px-12 mx-auto">*/}

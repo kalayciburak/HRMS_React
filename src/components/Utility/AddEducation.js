@@ -20,8 +20,6 @@ function AddEducation(props) {
 
     const [cv, setCv] = useState([]);
 
-    let jobSeekerId = 1
-
     useEffect(() => {
         let isMounted = true
         schoolService.getSchools().then((res) => {
@@ -34,7 +32,7 @@ function AddEducation(props) {
                 setDepartment(res.data.data)
             }
         })
-        curriculaVitaeService.findCvByJobSeekerId(jobSeekerId).then((res) => {
+        curriculaVitaeService.findCvByJobSeekerId(props.getEducations()).then((res) => {
             if (isMounted) {
                 setCv(res.data.data)
             }

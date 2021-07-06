@@ -11,11 +11,9 @@ function AddTechnology(props) {
 
     const technologyService = new TechnologyService();
 
-    let jobSeekerId = 1
-
     useEffect(() => {
         let isMounted = true
-        curriculaVitaeService.findCvByJobSeekerId(jobSeekerId).then((res) => {
+        curriculaVitaeService.findCvByJobSeekerId(props.getTechnologies()).then((res) => {
             if (isMounted) {
                 setCv(res.data.data)
             }

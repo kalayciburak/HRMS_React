@@ -27,6 +27,12 @@ function AdminSystemPersonelList(props) {
         setSystemPersonels(filteredSystemPersonels);
     }
 
+    function getPersonels() {
+        systemPersonelService.getSystemPersonel().then((res) => {
+            setSystemPersonels(res.data.data);
+        })
+    }
+
     return (
         <div>
 
@@ -47,7 +53,7 @@ function AdminSystemPersonelList(props) {
                 />
             </div>
             <div style={{textAlign: "left"}}>
-                <AddSystemPersonel/>
+                <AddSystemPersonel getPersonels={() => getPersonels()}/>
             </div>
             <div
                 className={"relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg text-white rounded-lg bg-blueGray-800"}
