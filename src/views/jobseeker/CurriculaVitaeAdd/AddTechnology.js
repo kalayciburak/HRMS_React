@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import Swal from "sweetalert2";
-import CurriculaVaiteService from "../../services/CurriculaVaiteService";
-import TechnologyService from "../../services/TechnologyService";
+import CurriculaVaiteService from "../../../services/CurriculaVaiteService";
+import TechnologyService from "../../../services/TechnologyService";
 
 function AddTechnology(props) {
 

@@ -41,7 +41,7 @@ export default function UserDropdown(props) {
                                 <Menu.Item>
                                     {({active}) => (
                                         <Link
-                                            to="/profile"
+                                            to="/jobseeker/profile"
 
                                             className={classNames(
                                                 active ? 'bg-emerald-500 text-white' : 'text-white',

@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import Swal from "sweetalert2";
-import CurriculaVaiteService from "../../services/CurriculaVaiteService";
-import LangugageService from "../../services/LangugageService";
-import JobSeekerLanguageService from "../../services/JobSeekerLanguageService";
+import CurriculaVaiteService from "../../../services/CurriculaVaiteService";
+import LangugageService from "../../../services/LangugageService";
+import JobSeekerLanguageService from "../../../services/JobSeekerLanguageService";
 
 function AddJobSeekerLanguage(props) {
 

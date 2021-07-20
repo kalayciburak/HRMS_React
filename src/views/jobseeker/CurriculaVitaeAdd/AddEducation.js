@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import SchoolService from "../../services/SchoolService";
-import DepartmentService from "../../services/DepartmentService";
-import EducationService from "../../services/EducationService";
-import CurriculaVaiteService from "../../services/CurriculaVaiteService";
+import SchoolService from "../../../services/SchoolService";
+import DepartmentService from "../../../services/DepartmentService";
+import EducationService from "../../../services/EducationService";
+import CurriculaVaiteService from "../../../services/CurriculaVaiteService";
 import Swal from "sweetalert2";
 
 function AddEducation(props) {

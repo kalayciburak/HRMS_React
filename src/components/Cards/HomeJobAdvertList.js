@@ -4,6 +4,7 @@ import {ChevronDownIcon} from "@heroicons/react/solid";
 import JobAdvertService from "../../services/JobAdvertService";
 import BackToTop from "../Utility/BackToTop";
 import Swal from "sweetalert2";
+import BackToBottom from "../Utility/BackToBottom";
 
 function HomeJobAdvertList() {
 
@@ -24,6 +25,8 @@ function HomeJobAdvertList() {
     const [paginationSize, setPaginationSize] = useState(4);
 
     const [windowY, setWindowY] = useState(0);
+
+    let jobSeekerId = 1 //burası login yapmış olan kullanıcıdan alınacak
 
     useEffect(() => {
         let isMounted = true;
@@ -69,6 +72,7 @@ function HomeJobAdvertList() {
     return (
         <div onMouseMove={() => setWindowY(window.pageYOffset)}>
             <BackToTop/>
+            <BackToBottom/>
 
             <h3 className="text-4xl mt-20 font-semibold leading-normal text-blueGray-800 text-center"><i
                 className="fas fa-briefcase"></i> İş İlanları</h3>
@@ -395,7 +399,7 @@ function HomeJobAdvertList() {
                                         <i className="far fa-envelope mt-1"></i> {jobAdvert.employer.email}</p>
 
                                 </div>
-                                <div className="w-full lg:w-1/3 px-12 flex flex-col items-center py-10">
+                                <div className="w-full lg:w-1/3 px-12 flex flex-col items-center mt-16">
                                     <div
                                         className={index % 2 == 1 ? "mb-3 w-24 h-24 rounded-full bg-gray-100 flex items-center justify-center text-blueGray-900" : "mb-3 w-24 h-24 rounded-full bg-gray-100 flex items-center justify-center text-blueGray-200"}>
                                         <svg xmlns="http://www.w3.org/2000/svg"
@@ -413,7 +417,7 @@ function HomeJobAdvertList() {
                                     <p className={index % 2 == 1 ? "text-blueGray-700 dark:text-gray-100 text-sm tracking-normal font-semibold text-center" : "text-blueGray-400 dark:text-gray-100 text-sm tracking-normal font-semibold text-center"}>{jobAdvert.typeOfEmployment}/{jobAdvert.upTime}</p>
                                     <p className={index % 2 == 1 ? "text-blueGray-700 dark:text-gray-100 text-sm tracking-normal font-semibold mt-2 mb-6 text-center w-10/12" : "text-blueGray-400 dark:text-gray-100 text-sm tracking-normal font-semibold mt-2 mb-6 text-center w-10/12"}>{jobAdvert.description}</p>
                                     <button
-                                        className="bg-indigo-500 text-blueGray-300 active:bg-indigo-500 hover:bg-purple-400 text-sm font-bold uppercase px-6 py-2 rounded shadow mt-3 outline-none focus:outline-none mr-1 mb-1 w-10/12 ease-linear transition-all duration-250"
+                                        className={index % 2 == 1 ? "bg-indigo-500 border border-indigo-400 text-blueGray-300 active:bg-indigo-500 hover:bg-purple-400 text-sm font-semibold uppercase px-6 py-2 rounded shadow mt-3 outline-none focus:outline-none mr-1 mb-1 w-10/12 ease-linear transition-all duration-250" : "bg-indigo-500 text-blueGray-300 active:bg-indigo-500 hover:bg-purple-400 text-sm font-semibold uppercase px-6 py-2 rounded shadow mt-3 outline-none focus:outline-none mr-1 mb-1 w-10/12 ease-linear transition-all duration-250"}
                                         type="button"
                                     >
                                         Başvuru Yap

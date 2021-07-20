@@ -1,17 +1,15 @@
-import React from "react";
-import SystemPersonelService from "../../services/SystemPersonelService";
+import React from 'react';
 import Swal from "sweetalert2";
+import CityService from "../../services/CityService";
 
-export default function AddSystemPersonel(props) {
+function AddJobAdvert(props) {
 
-    const personelService = new SystemPersonelService();
+    const cityService = new CityService();
 
-    function addSystemPersonel(systemPersonel) {
-        return personelService.addSystemPersonel(systemPersonel)
-    }
+    console.log(cityService.getCities())
 
     return (
-        <>
+        <div>
             <button
                 className={"absolute bg-emerald-500 text-blueGray-200 hover:bg-lightBlue-300 font-semibold text px-4 py-2 rounded shadow outline-none focus:outline-none ease-linear transition-all duration-50"}
                 onClick={async () => {
@@ -101,23 +99,23 @@ export default function AddSystemPersonel(props) {
                                     email: email,
                                     password: password,
                                 }
-                                addSystemPersonel(personel).then((res) => {
-                                    if (res.includes("Error")) {
-                                        Swal.fire({
-                                                      icon: 'error',
-                                                      text: res.split("Error: ")[1],
-                                                      confirmButtonText: `Tamam`,
-                                                  })
-                                    } else {
-                                        props.getPersonels()
-                                        Swal.fire({
-                                                      icon: 'success',
-                                                      text: res.split("Success: ")[1],
-                                                      confirmButtonText: `Tamam`,
-                                                      timer: 2000,
-                                                  })
-                                    }
-                                })
+                                // addSystemPersonel(personel).then((res) => {
+                                //     if (res.includes("Error")) {
+                                //         Swal.fire({
+                                //                       icon: 'error',
+                                //                       text: res.split("Error: ")[1],
+                                //                       confirmButtonText: `Tamam`,
+                                //                   })
+                                //     } else {
+                                //         props.getPersonels()
+                                //         Swal.fire({
+                                //                       icon: 'success',
+                                //                       text: res.split("Success: ")[1],
+                                //                       confirmButtonText: `Tamam`,
+                                //                       timer: 2000,
+                                //                   })
+                                //     }
+                                // })
                                 // Swal.fire({
                                 //               icon: 'success',
                                 //               title: 'Sosyal Medya bilgileriniz başarıyla eklendi!',
@@ -156,8 +154,10 @@ export default function AddSystemPersonel(props) {
                 }
                 }
             >
-                <i className="fas fa-sm fa-plus"></i> Personel Ekle
+                <i className="fas fa-sm fa-plus"></i> İlan Yayınla
             </button>
-        </>
+        </div>
     );
 }
+
+export default AddJobAdvert;

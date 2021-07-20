@@ -1,6 +1,6 @@
 import React from 'react';
 import Swal from "sweetalert2";
-import SocialMediService from "../../services/SocialMediService";
+import SocialMediService from "../../../services/SocialMediService";
 
 function AddSocialMedia(props) {
 

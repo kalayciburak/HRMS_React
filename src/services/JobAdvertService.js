@@ -49,9 +49,13 @@ export default class JobAdvertService {
             `http://localhost:8080/api/jobadverts/getJobAdvertById?jobAdvertId=${id}`);
     }
 
+    getJobAdvertByEmployerId(id) {
+        return axios.get(`http://localhost:8080/api/jobadverts/getJobAdvertByEmployerId?employerId=${id}`)
+    }
+
     getJobAdvertByCompanyName(name) {
         return axios.get(
-            `http://localhost:8080/api/jobadverts/getJobAdvertsByCompanyName?companyName=${name}`);
+            `http://localhost:8080/api/jobadverts/getJobAdvertByCompanyName?companyName=${name}`);
     }
 
     deleteJobAdvertById(id) {

@@ -61,7 +61,7 @@ export default function AdminEmployerList({color}) {
                         <tr>
                             <th
                                 className={
-                                    "px-6 align-middle border border-solid py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center " +
+                                    "px-6 align-middle border border-indigo-400 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center " +
                                     (color === "light")
                                 }
                             >
@@ -69,7 +69,7 @@ export default function AdminEmployerList({color}) {
                             </th>
                             <th
                                 className={
-                                    "px-6 align-middle border border-solid py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center " +
+                                    "px-6 align-middle border border-indigo-400 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center " +
                                     (color === "light")
                                 }
                             >
@@ -77,7 +77,7 @@ export default function AdminEmployerList({color}) {
                             </th>
                             <th
                                 className={
-                                    "px-6 align-middle border border-solid py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center " +
+                                    "px-6 align-middle border border-indigo-400 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center " +
                                     (color === "light")
                                 }
                             >
@@ -85,7 +85,7 @@ export default function AdminEmployerList({color}) {
                             </th>
                             <th
                                 className={
-                                    "px-6 align-middle border border-solid py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center " +
+                                    "px-6 align-middle border border-indigo-400 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center " +
                                     (color === "light")
                                 }
                             >
@@ -93,7 +93,7 @@ export default function AdminEmployerList({color}) {
                             </th>
                             <th
                                 className={
-                                    "px-6 align-middle border border-solid py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center " +
+                                    "px-6 align-middle border border-indigo-400 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center " +
                                     (color === "light")
                                 }
                             ></th>
@@ -109,21 +109,21 @@ export default function AdminEmployerList({color}) {
                                 return value
                             }
                         }).map((employer, index) => (
-                            <tr className={index % 2 == 0 ? "bg-lightBlue-600 font-semibold" : "bg-blueGray-800 font-semibold"}
+                            <tr className={index % 2 == 0 ? "bg-blueGray-600 hover:bg-purple-250 font-semibold" : "bg-blueGray-800 hover:bg-indigo-250 font-semibold"}
                                 key={employer.id}>
-                                <td className="border-b border-indigo-400 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4 text-center">
+                                <td className="border-b border-indigo-400 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap py-3 text-center">
                                     {employer.companyName}
                                 </td>
-                                <td className="border-b border-indigo-400 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4 text-center">
+                                <td className="border-b border-indigo-400 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap py-3 text-center">
                                     {employer.email}
                                 </td>
-                                <td className="border-b border-indigo-400 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4 text-center">
+                                <td className="border-b border-indigo-400 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap py-3 text-center">
                                     {employer.website}
                                 </td>
-                                <td className="border-b border-indigo-400 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4 text-center">
+                                <td className="border-b border-indigo-400 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap py-3 text-center">
                                     {employer.phoneNumber}
                                 </td>
-                                <td className="border-b border-indigo-400 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4 text-center">
+                                <td className="border-b border-indigo-400 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap py-3 text-center">
                                     <EmployerDropdown deleteEmployer={() => deleteEmployer(employer.id)}/>
                                 </td>
                             </tr>

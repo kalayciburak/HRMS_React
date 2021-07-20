@@ -81,7 +81,8 @@ function AddCurriculaVitae(props) {
                                     const curriculaVitae = {
                                         id: 0,
                                         jobSeekerId: jobSeekerId,
-                                        coverLetter: values.coverLetter
+                                        coverLetter: values.coverLetter,
+                                        pictureUrl: ""
                                     };
 
                                     addCv(curriculaVitae).then((res) => {
@@ -105,12 +106,12 @@ function AddCurriculaVitae(props) {
                                                     setTimeout(() => {
                                                         values = ''
                                                     }, 7000)
-                                                    window.location.href = "../profile"
+                                                    window.location.href = "../jobseeker/profile"
                                                 } else {
                                                     setTimeout(() => {
                                                         values = ''
                                                     }, 7000)
-                                                    window.location.href = "../profile"
+                                                    window.location.href = "../jobseeker/profile"
                                                 }
                                             })
                                         }

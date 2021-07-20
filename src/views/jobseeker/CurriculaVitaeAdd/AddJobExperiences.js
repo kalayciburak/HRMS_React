@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import Swal from "sweetalert2";
-import CurriculaVaiteService from "../../services/CurriculaVaiteService";
-import JobExperienceService from "../../services/JobExperienceService";
+import CurriculaVaiteService from "../../../services/CurriculaVaiteService";
+import JobExperienceService from "../../../services/JobExperienceService";
 
 function AddJobExperiences(props) {
 

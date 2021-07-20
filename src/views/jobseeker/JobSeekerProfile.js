@@ -2,23 +2,23 @@ import React, {useEffect, useState} from "react";
 
 import ProfileNavbar from "components/Navbars/ProfileNavbar.js";
 import Footer from "components/Footers/Footer.js";
-import CurriculaVaiteService from "../services/CurriculaVaiteService";
+import CurriculaVaiteService from "../../services/CurriculaVaiteService";
 import Swal from "sweetalert2";
-import EducationDelete from "../components/Dropdowns/CurriculaVitaeDropdown/EducationDelete";
-import JobExperienceDelete from "../components/Dropdowns/CurriculaVitaeDropdown/JobExperienceDelete";
-import LanguageDelete from "../components/Dropdowns/CurriculaVitaeDropdown/LanguageDelete";
-import AddEducation from "../components/Utility/AddEducation";
-import EducationService from "../services/EducationService";
-import AddJobExperiences from "../components/Utility/AddJobExperiences";
-import JobExperienceService from "../services/JobExperienceService";
-import AddJobSeekerLanguage from "../components/Utility/AddJobSeekerLanguage";
-import JobSeekerLanguageService from "../services/JobSeekerLanguageService";
-import AddTechnology from "../components/Utility/AddTechnology";
-import TechnologyService from "../services/TechnologyService";
-import AddSocialMedia from "../components/Utility/AddSocialMedia";
-import UpdateSocialMedia from "../components/Utility/UpdateSocialMedia";
+import EducationDelete from "./CurriculaVitaeDelete/EducationDelete";
+import JobExperienceDelete from "./CurriculaVitaeDelete/JobExperienceDelete";
+import LanguageDelete from "./CurriculaVitaeDelete/LanguageDelete";
+import AddEducation from "./CurriculaVitaeAdd/AddEducation";
+import EducationService from "../../services/EducationService";
+import AddJobExperiences from "./CurriculaVitaeAdd/AddJobExperiences";
+import JobExperienceService from "../../services/JobExperienceService";
+import AddJobSeekerLanguage from "./CurriculaVitaeAdd/AddJobSeekerLanguage";
+import JobSeekerLanguageService from "../../services/JobSeekerLanguageService";
+import AddTechnology from "./CurriculaVitaeAdd/AddTechnology";
+import TechnologyService from "../../services/TechnologyService";
+import AddSocialMedia from "./CurriculaVitaeAdd/AddSocialMedia";
+import UpdateSocialMedia from "../../components/Utility/UpdateSocialMedia";
 
-export default function Profile() {
+export default function JobSeekerProfile() {
 
     const curriculaVitaeService = new CurriculaVaiteService();
 
@@ -391,7 +391,6 @@ export default function Profile() {
                                                                               })
                                                                 }
                                                             }}
-
                                                         >
                                                             <i className={"far fa-sm fa-edit"}></i> Düzenle
                                                         </span>

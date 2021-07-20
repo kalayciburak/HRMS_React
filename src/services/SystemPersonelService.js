@@ -37,11 +37,15 @@ export default class SystemPersonelService {
     }
 
     deleteSystemPersonelById(id) {
-       return axios.delete(
-           `http://localhost:8080/api/systemPersonels/deleteSystemPersonelById?systemPersonelId=${id}`);
+        return axios.delete(
+            `http://localhost:8080/api/systemPersonels/deleteSystemPersonelById?systemPersonelId=${id}`);
     }
 
     approveJobAdvert(confirm, id) {
         return axios.post(`http://localhost:8080/api/systemPersonels/changeIsConfirmed?confirm=${confirm}&jobAdvertId=${id}`);
+    }
+
+    getEmployerByUpdatedTrue() {
+        return axios.get(`http://localhost:8080/api/systemPersonels/getEmployerByUpdatedTrue`)
     }
 }

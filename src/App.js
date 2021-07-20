@@ -2,11 +2,12 @@ import React from "react";
 import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
 import Admin from "./layouts/Admin";
 import Auth from "./layouts/Auth";
-import Profile from "./views/Profile";
+import JobSeekerProfile from "./views/jobseeker/JobSeekerProfile";
 import Index from "./views/Index";
 import Home from "./views/Home";
 import "tailwindcss/tailwind.css"
 import AddCurriculaVitae from "./views/jobseeker/AddCurriculaVitae";
+import EmployerProfile from "./views/employer/EmployerProfile";
 
 function App() {
     return (
@@ -16,7 +17,8 @@ function App() {
                 <Route path="/admin" component={Admin}/>
                 <Route path="/auth" component={Auth}/>
                 {/* add routes without layouts */}
-                <Route path="/profile" exact component={Profile}/>
+                <Route path="/jobseeker/profile" exact component={JobSeekerProfile}/>
+                <Route path="/employer/profile" exact component={EmployerProfile}/>
                 <Route path="/jobseeker/addCv" exact component={AddCurriculaVitae}/>
                 <Route path="/home" exact component={Home}/>
                 <Route path="/" exact component={Index}/>

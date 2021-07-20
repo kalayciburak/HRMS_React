@@ -1176,8 +1176,18 @@ select {
     background-color: rgba(168, 85, 247, var(--tw-bg-opacity));
 }
 
+.hover\:bg-purple-250:hover {
+    --tw-bg-opacity: 0.5;
+    background-color: rgba(168, 85, 247, var(--tw-bg-opacity));
+}
+
 .hover\:bg-indigo-500:hover {
     --tw-bg-opacity: 1;
+    background-color: rgba(99, 102, 241, var(--tw-bg-opacity));
+}
+
+.hover\:bg-indigo-250:hover {
+    --tw-bg-opacity: 0.5;
     background-color: rgba(99, 102, 241, var(--tw-bg-opacity));
 }
 
@@ -2197,6 +2207,11 @@ select {
 .hover\:text-blueGray-300:hover {
     --tw-text-opacity: 1;
     color: rgba(203, 213, 225, var(--tw-text-opacity));
+}
+
+.hover\:text-orange-300:hover {
+    --tw-text-opacity: 1;
+    color: rgba(255, 192, 26, var(--tw-text-opacity));
 }
 
 .hover\:text-purple-400:hover {

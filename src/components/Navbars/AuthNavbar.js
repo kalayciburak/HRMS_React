@@ -13,7 +13,7 @@ export default function Navbar(props) {
                 <div className="container px-4 mx-auto flex flex-wrap items-center justify-center">
                     <div className="w-full relative flex justify-center lg:w-auto lg:static lg:block lg:justify-start">
                         <Link
-                            className="text-black text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
+                            className="text-black hover:text-lightBlue-600 text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
                             to="/"
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 ml-2" fill="none"

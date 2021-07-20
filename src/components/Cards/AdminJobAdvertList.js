@@ -36,9 +36,17 @@ export default function AdminJobAdvertList() {
     let airdate;
 
     function deleteJobAdvert(id) {
-        jobAdvertService.deleteJobAdvertById(id);
-        const filteredJobAdverts = jobAdverts.filter((jobAdvert) => jobAdvert.id != id)
-        setJobAdverts(filteredJobAdverts)
+        jobAdvertService.deleteJobAdvertById(id).then(() => {
+            getJobAdverts()
+        })
+        // const filteredJobAdverts = jobAdverts.filter((jobAdvert) => jobAdvert.id != id)
+        // setJobAdverts(filteredJobAdverts)
+    }
+
+    function getJobAdverts() {
+        jobAdvertService.getSortedJobAdverts().then((res) => {
+            setJobAdverts(res.data.data)
+        })
     }
 
     return (
@@ -71,21 +79,21 @@ export default function AdminJobAdvertList() {
                         <tr>
                             <th
                                 className={
-                                    "px-4 align-middle border border-solid py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left "
+                                    "px-4 align-middle border border-indigo-400 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left "
                                 }
                             >
 
                             </th>
                             <th
                                 className={
-                                    "px-4 align-middle border border-solid py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left "
+                                    "px-4 align-middle border border-indigo-400 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left "
                                 }
                             >
                                 Şirket
                             </th>
                             <th
                                 className={
-                                    "px-6 align-middle border border-solid py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left "
+                                    "px-6 align-middle border border-indigo-400 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left "
                                 }
                             >
                                 Pozisyon
@@ -108,49 +116,42 @@ export default function AdminJobAdvertList() {
                             {/*</th>*/}
                             <th
                                 className={
-                                    "px-3 align-middle border border-solid py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left "
+                                    "px-3 align-middle border border-indigo-400 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left "
                                 }
                             >
                                 Maaş (₺)
                             </th>
                             <th
                                 className={
-                                    "px-6 align-middle border border-solid py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left "
+                                    "px-6 align-middle border border-indigo-400 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left "
                                 }
                             >
                                 Şehir
                             </th>
                             <th
                                 className={
-                                    "px-4 align-middle border border-solid py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left "
+                                    "px-4 align-middle border border-indigo-400 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left "
                                 }
                             >
                                 Yayın Tarihi
                             </th>
                             <th
                                 className={
-                                    "px-4 align-middle border border-solid py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left "
+                                    "px-4 align-middle border border-indigo-400 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left "
                                 }
                             >
                                 Son Başvuru Tarihi
                             </th>
                             <th
                                 className={
-                                    "px-4 align-middle border border-solid py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left "
+                                    "px-4 align-middle border border-indigo-400 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left "
                                 }
                             >
-                                Aktif
+                                Aktif/Onaylı
                             </th>
                             <th
                                 className={
-                                    "px-3 align-middle border border-solid py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left "
-                                }
-                            >
-                                Onaylı
-                            </th>
-                            <th
-                                className={
-                                    "px-4 align-middle border border-solid py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left "
+                                    "px-4 align-middle border border-indigo-400 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left "
                                 }
                             ></th>
                         </tr>
@@ -167,13 +168,13 @@ export default function AdminJobAdvertList() {
                                 return value
                             }
                         }).map((jobAdvert, index) => (
-                            <tr className={index % 2 == 0 ? "bg-lightBlue-600 font-semibold" : "bg-blueGray-800 font-semibold"}
+                            <tr className={index % 2 == 0 ? "bg-blueGray-600 hover:bg-purple-250 font-semibold" : "bg-blueGray-800 hover:bg-indigo-250 font-semibold"}
                                 key={jobAdvert.id}>
-                                <td className="border-b border-indigo-400 px-4 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">{index + 1}</td>
-                                <td className="border-b border-indigo-400 px-4 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
+                                <td className="border-b border-indigo-400 px-4 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap py-3">{index + 1}</td>
+                                <td className="border-b border-indigo-400 px-4 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap py-3">
                                     {jobAdvert.employer.companyName}
                                 </td>
-                                <td className="border-b border-indigo-400 px-4 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
+                                <td className="border-b border-indigo-400 px-4 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap py-3">
                                     {jobAdvert.jobPosition.jobTitle}
                                 </td>
                                 {/*<td className="border-b border-indigo-400 lg:px-10 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">*/}
@@ -186,61 +187,68 @@ export default function AdminJobAdvertList() {
                                 {/*        </div>*/}
                                 {/*    </div>*/}
                                 {/*</td>*/}
-                                <td className="border-b border-indigo-400 px-4 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
+                                <td className="border-b border-indigo-400 px-4 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap py-3">
                                     {jobAdvert.salary}(₺)
                                 </td>
-                                <td className="border-b border-indigo-400 px-4 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
+                                <td className="border-b border-indigo-400 px-4 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap py-3">
                                     <div className="flex">
                                         {jobAdvert.city.cityName}
                                     </div>
                                 </td>
-                                <td className="border-b border-indigo-400 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
+                                <td className="border-b border-indigo-400 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap py-3">
                                     <div className="flex">
                                         <span style={{display: "none"}}>{airdate = jobAdvert.airdate.toString().split(
                                             "T")}</span>
                                         {airdate[0]}
                                     </div>
                                 </td>
-                                <td className="border-b border-indigo-400 lg:px-10 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
+                                <td className="border-b border-indigo-400 lg:px-10 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap py-3">
                                     {jobAdvert.deadline}
                                 </td>
-                                <td className="border-b border-indigo-400 px-4 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
+                                <td className="border-b border-indigo-400 px-4 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap py-3">
                                     <input
                                         id="isActive"
                                         type="checkbox"
                                         defaultChecked={jobAdvert.active}
-                                        className="form-checkbox rounded-full ml-1 ease-linear transition-all duration-150"
+                                        className="form-checkbox cursor-pointer rounded-full ml-1 mr-2 ease-linear transition-all duration-150 py-3"
                                         style={index % 2 == 1 ? {
-                                            color: "#3a6719",
+                                            color: "#10B981",
                                             border: "2px solid #C2D0DD",
                                             width: 25,
                                             height: 25
                                         } : {color: "#cc6f16", border: "2px solid #C2D0DD", width: 25, height: 25}}
                                         onClick={() => jobAdvert.active ? employerService.deactiveJobAdvert(
                                             false,
-                                            jobAdvert.id) : employerService.deactiveJobAdvert(
+                                            jobAdvert.id).then(() => {
+                                            getJobAdverts()
+                                        }) : employerService.deactiveJobAdvert(
                                             true,
-                                            jobAdvert.id)}
+                                            jobAdvert.id).then(() => {
+                                            getJobAdverts()
+                                        })}
                                     />
-                                </td>
-                                <td className="border-b border-indigo-400 px-4 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
+                                    |
                                     <input
                                         id="isConfirmed"
                                         type="checkbox"
                                         defaultChecked={jobAdvert.confirmed}
-                                        className="form-checkbox border-0 rounded-full text-red-500 ml-1 w-5 h-5 ease-linear transition-all duration-150"
+                                        className="form-checkbox cursor-pointer border-0 rounded-full text-red-500 ml-2 w-5 h-5 ease-linear transition-all duration-150 py-3"
                                         style={index % 2 == 1 ? {
-                                            color: "#3a6719",
+                                            color: "#10B981",
                                             border: "2px solid #C2D0DD",
                                             width: 25,
                                             height: 25
                                         } : {color: "#cc6f16", border: "2px solid #C2D0DD", width: 25, height: 25}}
                                         onClick={() => jobAdvert.confirmed ? systemPersonelService.approveJobAdvert(
                                             false,
-                                            jobAdvert.id) : systemPersonelService.approveJobAdvert(true, jobAdvert.id)}
+                                            jobAdvert.id).then(() => {
+                                            getJobAdverts()
+                                        }) : systemPersonelService.approveJobAdvert(true, jobAdvert.id).then(() => {
+                                            getJobAdverts()
+                                        })}
                                     />
                                 </td>
-                                <td className="border-b border-indigo-400 align-middle border-l-0 border-r-0 whitespace-nowrap p-4">
+                                <td className="border-b border-indigo-400 align-middle border-l-0 border-r-0 whitespace-nowrap py-3">
                                     <JobAdvertDropdown deleteJobAdvert={() => deleteJobAdvert(jobAdvert.id)}/>
                                 </td>
                             </tr>
