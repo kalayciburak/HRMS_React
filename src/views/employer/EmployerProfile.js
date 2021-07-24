@@ -11,12 +11,15 @@ import Footer from "../../components/Footers/Footer";
 import AddJobAdvert from "../../components/Modals/AddJobAdvert";
 import Swal from "sweetalert2";
 import isURL from 'validator/lib/isURL'
+import EmployerUpdateService from "../../services/EmployerUpdateService";
 
 export default function EmployerProfile() {
 
     const jobAdvertService = new JobAdvertService();
 
     const employerService = new EmployerService();
+
+    const employerUpdateService = new EmployerUpdateService();
 
     const systemPersonelService = new SystemPersonelService();
 
@@ -80,8 +83,9 @@ export default function EmployerProfile() {
         document.getElementById("image").title = "Fotoğraf Yükle";
     }
 
-    function updateEmployer() {
+    function updateEmployer(employerUpdate) {
         employerService.changeisUpdated(true, employer.id).then(() => {
+            employerUpdateService.addEmployerUpdate(employerUpdate)
             getEmployer()
         })
     }
@@ -320,14 +324,26 @@ export default function EmployerProfile() {
                                                                             website: website,
                                                                             password: employer.password
                                                                         }
-                                                                        setUpdatedEmployerInformation(empl)
-                                                                        updateEmployer()
-                                                                        Swal.fire({
-                                                                                      icon: 'info',
-                                                                                      title: 'Yetkili onayından sonra bilgileriniz güncellenecektir!',
-                                                                                      showConfirmButton: false,
-                                                                                      timer: 9500
-                                                                                  })
+                                                                        if (empl.companyName != employer.companyName || empl.email != employer.email || empl.phoneNumber != employer.phoneNumber || empl.website != employer.website) {
+                                                                            setUpdatedEmployerInformation(empl)
+                                                                            updateEmployer(empl)
+                                                                            Swal.fire({
+                                                                                          icon: 'info',
+                                                                                          title: 'Yetkili onayından sonra bilgileriniz güncellenecektir!',
+                                                                                          showConfirmButton: false,
+                                                                                          timer: 9500
+                                                                                      })
+
+                                                                        } else {
+                                                                            Swal.fire({
+                                                                                          position: 'center',
+                                                                                          icon: 'error',
+                                                                                          // title: 'HATA',
+                                                                                          text: 'Herhangi bir değişiklik yapılmadığı için işleminiz iptal edilmiştir!',
+                                                                                          showConfirmButton: false,
+                                                                                          timer: 3500
+                                                                                      })
+                                                                        }
                                                                     }
                                                                 } else {
                                                                     Swal.fire({
@@ -634,7 +650,12 @@ export default function EmployerProfile() {
                                                 border: "2px solid #C2D0DD",
                                                 width: 25,
                                                 height: 25
-                                            } : {color: "#cc6f16", border: "2px solid #C2D0DD", width: 25, height: 25}}
+                                            } : {
+                                                color: "#cc6f16",
+                                                border: "2px solid #C2D0DD",
+                                                width: 25,
+                                                height: 25
+                                            }}
                                             onClick={() => jobAdvert.active ? employerService.deactiveJobAdvert(
                                                 false,
                                                 jobAdvert.id).then(() => {

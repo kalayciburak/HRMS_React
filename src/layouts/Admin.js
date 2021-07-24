@@ -11,6 +11,7 @@ import EmployerList from "views/admin/EmployerList.js";
 import jobAdvertList from "views/admin/JobAdvertList.js";
 import jobseekerList from "../views/admin/JobseekerList";
 import systemPersonelList from "../views/admin/SystemPersonelList";
+import AdminApproval from "../components/Cards/AdminApproval";
 
 export default function Admin() {
     return (
@@ -26,6 +27,7 @@ export default function Admin() {
                         <Route path="/admin/jobseekerList" exact component={jobseekerList}/>
                         <Route path="/admin/employerList" exact component={EmployerList}/>
                         <Route path="/admin/jobAdvertList" exact component={jobAdvertList}/>
+                        <Route path="/admin/approval" exact component={AdminApproval}/>
                         <Redirect from="/admin" to="/admin/employerList"/>
                     </Switch>
                     <FooterAdmin/>
