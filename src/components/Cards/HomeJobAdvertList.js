@@ -5,10 +5,15 @@ import JobAdvertService from "../../services/JobAdvertService";
 import BackToTop from "../Utility/BackToTop";
 import Swal from "sweetalert2";
 import BackToBottom from "../Utility/BackToBottom";
+import {useDispatch, useSelector} from "react-redux";
+import {addToFavorite, removeFromFavorite} from "../../store/actions/favoriteActions";
+import FavoriteService from "../../services/FavoriteService";
 
 function HomeJobAdvertList() {
 
     const jobAdvertService = new JobAdvertService();
+
+    const favoriteService = new FavoriteService();
 
     const [jobAdverts, setJobAdverts] = useState([])
 
@@ -25,6 +30,10 @@ function HomeJobAdvertList() {
     const [paginationSize, setPaginationSize] = useState(4);
 
     const [windowY, setWindowY] = useState(0);
+
+    const {favoriteItems} = useSelector(state => state.favorite)
+
+    const dispatch = useDispatch()
 
     let jobSeekerId = 1 //burası login yapmış olan kullanıcıdan alınacak
 
@@ -59,6 +68,71 @@ function HomeJobAdvertList() {
 
     }, [sort, paginationSize, pageNo])
 
+    const arrayIncludesThisValue = (array, value) => {
+        let result
+        array.forEach(item => {
+            if (item.jobAdvert.id === value.id) result = true
+        })
+        return result === true
+    }
+
+    const handleFavorite = (jobAdvert) => {
+        if (arrayIncludesThisValue(favoriteItems, jobAdvert)) {
+            dispatch(removeFromFavorite(jobAdvert))
+            // favoriteService.deleteFavorite()
+            const Toast = Swal.mixin({
+                                         toast: true,
+                                         position: 'top-end',
+                                         showConfirmButton: false,
+                                         timer: 1500,
+                                         timerProgressBar: true,
+                                         background: "#850000",
+                                         didOpen: (toast) => {
+                                             toast.addEventListener(
+                                                 'mouseenter',
+                                                 Swal.stopTimer)
+                                             toast.addEventListener(
+                                                 'mouseleave',
+                                                 Swal.resumeTimer)
+                                         }
+                                     })
+
+            Toast.fire({
+                           icon: 'success',
+                           html: "<h1 style='font-family: Ubuntu;color: white;'>Favorilerden Kaldırıldı!</h1>"
+                       })
+        } else {
+            dispatch(addToFavorite(jobAdvert))
+            // let favorite = {
+            //     "id": 0,
+            //     "jobAdvertId": jobAdvert.id,
+            //     "jobSeekerId": jobSeekerId
+            // }
+            // favoriteService.addFavorite(favorite)
+            const Toast = Swal.mixin({
+                                         toast: true,
+                                         position: 'top-end',
+                                         showConfirmButton: false,
+                                         timer: 1500,
+                                         timerProgressBar: true,
+                                         background: "#3d6f42",
+                                         didOpen: (toast) => {
+                                             toast.addEventListener(
+                                                 'mouseenter',
+                                                 Swal.stopTimer)
+                                             toast.addEventListener(
+                                                 'mouseleave',
+                                                 Swal.resumeTimer)
+                                         }
+                                     })
+
+            Toast.fire({
+                           icon: 'success',
+                           html: "<h1 style='font-family: Ubuntu;color: white;'>Favorilere Eklendi!</h1>"
+                       })
+        }
+    }
+
     function classNames(...classes) {
         return classes.filter(Boolean).join(' ')
     }
@@ -73,7 +147,6 @@ function HomeJobAdvertList() {
         <div onMouseMove={() => setWindowY(window.pageYOffset)}>
             <BackToTop/>
             <BackToBottom/>
-
             <h3 className="text-4xl mt-20 font-semibold leading-normal text-blueGray-800 text-center"><i
                 className="fas fa-briefcase"></i> İş İlanları</h3>
             <div className="relative mt-3 lg:w-3/12 ml-auto mr-auto rounded">
@@ -441,10 +514,18 @@ function HomeJobAdvertList() {
                                 <div className="lg:w-1/3 flex flex-col items-center"
                                      style={{width: "15%", backgroundColor: index % 2 == 1 ? "#6366F1" : "#7D2BA3FF"}}>
                                     <button
+                                        onClick={() => handleFavorite(jobAdvert)}
                                         className="text-blueGray-300 active:bg-indigo-500 hover:bg-purple-400 text-sm font-bold uppercase h-full rounded shadow outline-none focus:outline-none px-3 ease-linear transition-all duration-250"
                                         type="button"
                                     >
-                                        <i className="far fa-lg fa-heart"></i>
+                                        {
+                                            //! yarın buradan devam et!
+
+
+                                            <i className={`fa${arrayIncludesThisValue(
+                                                favoriteItems,
+                                                jobAdvert) === true ? "s" : "r"} fa-lg fa-heart`}/>
+                                        }
                                     </button>
                                 </div>
 

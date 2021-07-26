@@ -35,7 +35,7 @@ function LanguageDelete(props) {
                                                                              showConfirmButton: false,
                                                                              timer: 3000,
                                                                              timerProgressBar: true,
-                                                                             background: "#66B96F",
+                                                                             background: "#3d6f42",
                                                                              didOpen: (toast) => {
                                                                                  toast.addEventListener(
                                                                                      'mouseenter',

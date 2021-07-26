@@ -18,7 +18,7 @@ export default class TechnologyService {
                      }).then((res) => {
             return res.data.message
         }).catch((err) => {
-            return err.error.error
+            return err.error.message
         });
     }
 

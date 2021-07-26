@@ -676,7 +676,7 @@ export default function JobSeekerProfile() {
                                         style={{marginLeft: "56%"}}>
                                         <div className="py-2 px-2 sm:mt-0">
                                             {
-                                                cvTechnologies.length >= 5 ? "" :
+                                                cvTechnologies.length > 5 ? "" :
                                                     <AddTechnology getTechnologies={() => getTechnologies()}/>
                                             }
 
@@ -717,7 +717,7 @@ export default function JobSeekerProfile() {
                                                                                                       showConfirmButton: false,
                                                                                                       timer: 3000,
                                                                                                       timerProgressBar: true,
-                                                                                                      background: "#66B96F",
+                                                                                                      background: "#3d6f42",
                                                                                                       didOpen: (toast) => {
                                                                                                           toast.addEventListener(
                                                                                                               'mouseenter',
