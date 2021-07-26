@@ -17,7 +17,7 @@ Bu proje Engin Demiroğun önderliğin de ki Java-React kampı için geliştiril
 
 # Sneak Preview
 
-https://user-images.githubusercontent.com/61664693/122447019-f6afb680-cfab-11eb-9126-e161260ca607.mp4
+https://user-images.githubusercontent.com/61664693/127064685-488fd67b-7c72-4c79-a0a3-bc599c741a7f.mp4
 
 # UML Component Diagram
 
