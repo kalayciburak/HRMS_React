@@ -204,7 +204,7 @@ function EmployerRegister(props) {
                                 <label className="items-center cursor-pointer">
                                     <input
                                         type="checkbox"
-                                        className="form-checkbox border-0 rounded font-semibold text-lightBlue-500 ml-1 w-5 h-5 ease-linear transition-all duration-150"
+                                        className="form-checkbox cursor-pointer border-0 rounded-full font-semibold text-lightBlue-500 ml-1 w-5 h-5 ease-linear transition-all duration-150"
                                         id="isTerm"
                                         onChange={handleChange}
                                         onClick={() => values.isTerm = true}
@@ -215,20 +215,27 @@ function EmployerRegister(props) {
                                 ) : null}
                                 <span className="ml-2 text-sm font-semibold text-white">
                         <a
-                            href="#pablo"
-                            className="text-lightBlue-500"
-                            onClick={(e) => e.preventDefault()}
+                            className="text-lightBlue-500 cursor-pointer "
+                            onClick={(e) => {
+                                Swal.fire({
+                                              title: "Hizmet Sözleşmesi",
+                                              html: "<p style='font-weight: 600;font-size: 15px;margin-left: 2rem;margin-right: 2rem;font-family: Samsung Sans;'>HÜKÜMLER SÖZLEŞME HAKKINDA Aday, \"Üyeliği Tamamla\" \"Facebook ile Üye Ol\" veya benzeri ifadeleri tıklayarak, kaydolarak, erişimde bulunarak veya hizmetlerimizi kullanarak, Kariyer.net Elektronik Yayıncılık ve İletişim Hizmetleri A.Ş (\"Şirket\") ile hukuki olarak bağlayıcı bu Hizmet Sözleşmesi'ni (\"Sözleşme\") akdetmiş olur. Kişisel verilerinizin işlenmesi ile ilgili haklarınız, işlenmelere ve buna ilişkin istenen rızalarınıza dair bilgilendirilmeniz için Aday Aydınlatma Metni'ne bakabilirsiniz. Hizmetlerimizi kullanımınız, ayrıca  Çerez Politikamıza da tabidir.</p>",
+                                              allowOutsideClick: false,
+                                              confirmButtonText: "Tamam"
+                                          })
+                            }}
                         >
                           Hizmet Sözleşmesini
-                        </a>{" "}onaylıyorum
+                        </a>{" "}<span style={{cursor: "default"}}>onaylıyorum.</span>
                       </span>
                                 {(values.isTerm ? "" :
                                     <span
+                                        style={{cursor: "default"}}
                                         className={"text-red-500 font-semibold mt-2 block"}>Sözleşme kabul edilmeli!</span>)}
                             </div>
                             <div className="text-center mt-4 mb-3">
                                 <button
-                                    className={isDisabled ? " bg-blueGray-700 text-blueGray-500 text-sm font-bold uppercase px-6 py-3 rounded shadow outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150 " : "bg-lightBlue-600 active:bg-blueGray-600 hover.bg-lightBlue-300 text-white text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"}
+                                    className={isDisabled ? " bg-blueGray-700 text-blueGray-500 text-sm font-bold uppercase px-6 py-3 rounded shadow outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150 " : "bg-indigo-500 active:bg-indigo-500 hover:bg-purple-400 text-white text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"}
                                     type="submit"
                                     disabled={isDisabled ? true : false}
                                 >

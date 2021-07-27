@@ -69,6 +69,7 @@ function HomeJobAdvertList() {
     }, [sort, paginationSize, pageNo])
 
     const arrayIncludesThisValue = (array, value) => {
+        //favoriteItems ile jobAdvert i kıyaslıyor eğer içinde var ise result true döndürüyor.
         let result
         array.forEach(item => {
             if (item.jobAdvert.id === value.id) result = true
@@ -79,7 +80,7 @@ function HomeJobAdvertList() {
     const handleFavorite = (jobAdvert) => {
         if (arrayIncludesThisValue(favoriteItems, jobAdvert)) {
             dispatch(removeFromFavorite(jobAdvert))
-            // favoriteService.deleteFavorite()
+            favoriteService.deleteFavorite(jobSeekerId, jobAdvert.id)
             const Toast = Swal.mixin({
                                          toast: true,
                                          position: 'top-end',
@@ -103,12 +104,12 @@ function HomeJobAdvertList() {
                        })
         } else {
             dispatch(addToFavorite(jobAdvert))
-            // let favorite = {
-            //     "id": 0,
-            //     "jobAdvertId": jobAdvert.id,
-            //     "jobSeekerId": jobSeekerId
-            // }
-            // favoriteService.addFavorite(favorite)
+            let favorite = {
+                "id": 0,
+                "jobAdvertId": jobAdvert.id,
+                "jobSeekerId": jobSeekerId
+            }
+            favoriteService.addFavorite(favorite)
             const Toast = Swal.mixin({
                                          toast: true,
                                          position: 'top-end',
@@ -452,7 +453,7 @@ function HomeJobAdvertList() {
                                     <div
                                         className="w-24 h-24 mb-3 p-2 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
                                         <img width={"128"} height={"128"}
-                                             className="xl:w-8/12 h-full overflow-hidden object-cover rounded-full"
+                                             className="xl:w-8/12 overflow-hidden object-cover rounded-full"
                                              src={`${jobAdvert.employer.pictureUrl}`} alt="avatar"/>
                                     </div>
                                     <h2 className={index % 2 == 1 ? "text-blueGray-800 dark:text-gray-100 text-xl tracking-normal font-semibold" : "text-blueGray-300 dark:text-gray-100 text-xl tracking-normal font-semibold"}>{jobAdvert.employer.companyName}</h2>
@@ -519,9 +520,6 @@ function HomeJobAdvertList() {
                                         type="button"
                                     >
                                         {
-                                            //! yarın buradan devam et!
-
-
                                             <i className={`fa${arrayIncludesThisValue(
                                                 favoriteItems,
                                                 jobAdvert) === true ? "s" : "r"} fa-lg fa-heart`}/>

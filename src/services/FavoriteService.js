@@ -22,7 +22,11 @@ export default class FavoriteService {
         })
     }
 
-    deleteFavorite(id) {
-        return axios.delete(`http://localhost:8080/api/favorites/deleteFavorite?id=${id}`)
+    // deleteFavorite(id) {
+    //     return axios.delete(`http://localhost:8080/api/favorites/deleteFavorite?id=${id}`)
+    // }
+
+    deleteFavorite(jobSeekerId, jobAdvertId) {
+        return axios.delete(`http://localhost:8080/api/favorites/deleteFavoriteByJobSeekerIdAndJobAdvertId?jobAdvertId=${jobAdvertId}&jobSeekerId=${jobSeekerId}`)
     }
 }
