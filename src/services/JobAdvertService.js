@@ -58,6 +58,10 @@ export default class JobAdvertService {
             `http://localhost:8080/api/jobadverts/getJobAdvertByCompanyName?companyName=${name}`);
     }
 
+    getActiveAndConfirmedJobAdvertCount() {
+        return axios.get(`http://localhost:8080/api/jobadverts/getActiveAndConfirmedJobAdvertCount`)
+    }
+
     deleteJobAdvertById(id) {
         return axios.delete(
             `http://localhost:8080/api/jobadverts/deleteJobAdvertById?jobAdvertId=${id}`);

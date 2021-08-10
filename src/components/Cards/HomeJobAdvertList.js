@@ -27,7 +27,7 @@ function HomeJobAdvertList() {
 
     const [pageNo, setPageNo] = useState(1);
 
-    const [paginationSize, setPaginationSize] = useState(4);
+    const [paginationSize, setPaginationSize] = useState();
 
     const [windowY, setWindowY] = useState(0);
 
@@ -39,6 +39,20 @@ function HomeJobAdvertList() {
 
     useEffect(() => {
         let isMounted = true;
+        jobAdvertService.getActiveAndConfirmedJobAdvertCount().then((res) => {
+            if (isMounted) {
+                setPaginationSize(res.data)
+            }
+        })
+
+        return () => {
+            isMounted = false; //cleaunp
+        }
+    }, []);
+
+    useEffect(() => {
+        let isMounted = true;
+
         if (sort) {
             jobAdvertService.getJobAdvertByIsActiveTrueAndIsConfirmedTrue().then((res) => {
                 if (isMounted) {
