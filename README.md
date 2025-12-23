@@ -5,7 +5,7 @@
 ## İnsan Kaynakları Yönetim Sistemi
 
 Bu proje <a href="https://www.kodlama.io/courses/1332369/author_bio">
-Engin Demiroğ</a>'un Java-React kampı için geliştirilmiştir.
+Java-React</a> kampı için geliştirilmiştir.
 </p>
 
 ## Folder Hierarchy
